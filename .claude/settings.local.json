@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e \"var t=require\\('fs'\\).readFileSync\\('c:/Users/User/Downloads/ideashapers-nextjs/ideashapers/app/page.tsx','utf8'\\);var lines=t.split\\('\\\\n'\\);lines.forEach\\(function\\(l,i\\){var p=l.indexOf\\('padding:'\\);if\\(p>-1\\){var s=l.slice\\(p,p+120\\);console.log\\(\\(i+1\\)+': '+s\\)}}\\);\")",
+      "Bash(grep -v \"//\")",
+      "Bash(node -e \"var t=require\\('fs'\\).readFileSync\\('c:/Users/User/Downloads/ideashapers-nextjs/ideashapers/app/page.tsx','utf8'\\);var lines=t.split\\('\\\\n'\\);for\\(var i=0;i<lines.length;i++\\){var idx=lines[i].indexOf\\('padding:'\\);if\\(idx>-1\\){var chunk=lines[i].slice\\(idx,idx+100\\);if\\(chunk.indexOf\\('clamp'\\)>-1||chunk.indexOf\\('rem'\\)>-1\\){process.stdout.write\\(\\(i+1\\)+': '+chunk+'\\\\n'\\);}}}\")"
+    ]
+  }
+}
