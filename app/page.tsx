@@ -1,23 +1,33 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const P = {
-  cream:   "#f7f3ee",
-  cream2:  "#f0ebe2",
-  cream3:  "#e5ddd2",
+  /* backgrounds — white replacing beige */
+  cream:   "#ffffff",
+  cream2:  "#f8f9fc",
+  cream3:  "#eef0f7",
+  /* maroon darks — unchanged */
   dark:    "#2c1008",
   dark2:   "#4a1e0e",
   dark3:   "#6b2d14",
   accent:  "#c4622a",
   accent2: "#d97b3f",
+  /* navy blue — from logo "I" */
+  navy:    "#1e2f6e",
+  navy2:   "#2d3d8a",
+  navyL:   "#3d52a8",
+  /* gold — logo oval */
   gold:    "#c9963a",
-  text:    "#1c1208",
-  muted:   "#8a7060",
-  border:  "rgba(44,16,8,0.1)",
+  gold2:   "#e8b84b",
+  /* text / ui */
+  text:    "#141414",
+  muted:   "#6b7280",
+  border:  "rgba(30,47,110,0.1)",
 };
 
 const WORK = [
@@ -77,6 +87,54 @@ const WA_PRESETS = [
   "Can I book a free discovery call?",
 ];
 
+/* ── clients ── */
+const CLIENTS = [
+  { name:"Vedanta Group",         cat:"Mining & Resources"   },
+  { name:"Emami Limited",         cat:"FMCG"                 },
+  { name:"ITC Hotels",            cat:"Hospitality"          },
+  { name:"Surya Nepal",           cat:"Consumer Goods"       },
+  { name:"Kolkata Knight Riders", cat:"Sports & Entertainment"},
+  { name:"Haldiram's",            cat:"Food & Beverage"      },
+  { name:"WB Tourism",            cat:"Government"           },
+  { name:"Bikano Snacks",         cat:"FMCG"                 },
+  { name:"ATK Mohun Bagan",       cat:"Football Club"        },
+  { name:"Inox Group",            cat:"Entertainment"        },
+  { name:"Apeejay Group",         cat:"Hospitality"          },
+  { name:"Merlin Group",          cat:"Real Estate"          },
+];
+
+/* ── influencer services ── */
+const INFL_SERVICES = [
+  { n:"01", title:"Campaign Strategy",     desc:"End-to-end campaign planning aligned with your brand goals, KPIs, and timeline." },
+  { n:"02", title:"Creator Matchmaking",   desc:"Nano to celebrity — we connect you with creators whose audiences trust them." },
+  { n:"03", title:"Content Production",    desc:"Platform-native content that stops the scroll and drives real action." },
+  { n:"04", title:"Performance Analytics", desc:"Live dashboards tracking reach, engagement, conversions, and brand sentiment." },
+  { n:"05", title:"Brand Promotions",      desc:"Product launches and activations engineered to create cultural moments." },
+  { n:"06", title:"Paid Amplification",    desc:"Boost winning organic content with precision-targeted paid strategies." },
+];
+
+/* ── event gallery ── */
+const EVENTS_DATA = [
+  { title:"Fashion Week",      type:"Fashion & Lifestyle",   year:"2024", bg:"linear-gradient(145deg,#1a0a18 0%,#2d1040 100%)", accent:"#c9963a" },
+  { title:"TEDx Kolkata",      type:"Conference & Summit",   year:"2024", bg:"linear-gradient(145deg,#060d18 0%,#0d1a30 100%)", accent:"#3d52a8" },
+  { title:"Music Festival",    type:"Entertainment",         year:"2025", bg:"linear-gradient(145deg,#180408 0%,#2c0810 100%)", accent:"#c4622a" },
+  { title:"Corporate Summit",  type:"Business",              year:"2025", bg:"linear-gradient(145deg,#040a08 0%,#081814 100%)", accent:"#2d8a6a" },
+  { title:"Gala Award Night",  type:"Gala & Ceremony",       year:"2024", bg:"linear-gradient(145deg,#100a00 0%,#201800 100%)", accent:"#c9963a" },
+  { title:"Product Launch",    type:"Brand Activation",      year:"2025", bg:"linear-gradient(145deg,#020618 0%,#040c28 100%)", accent:"#3d52a8" },
+];
+
+/* ── real contact data ── */
+const CONTACT = {
+  email:     "info@ideashapers.org",
+  phone1:    "+91 70771 02829",
+  phone2:    "+91 99037 37067",
+  whatsapp:  "+919903737067",
+  location:  "Kolkata, India",
+  instagram: "https://www.instagram.com/idea.shapers",
+  linkedin:  "https://www.linkedin.com/in/ideashapers",
+  facebook:  "https://www.facebook.com/ideashapers.official",
+};
+
 /* ── helpers ── */
 function isMobile() { return typeof window !== "undefined" && window.innerWidth <= 900; }
 
@@ -134,7 +192,7 @@ function DiamondLogo({ size=28, accent=P.accent }: { size?:number; accent?:strin
 function WAWidget() {
   const [open,setOpen]=useState(false);
   const [msg,setMsg]=useState("");
-  const send=(text:string)=>window.open(`https://wa.me/+1234567890?text=${encodeURIComponent(text)}`,"_blank");
+  const send=(text:string)=>window.open(`https://wa.me/919903737067?text=${encodeURIComponent(text)}`,"_blank");
   const WaIcon=()=><svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>;
   return (
     <div className="wa-float">
@@ -186,8 +244,7 @@ export default function Home() {
       gsap.timeline({ delay:0.1 })
         .from(".hero-line",  { y:80,opacity:0,duration:1.2,stagger:0.12,ease:"power3.out" })
         .from(".hero-sub",   { y:20,opacity:0,duration:1.0,ease:"power2.out" }, "-=0.6")
-        .from(".hero-btns",  { y:20,opacity:0,duration:1.0,ease:"power2.out" }, "-=0.7")
-        .from(".hero-stats", { y:16,opacity:0,duration:0.9,ease:"power2.out" }, "-=0.6");
+        .from(".hero-btns",  { y:20,opacity:0,duration:1.0,ease:"power2.out" }, "-=0.7");
     }, heroRef);
     return () => ctx.revert();
   }, []);
@@ -202,53 +259,69 @@ export default function Home() {
     return () => ctx.revert();
   }, []);
 
-  /* WORK horizontal scroll — DESKTOP only, mobile uses native scroll */
+  /* WORK horizontal scroll — standard gsap.to() + scrollTrigger pattern */
   useEffect(() => {
     if (isMobile()) return;
     if (!workOuter.current || !workTrack.current) return;
     const track = workTrack.current;
     const outer = workOuter.current;
     const ctx = gsap.context(() => {
-      /* recalculate every time ScrollTrigger refreshes */
-      ScrollTrigger.create({
-        trigger: outer,
-        start: "top top",
-        end: () => `+=${track.scrollWidth - outer.clientWidth}`,
-        pin: true,
-        anticipatePin: 1,
-        scrub: 1.4,
-        invalidateOnRefresh: true,
-        animation: gsap.to(track, {
-          x: () => -(track.scrollWidth - outer.clientWidth),
-          ease: "none",
-        }),
+      gsap.to(track, {
+        x: () => -(track.scrollWidth - outer.offsetWidth),
+        ease: "none",
+        scrollTrigger: {
+          trigger: outer,
+          start: "top top",
+          end: () => `+=${track.scrollWidth - outer.offsetWidth}`,
+          scrub: 1,
+          pin: true,
+          invalidateOnRefresh: true,
+        },
       });
     });
     return () => ctx.revert();
   }, []);
 
-  /* SERVICES horizontal scroll — DESKTOP only */
+  /* SERVICES horizontal scroll */
   useEffect(() => {
     if (isMobile()) return;
     if (!svcOuter.current || !svcTrack.current) return;
     const track = svcTrack.current;
     const outer = svcOuter.current;
     const ctx = gsap.context(() => {
-      ScrollTrigger.create({
-        trigger: outer,
-        start: "top top",
-        end: () => `+=${track.scrollWidth - outer.clientWidth}`,
-        pin: true,
-        anticipatePin: 1,
-        scrub: 1.2,
-        invalidateOnRefresh: true,
-        animation: gsap.to(track, {
-          x: () => -(track.scrollWidth - outer.clientWidth),
-          ease: "none",
-        }),
+      gsap.to(track, {
+        x: () => -(track.scrollWidth - outer.offsetWidth),
+        ease: "none",
+        scrollTrigger: {
+          trigger: outer,
+          start: "top top",
+          end: () => `+=${track.scrollWidth - outer.offsetWidth}`,
+          scrub: 1,
+          pin: true,
+          invalidateOnRefresh: true,
+        },
       });
     });
     return () => ctx.revert();
+  }, []);
+
+  /* centre hscroll content in visible viewport (accounting for sticky nav) */
+  useEffect(() => {
+    const applyPadding = () => {
+      const header = document.querySelector<HTMLElement>('header');
+      const annBar = document.querySelector<HTMLElement>('.announce-bar');
+      const navH   = (header?.offsetHeight ?? 0) + (annBar?.offsetHeight ?? 0);
+      document.querySelectorAll<HTMLElement>('.hscroll-inner').forEach(el => {
+        el.style.paddingTop    = "0px";
+        el.style.paddingBottom = `${navH}px`;
+      });
+      // tell GSAP to recalculate spacer sizes after layout change
+      ScrollTrigger.refresh();
+    };
+    // two rAF to ensure DOM is fully painted before measuring
+    requestAnimationFrame(() => requestAnimationFrame(applyPadding));
+    window.addEventListener('resize', applyPadding, { passive: true });
+    return () => window.removeEventListener('resize', applyPadding);
   }, []);
 
   /* generic fade-up */
@@ -280,7 +353,17 @@ export default function Home() {
 
   const go=(id:string)=>{
     setMobileMenu(false);
-    setTimeout(()=>document.getElementById(id)?.scrollIntoView({behavior:"smooth"}),mobileMenu?320:0);
+    const doScroll=()=>{
+      const el=document.getElementById(id);
+      if(!el)return;
+      /* offsetTop traversal gives absolute doc position regardless of
+         scroll state or GSAP pin transforms */
+      let top=0;
+      let cur:HTMLElement|null=el;
+      while(cur&&cur!==document.body){top+=cur.offsetTop;cur=cur.offsetParent as HTMLElement|null;}
+      window.scrollTo({top:Math.max(0,top),behavior:"smooth"});
+    };
+    if(mobileMenu){setTimeout(doScroll,320);}else{doScroll();}
   };
 
   return (
@@ -297,9 +380,8 @@ export default function Home() {
         pointerEvents: mobileMenu?"all":"none",
       }}>
         <button onClick={()=>setMobileMenu(false)} style={{ position:"absolute",top:"1.5rem",right:"1.5rem",background:"none",border:"none",cursor:"pointer",color:"rgba(255,255,255,0.5)",fontSize:"1.4rem",lineHeight:1 }}>✕</button>
-        <div style={{ display:"flex",alignItems:"center",gap:10,marginBottom:"3rem" }}>
-          <DiamondLogo size={26} accent={P.accent}/>
-          <span style={{ fontSize:"1rem",fontWeight:800,color:"#fff" }}>Idea<span style={{ color:P.gold }}>Shapers</span></span>
+        <div style={{ marginBottom:"3rem" }}>
+          <Image src="/logo.png" alt="IdeaShapers" width={72} height={72} style={{ objectFit:"contain", filter:"brightness(0) invert(1)" }}/>
         </div>
         {["Work","Services","About","Process","Contact"].map((item,i)=>(
           <button key={item} onClick={()=>go(item.toLowerCase())} style={{
@@ -312,7 +394,7 @@ export default function Home() {
           }}>{item}</button>
         ))}
         <div style={{ marginTop:"2.5rem" }}>
-          <a href="mailto:hello@ideashapers.org" style={{ fontSize:"0.8rem",color:"rgba(255,255,255,0.35)",textDecoration:"none" }}>hello@ideashapers.org</a>
+          <a href="mailto:info@ideashapers.org" style={{ fontSize:"0.8rem",color:"rgba(255,255,255,0.35)",textDecoration:"none" }}>info@ideashapers.org</a>
         </div>
       </div>
 
@@ -324,8 +406,8 @@ export default function Home() {
       <nav className="bnav-tube">
         {/* Logo */}
         <button onClick={()=>go("hero")} className="bnav-logo">
-          <DiamondLogo size={22} accent={P.accent}/>
-          <span className="bnav-logo-text">Idea<span style={{color:P.gold}}>Shapers</span></span>
+          {/* Logo always inverted white since nav bg is always dark */}
+          <Image src="/logo.png" alt="IdeaShapers" width={52} height={52} style={{ objectFit:"contain", filter:"brightness(0) invert(1)" }}/>
         </button>
 
         {/* Desktop nav links */}
@@ -351,22 +433,27 @@ export default function Home() {
       {/* ═══════════════════════════════════════
           HERO
       ═══════════════════════════════════════ */}
-      <section id="hero" ref={heroRef} style={{ background:P.cream, position:"relative", minHeight:"100vh", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", padding:"4rem clamp(1.25rem,5vw,3rem) 8rem", overflow:"hidden", textAlign:"center" }}>
+      <section id="hero" ref={heroRef} style={{ background:P.cream, position:"relative", minHeight:"100vh", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", padding:"clamp(30px,7vw,100px) clamp(1.25rem,5vw,3rem) clamp(160px,18vw,220px)", overflow:"hidden", textAlign:"center" }}>
         <div ref={blob1Ref} style={{ position:"absolute",width:620,height:620,borderRadius:"50%",pointerEvents:"none",background:"radial-gradient(circle,rgba(196,98,42,0.14) 0%,transparent 70%)",top:"50%",left:"50%",transform:"translate(-50%,-50%)",willChange:"transform" }}/>
         <div ref={blob2Ref} style={{ position:"absolute",width:340,height:340,borderRadius:"50%",pointerEvents:"none",background:"radial-gradient(circle,rgba(201,150,58,0.12) 0%,transparent 70%)",top:"18%",right:"10%",willChange:"transform" }}/>
         <div ref={blob3Ref} style={{ position:"absolute",width:260,height:260,borderRadius:"50%",pointerEvents:"none",background:"radial-gradient(circle,rgba(44,16,8,0.07) 0%,transparent 70%)",bottom:"18%",left:"7%",willChange:"transform" }}/>
 
-        <div className="hero-sub" style={{ marginBottom:"1.75rem" }}>
-          <div style={{ display:"inline-flex",alignItems:"center",gap:10,background:"rgba(44,16,8,0.06)",padding:"8px 18px 8px 10px",borderRadius:999,border:`1px solid ${P.border}` }}>
-            <DiamondLogo size={18} accent={P.accent}/>
-            <span style={{ fontSize:"0.7rem",fontWeight:700,letterSpacing:"0.16em",textTransform:"uppercase",color:P.dark3 }}>IdeaShapers Digital Studio</span>
-          </div>
+        {/* Logo — brand anchor, centred and prominent */}
+        <div className="hero-sub" style={{ marginBottom:"2.5rem" }}>
+          <Image src="/logo.png" alt="IdeaShapers" width={110} height={110} style={{ objectFit:"contain" }}/>
         </div>
 
-        <h1 style={{ fontSize:"clamp(2.2rem,5.5vw,6.2rem)",fontWeight:400,lineHeight:1.07,color:P.text,maxWidth:960,marginBottom:"1.75rem" }}>
-          <span className="hero-line" style={{ display:"block" }}>We build <em style={{ fontFamily:"'Playfair Display',Georgia,serif",fontStyle:"italic",color:P.dark }}>brands</em> and</span>
-          <span className="hero-line" style={{ display:"block" }}><em style={{ fontFamily:"'Playfair Display',Georgia,serif",fontStyle:"italic",color:P.accent }}>digital experiences</em></span>
-          <span className="hero-line" style={{ display:"block" }}>the world can&apos;t ignore.</span>
+        {/* Headline — the brand statement */}
+        <h1 style={{ fontSize:"clamp(2.6rem,5.5vw,6.4rem)",fontWeight:400,lineHeight:1.07,color:P.text,maxWidth:960,marginBottom:"1.75rem" }}>
+          <span className="hero-line" style={{ display:"block" }}>
+            We build{" "}<em style={{ fontFamily:"'Playfair Display',Georgia,serif",fontStyle:"italic",color:P.dark }}>brands</em>{" "}and
+          </span>
+          <span className="hero-line" style={{ display:"block" }}>
+            <em style={{ fontFamily:"'Playfair Display',Georgia,serif",fontStyle:"italic",color:P.accent }}>digital experiences</em>
+          </span>
+          <span className="hero-line" style={{ display:"block" }}>
+            the world can&apos;t ignore.
+          </span>
         </h1>
 
         <p className="hero-sub" style={{ fontSize:"1rem",color:P.muted,lineHeight:1.75,maxWidth:480,marginBottom:"2.5rem" }}>
@@ -378,20 +465,18 @@ export default function Home() {
           <Mag><ArrowBtn onClick={()=>go("services")}>Our Services</ArrowBtn></Mag>
         </div>
 
-        <div className="hero-stats" style={{ display:"flex",gap:"2.5rem",marginTop:"4rem",paddingTop:"2.5rem",borderTop:`1px solid ${P.border}`,flexWrap:"wrap",justifyContent:"center" }}>
-          {[["150+","Projects"],["98%","Satisfaction"],["6 yrs","Experience"],["40+","Industries"]].map(([n,l])=>(
-            <div key={l} style={{ textAlign:"center" }}>
-              <div style={{ fontFamily:"'Playfair Display',Georgia,serif",fontStyle:"italic",fontSize:"2.2rem",color:P.accent,letterSpacing:"-0.02em",lineHeight:1 }}>{n}</div>
-              <div style={{ fontSize:"0.6rem",letterSpacing:"0.16em",textTransform:"uppercase",color:P.muted,marginTop:6 }}>{l}</div>
-            </div>
-          ))}
+        {/* Clients marquee — inside hero, anchored at bottom */}
+        <div style={{ position:"absolute", bottom:"4rem", left:0, right:0 }}>
+          <p style={{ textAlign:"center",fontSize:"0.58rem",fontWeight:700,letterSpacing:"0.28em",textTransform:"uppercase",color:P.muted,marginBottom:"1rem",opacity:0.6 }}>Trusted by leading brands</p>
+          <HeroClientsMarquee/>
         </div>
 
-        <div style={{ position:"absolute",bottom:"5rem",left:"50%",transform:"translateX(-50%)",display:"flex",flexDirection:"column",alignItems:"center",gap:6,opacity:0.28 }}>
-          <div style={{ width:1,height:48,background:P.text }}/>
-          <span style={{ fontSize:"0.55rem",letterSpacing:"0.2em",textTransform:"uppercase",color:P.text }}>scroll</span>
-        </div>
       </section>
+
+      {/* ═══════════════════════════════════════
+          INFLUENCER MANAGEMENT — big wow section
+      ═══════════════════════════════════════ */}
+      <InfluencerSection go={go}/>
 
       {/* ═══════════════════════════════════════
           WORK
@@ -437,7 +522,7 @@ export default function Home() {
               >
                 <div style={{ display:"flex",justifyContent:"space-between",alignItems:"flex-start" }}>
                   <span style={{ fontSize:"0.58rem",fontWeight:700,letterSpacing:"0.18em",color:P.muted }}>{svc.n}</span>
-                  <DiamondLogo size={28} accent={P.accent}/>
+                  <Image src="/logo.png" alt="" width={42} height={42} style={{ objectFit:"contain" }}/>
                 </div>
                 <div>
                   <h3 style={{ fontFamily:"'Playfair Display',Georgia,serif",fontSize:"1.3rem",fontWeight:400,color:P.text,marginBottom:"0.65rem" }}>{svc.title}</h3>
@@ -464,7 +549,7 @@ export default function Home() {
           ABOUT US
       ═══════════════════════════════════════ */}
       <section id="about" style={{ background:P.dark, position:"relative", overflow:"hidden" }}>
-        <div style={{ padding:"clamp(4rem,8vw,8rem) clamp(1.25rem,5vw,3rem) clamp(3rem,5vw,5rem)", maxWidth:1440, margin:"0 auto" }}>
+        <div style={{ padding:"clamp(30px,7vw,100px) clamp(1.25rem,5vw,3rem)", maxWidth:1440, margin:"0 auto" }}>
           <div className="about-grid">
             <div className="gsap-up">
               <p style={{ fontSize:"0.62rem",fontWeight:700,letterSpacing:"0.22em",textTransform:"uppercase",color:"rgba(255,255,255,0.3)",marginBottom:"1.25rem" }}>Our Story</p>
@@ -509,7 +594,7 @@ export default function Home() {
         </div>
 
         {/* Team */}
-        <div style={{ borderTop:"1px solid rgba(255,255,255,0.06)",padding:"clamp(3rem,6vw,5rem) clamp(1.25rem,5vw,3rem) clamp(4rem,8vw,7rem)" }}>
+        <div style={{ borderTop:"1px solid rgba(255,255,255,0.06)", padding:"clamp(30px,7vw,100px) clamp(1.25rem,5vw,3rem)" }}>
           <div style={{ maxWidth:1440,margin:"0 auto" }}>
             <div className="gsap-up" style={{ marginBottom:"3rem" }}>
               <p style={{ fontSize:"0.62rem",fontWeight:700,letterSpacing:"0.22em",textTransform:"uppercase",color:"rgba(255,255,255,0.3)",marginBottom:"0.75rem" }}>The People</p>
@@ -520,12 +605,6 @@ export default function Home() {
             <div className="team-grid">
               {TEAM.map(member=>(
                 <div key={member.name} className="gsap-up team-card">
-                  <div style={{ position:"relative",marginBottom:"1.5rem" }}>
-                    <div style={{ width:68,height:68,borderRadius:"50%",background:`${member.color}22`,border:`2px solid ${member.color}44`,display:"flex",alignItems:"center",justifyContent:"center" }}>
-                      <span style={{ fontFamily:"'Playfair Display',Georgia,serif",fontSize:"1.3rem",fontWeight:400,color:member.color }}>{member.initials}</span>
-                    </div>
-                    <div style={{ position:"absolute",top:2,right:"calc(100% - 68px - 2px)",width:8,height:8,borderRadius:"50%",background:member.color }}/>
-                  </div>
                   <span style={{ fontSize:"0.56rem",fontWeight:700,letterSpacing:"0.16em",textTransform:"uppercase",color:member.color,display:"block",marginBottom:"0.4rem" }}>{member.role}</span>
                   <h3 style={{ fontSize:"1.1rem",fontWeight:600,color:"#fff",marginBottom:"0.65rem",letterSpacing:"-0.01em" }}>{member.name}</h3>
                   <p style={{ fontSize:"0.8rem",color:"rgba(255,255,255,0.42)",lineHeight:1.75 }}>{member.bio}</p>
@@ -539,7 +618,7 @@ export default function Home() {
       {/* ═══════════════════════════════════════
           PROCESS
       ═══════════════════════════════════════ */}
-      <section id="process" style={{ background:P.cream, position:"relative", padding:"clamp(4rem,8vw,8rem) clamp(1.25rem,5vw,3rem)" }}>
+      <section id="process" style={{ background:P.cream, position:"relative", padding:"clamp(30px,7vw,100px) clamp(1.25rem,5vw,3rem)" }}>
         <div style={{ maxWidth:1440,margin:"0 auto" }} className="process-grid">
           <div className="gsap-up" style={{ position:"sticky",top:"8rem" }}>
             <p style={{ fontSize:"0.62rem",fontWeight:700,letterSpacing:"0.22em",textTransform:"uppercase",color:P.muted,marginBottom:"1rem" }}>How We Work</p>
@@ -554,8 +633,8 @@ export default function Home() {
           <div>
             {PROCESS.map(p=>(
               <div key={p.n} className="gsap-up process-row">
-                <div style={{ width:40,height:40,borderRadius:"50%",background:`${P.accent}15`,border:`1.5px solid ${P.accent}35`,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0 }}>
-                  <span style={{ fontSize:"0.6rem",fontWeight:800,letterSpacing:"0.1em",color:P.accent }}>{p.n}</span>
+                <div style={{ width:40,height:40,borderRadius:"50%",background:`${P.navy}15`,border:`1.5px solid ${P.navy}44`,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0 }}>
+                  <span style={{ fontSize:"0.6rem",fontWeight:800,letterSpacing:"0.1em",color:P.navy }}>{p.n}</span>
                 </div>
                 <div>
                   <h3 style={{ fontSize:"1.1rem",fontWeight:500,color:P.text,marginBottom:"0.5rem" }}>{p.title}</h3>
@@ -571,12 +650,12 @@ export default function Home() {
       {/* ═══════════════════════════════════════
           MARQUEE
       ═══════════════════════════════════════ */}
-      <div style={{ background:P.dark,padding:"1rem 0",overflow:"hidden" }}>
+      <div style={{ background:P.dark,padding:"1.25rem 0",overflow:"hidden" }}>
         <div style={{ overflow:"hidden",whiteSpace:"nowrap" }}>
           <div style={{ display:"inline-flex",animation:"mq 26s linear infinite" }}>
             {[...Array(2)].flatMap((_,gi)=>
               ["Brand Strategy","Web Design","Development","Content","Growth Marketing","Visual Identity","UX Research","Copywriting","Conversion"].map((t,i)=>(
-                <span key={`${gi}-${t}`} style={{ fontSize:"0.65rem",fontWeight:600,letterSpacing:"0.2em",textTransform:"uppercase",color:i%4===0?P.gold:"rgba(255,255,255,0.22)",padding:"0 2.5rem",borderRight:"1px solid rgba(255,255,255,0.05)",whiteSpace:"nowrap" }}>{t}</span>
+                <span key={`${gi}-${t}`} style={{ fontSize:"0.85rem",fontWeight:600,letterSpacing:"0.18em",textTransform:"uppercase",color:i%4===0?P.gold:"rgba(255,255,255,0.55)",padding:"0 2.5rem",borderRight:"1px solid rgba(255,255,255,0.08)",whiteSpace:"nowrap" }}>{t}</span>
               ))
             )}
           </div>
@@ -587,7 +666,7 @@ export default function Home() {
           TESTIMONIALS — minimal person card
           Big name, photo circle, role, short quote
       ═══════════════════════════════════════ */}
-      <section style={{ background:P.cream3, padding:"clamp(4rem,8vw,8rem) 0", overflow:"hidden" }}>
+      <section style={{ background:P.cream3, padding:"clamp(30px,7vw,100px) 0", overflow:"hidden" }}>
         <div style={{ maxWidth:1440,margin:"0 auto clamp(2.5rem,4vw,4rem)",padding:"0 clamp(1.25rem,5vw,3rem)" }}>
           <p className="gsap-up" style={{ fontSize:"0.62rem",fontWeight:700,letterSpacing:"0.22em",textTransform:"uppercase",color:P.muted,marginBottom:"0.75rem" }}>What Clients Say</p>
           <h2 className="gsap-up" style={{ fontFamily:"'Playfair Display',Georgia,serif",fontSize:"clamp(1.8rem,4vw,3.2rem)",fontWeight:400,color:P.text,lineHeight:1.1 }}>
@@ -606,9 +685,14 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════
+          EVENT GALLERY — card game fan
+      ═══════════════════════════════════════ */}
+      <EventGallery/>
+
+      {/* ═══════════════════════════════════════
           FAQ
       ═══════════════════════════════════════ */}
-      <section id="faq" style={{ background:P.cream2, position:"relative", padding:"clamp(4rem,8vw,8rem) clamp(1.25rem,5vw,3rem)" }}>
+      <section id="faq" style={{ background:P.cream2, position:"relative", padding:"clamp(30px,7vw,100px) clamp(1.25rem,5vw,3rem)" }}>
         <div style={{ maxWidth:1100,margin:"0 auto" }}>
           <div className="gsap-up faq-header">
             <div>
@@ -626,7 +710,7 @@ export default function Home() {
       {/* ═══════════════════════════════════════
           CONTACT
       ═══════════════════════════════════════ */}
-      <section id="contact" style={{ background:P.dark2, position:"relative", padding:"clamp(4rem,8vw,8rem) clamp(1.25rem,5vw,3rem)" }}>
+      <section id="contact" style={{ background:P.dark2, position:"relative", padding:"clamp(30px,7vw,100px) clamp(1.25rem,5vw,3rem)" }}>
         <div style={{ maxWidth:1440,margin:"0 auto" }} className="contact-grid">
           <div className="gsap-up">
             <p style={{ fontSize:"0.62rem",fontWeight:700,letterSpacing:"0.22em",textTransform:"uppercase",color:"rgba(255,255,255,0.3)",marginBottom:"1.5rem" }}>Let&apos;s Build Together</p>
@@ -636,12 +720,19 @@ export default function Home() {
             <p style={{ fontSize:"0.9rem",color:"rgba(255,255,255,0.5)",lineHeight:1.85,maxWidth:360,marginBottom:"2.5rem" }}>
               We take on a limited number of projects each quarter. Q3 2026 slots are open — reach out now before they fill.
             </p>
-            {[["Email","hello@ideashapers.org"],["WhatsApp","Chat with us instantly"],["Response Time","Within 24 hours"],["Availability","Q3 2026 — slots open"]].map(([l,v])=>(
-              <div key={l} style={{ marginBottom:"1.25rem" }}>
-                <p style={{ fontSize:"0.56rem",fontWeight:700,letterSpacing:"0.18em",textTransform:"uppercase",color:"rgba(255,255,255,0.25)",marginBottom:4 }}>{l}</p>
-                <p style={{ fontSize:"0.88rem",color:"#fff" }}>{v}</p>
-              </div>
-            ))}
+            <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:"1.5rem 2.5rem" }}>
+              {[
+                ["Email",    "info@ideashapers.org"],
+                ["Phone",    "+91 70771 02829"],
+                ["WhatsApp", "+91 99037 37067"],
+                ["Location", "Kolkata, India"],
+              ].map(([l,v])=>(
+                <div key={l}>
+                  <p style={{ fontSize:"0.56rem",fontWeight:700,letterSpacing:"0.18em",textTransform:"uppercase",color:"rgba(255,255,255,0.25)",marginBottom:4 }}>{l}</p>
+                  <p style={{ fontSize:"0.88rem",color:"#fff" }}>{v}</p>
+                </div>
+              ))}
+            </div>
           </div>
           <ContactForm/>
         </div>
@@ -650,31 +741,42 @@ export default function Home() {
       {/* ═══════════════════════════════════════
           FOOTER
       ═══════════════════════════════════════ */}
+      {/* ── Floating social icons — desktop right side ── */}
+      <SocialFloat/>
+
       <footer style={{ background:P.dark }}>
-        <div style={{ borderBottom:"1px solid rgba(255,255,255,0.06)",padding:"clamp(3rem,6vw,5rem) clamp(1.25rem,5vw,3rem)" }}>
-          <div style={{ maxWidth:1440,margin:"0 auto" }} className="footer-nl-grid">
-            <h3 style={{ fontFamily:"'Playfair Display',Georgia,serif",fontStyle:"italic",fontSize:"clamp(1.8rem,4vw,4rem)",color:P.gold,lineHeight:1.05 }}>News from<br/>IdeaShapers</h3>
-            <div>
-              <p style={{ fontSize:"0.85rem",color:"rgba(255,255,255,0.4)",marginBottom:"1.5rem",lineHeight:1.75 }}>Strategy tips, design insights, and studio updates — 4 or 5 times a year. No spam, ever.</p>
-              <NLForm/>
-              <div style={{ display:"flex",gap:"1.5rem",marginTop:"1.5rem",flexWrap:"wrap" }}>
-                {["Instagram","LinkedIn","Twitter","Behance"].map(s=>(
-                  <a key={s} href="#" style={{ fontSize:"0.6rem",fontWeight:700,letterSpacing:"0.12em",textTransform:"uppercase",color:"rgba(255,255,255,0.28)",textDecoration:"none",transition:"color 0.2s" }}
-                    onMouseEnter={e=>(e.currentTarget.style.color="#fff")}
-                    onMouseLeave={e=>(e.currentTarget.style.color="rgba(255,255,255,0.28)")}
-                  >{s}</a>
-                ))}
-              </div>
+        {/* ── Social bar ── */}
+        <div style={{ borderBottom:"1px solid rgba(255,255,255,0.06)", padding:"2rem clamp(1.25rem,5vw,3rem)" }}>
+          <div style={{ maxWidth:1440,margin:"0 auto",display:"flex",alignItems:"center",justifyContent:"space-between",gap:"1.5rem",flexWrap:"wrap" }}>
+            <p style={{ fontSize:"0.72rem",fontWeight:600,letterSpacing:"0.16em",textTransform:"uppercase",color:"rgba(255,255,255,0.3)" }}>Follow us</p>
+            <div style={{ display:"flex",gap:"1rem",alignItems:"center" }}>
+              {[
+                { label:"Instagram", href:"https://www.instagram.com/idea.shapers?igsh=eXVtdTBrejR0YW44&utm_source=qr", icon:<IGIcon/>, color:P.accent },
+                { label:"LinkedIn",  href:"https://www.linkedin.com/company/ideashapers-india", icon:<LIIcon/>, color:P.navyL },
+                { label:"Facebook",  href:CONTACT.facebook, icon:<FBIcon/>, color:P.navy2 },
+              ].map(s=>(
+                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" style={{
+                  width:40,height:40,borderRadius:"50%",
+                  background:"rgba(255,255,255,0.06)",
+                  border:"1px solid rgba(255,255,255,0.1)",
+                  display:"flex",alignItems:"center",justifyContent:"center",
+                  color:"rgba(255,255,255,0.55)",
+                  textDecoration:"none",transition:"all 0.25s",
+                }}
+                  onMouseEnter={e=>{ e.currentTarget.style.background=s.color; e.currentTarget.style.borderColor=s.color; e.currentTarget.style.color="#fff"; e.currentTarget.style.boxShadow=`0 4px 16px ${s.color}55`; }}
+                  onMouseLeave={e=>{ e.currentTarget.style.background="rgba(255,255,255,0.06)"; e.currentTarget.style.borderColor="rgba(255,255,255,0.1)"; e.currentTarget.style.color="rgba(255,255,255,0.55)"; e.currentTarget.style.boxShadow="none"; }}
+                >{s.icon}</a>
+              ))}
             </div>
           </div>
         </div>
-        <div style={{ maxWidth:1440,margin:"0 auto",padding:"clamp(2.5rem,5vw,3.5rem) clamp(1.25rem,5vw,3rem)" }} className="footer-links-grid">
+
+        <div style={{ maxWidth:1440,margin:"0 auto",padding:"clamp(3rem,6vw,5rem) clamp(1.25rem,5vw,3rem)" }} className="footer-links-grid">
           <div>
-            <div style={{ display:"flex",alignItems:"center",gap:8,marginBottom:"1rem" }}>
-              <DiamondLogo size={20} accent={P.accent}/>
-              <span style={{ fontSize:"0.85rem",fontWeight:800,color:"#fff",letterSpacing:"-0.01em" }}>Idea<span style={{ color:P.gold }}>Shapers</span></span>
-            </div>
-            <p style={{ fontSize:"0.75rem",color:"rgba(255,255,255,0.28)",lineHeight:1.75,maxWidth:200 }}>Strategy-first digital studio for founders and creators worldwide.</p>
+            <Image src="/logo.png" alt="IdeaShapers" width={100} height={100} style={{ objectFit:"contain", filter:"brightness(0) invert(1)", marginBottom:"1rem" }}/>
+            <p style={{ fontSize:"0.75rem",color:"rgba(255,255,255,0.28)",lineHeight:1.75,maxWidth:220,marginBottom:"1rem" }}>Full-service marketing agency in Kolkata — brand building, creative marketing, and digital experiences.</p>
+            <a href={`mailto:${CONTACT.email}`} style={{ fontSize:"0.75rem",color:`${P.navyL}`,display:"block",marginBottom:"0.35rem",textDecoration:"none" }}>{CONTACT.email}</a>
+            <a href={`tel:${CONTACT.phone1.replace(/\s/g,"")}`} style={{ fontSize:"0.75rem",color:"rgba(255,255,255,0.38)",display:"block",textDecoration:"none" }}>{CONTACT.phone1}</a>
           </div>
           {[
             { h:"Services", ls:["Brand Strategy","Web Design","Development","Content","Growth"] },
@@ -709,23 +811,76 @@ export default function Home() {
       <style>{`
         /* ── keyframes ── */
         @keyframes mq          { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+        @keyframes mqRev       { 0%{transform:translateX(-50%)} 100%{transform:translateX(0)} }
         @keyframes waPulse     { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.35;transform:scale(1.2)} }
         @keyframes waSlide     { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
         @keyframes testiScroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+        @keyframes evtMq       { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+        @keyframes rippleRing  { 0%{transform:scale(1);opacity:0.6} 100%{transform:scale(2.4);opacity:0} }
+        @keyframes inflFloat   { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+        @keyframes inflPulse   { 0%,100%{opacity:0.06} 50%{opacity:0.1} }
+        @keyframes spin        { 0%{transform:rotate(0deg)} 100%{transform:rotate(360deg)} }
+
+        /* ── social float (right side, desktop) ── */
+        .social-float { position:fixed;right:1.25rem;top:50%;transform:translateY(-50%);z-index:997;display:flex;flex-direction:column;gap:0.6rem; }
+        .social-icon  { width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:color 0.32s;position:relative;overflow:hidden; }
+        .social-icon-fill { position:absolute;inset:0;border-radius:10px;transform:translateY(105%);transition:transform 0.36s cubic-bezier(0.76,0,0.24,1); }
+        .social-icon:hover .social-icon-fill { transform:translateY(0); }
+        .social-icon svg { position:relative;z-index:1; }
+
+        /* ── influencer section ── */
+        .infl-grid         { display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;max-width:1440;margin:0 auto; }
+        .infl-services     { display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,0.06); }
+        .infl-stat         { text-align:center;padding:1.75rem 0.75rem;border-right:1px solid rgba(255,255,255,0.08); }
+        .infl-stat:last-child { border-right:none; }
+        .infl-stats-row    { display:grid;grid-template-columns:repeat(4,1fr); }
+        .infl-profile-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem; }
+
+        /* ── event gallery ── */
+        .event-fan-outer   { position:relative;height:500px;display:flex;justify-content:center;align-items:flex-end;margin:3rem 0; }
+        .event-card-fan    { position:absolute;bottom:0;width:240px;height:360px;border-radius:18px;overflow:hidden;cursor:pointer;transform-origin:50% 100%;transition:transform 0.65s cubic-bezier(0.34,1.2,0.64,1),box-shadow 0.3s,z-index 0s; }
+        .event-mq-inner    { display:inline-flex;animation:evtMq 22s linear infinite; }
+
+        @media (max-width:900px) {
+          .social-float      { display:none; }
+          .infl-grid         { grid-template-columns:1fr!important;gap:2.5rem!important; }
+          .infl-stats-row    { grid-template-columns:1fr 1fr!important; }
+          .infl-services     { grid-template-columns:1fr!important; }
+          .infl-profile-grid { grid-template-columns:1fr 1fr!important;gap:1rem!important; }
+          .event-fan-outer   { display:none!important; }
+          .event-mobile      { display:flex!important; }
+        }
+        @media (max-width:560px) {
+          .infl-profile-grid { grid-template-columns:1fr!important; }
+        }
+        @media (min-width:901px) {
+          .event-mobile { display:none!important; }
+        }
 
         /* ── bottom nav ── */
-        .bnav-tube       { position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);z-index:999;display:flex;align-items:center;gap:2px;background:${P.dark};border-radius:999px;padding:4px 4px 4px 6px;box-shadow:0 12px 48px rgba(44,16,8,0.55),0 4px 12px rgba(0,0,0,0.25);white-space:nowrap; }
-        .bnav-logo       { display:flex;align-items:center;gap:8px;background:none;border:none;cursor:pointer;padding:5px 12px 5px 6px;border-radius:999px;transition:background 0.2s;font-size:0.82rem;font-weight:800;letter-spacing:-0.01em;color:#fff;font-family:inherit; }
-        .bnav-logo:hover { background:rgba(255,255,255,0.07); }
-        .bnav-divider    { display:block;width:1px;height:18px;background:rgba(255,255,255,0.08);margin:0 2px;flex-shrink:0; }
-        .bnav-links      { display:flex;align-items:center;gap:2px; }
-        .bnav-item       { padding:8px 14px;border-radius:999px;border:none;cursor:pointer;font-family:inherit;background:transparent;color:rgba(255,255,255,0.5);font-size:0.78rem;font-weight:500;transition:all 0.2s; }
-        .bnav-item:hover,.bnav-item.act { color:#fff; }
-        .bnav-item.act   { background:rgba(255,255,255,0.12); }
-        .bnav-cta-btn    { padding:8px 18px;border-radius:999px;border:none;cursor:pointer;font-family:inherit;margin-left:2px;background:${P.accent};color:#fff;font-size:0.78rem;font-weight:700;letter-spacing:0.02em;transition:background 0.2s;box-shadow:0 2px 10px rgba(196,98,42,0.4); }
-        .bnav-cta-btn:hover { background:${P.accent2}; }
-        .bnav-burger     { display:none;flex-direction:column;gap:4px;background:none;border:none;cursor:pointer;padding:8px 10px;border-radius:999px;transition:background 0.2s; }
-        .bnav-burger:hover { background:rgba(255,255,255,0.08); }
+        .bnav-tube       { position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);z-index:999;display:flex;align-items:center;gap:4px;background:${P.dark};border-radius:999px;padding:6px 8px;box-shadow:0 16px 56px rgba(44,16,8,0.6),0 4px 14px rgba(0,0,0,0.3);white-space:nowrap;backdrop-filter:blur(8px); }
+        /* logo button */
+        .bnav-logo       { display:flex;align-items:center;background:none;border:none;cursor:pointer;padding:4px 10px 4px 6px;border-radius:999px;transition:background 0.25s; }
+        .bnav-logo:hover { background:rgba(255,255,255,0.08); }
+        /* vertical divider */
+        .bnav-divider    { display:block;width:1px;height:22px;background:rgba(255,255,255,0.1);margin:0 4px;flex-shrink:0; }
+        /* nav links container */
+        .bnav-links      { display:flex;align-items:center;gap:2px;padding:0 4px; }
+        /* individual link — underline grows on hover */
+        .bnav-item       { position:relative;padding:9px 18px;border-radius:8px;border:none;cursor:pointer;font-family:inherit;background:transparent;color:rgba(255,255,255,0.45);font-size:0.8rem;font-weight:500;letter-spacing:0.02em;transition:color 0.22s,background 0.22s;overflow:hidden; }
+        .bnav-item::after { content:'';position:absolute;bottom:5px;left:50%;transform:translateX(-50%) scaleX(0);width:16px;height:1.5px;background:${P.gold};border-radius:999px;transition:transform 0.25s cubic-bezier(0.34,1.56,0.64,1); }
+        .bnav-item:hover { color:#fff;background:rgba(255,255,255,0.06); }
+        .bnav-item:hover::after { transform:translateX(-50%) scaleX(1); }
+        .bnav-item.act   { color:#fff;background:rgba(255,255,255,0.1); }
+        .bnav-item.act::after { transform:translateX(-50%) scaleX(1); }
+        /* CTA button — pill with gradient & shimmer */
+        .bnav-cta-btn    { position:relative;overflow:hidden;padding:9px 22px;border-radius:999px;border:none;cursor:pointer;font-family:inherit;margin-left:4px;background:linear-gradient(135deg,${P.navy} 0%,${P.navy2} 100%);color:#fff;font-size:0.8rem;font-weight:700;letter-spacing:0.04em;transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 2px 14px rgba(30,47,110,0.5); }
+        .bnav-cta-btn::before { content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.18),transparent);transition:left 0.45s ease; }
+        .bnav-cta-btn:hover { transform:translateY(-1px);box-shadow:0 6px 22px rgba(30,47,110,0.6); }
+        .bnav-cta-btn:hover::before { left:160%; }
+        /* burger */
+        .bnav-burger     { display:none;flex-direction:column;gap:4.5px;background:none;border:none;cursor:pointer;padding:9px 11px;border-radius:8px;transition:background 0.2s; }
+        .bnav-burger:hover { background:rgba(255,255,255,0.1); }
 
         /* ── wa ── */
         .wa-float { position:fixed;right:1.5rem;bottom:5.5rem;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:0.75rem; }
@@ -735,8 +890,9 @@ export default function Home() {
 
         /* ── horizontal scroll sections (desktop) ── */
         .hscroll-outer  { height:100vh;overflow:hidden; }
-        .hscroll-inner  { height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 clamp(1.25rem,5vw,3rem); }
-        .hscroll-header { display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2.5rem;flex-shrink:0;gap:1rem; }
+        /* JS sets padding-bottom = nav height to shift flex-center into visible viewport */
+        .hscroll-inner  { height:100vh;display:flex;flex-direction:column;justify-content:center;padding-left:clamp(1.25rem,5vw,3rem);padding-right:clamp(1.25rem,5vw,3rem); }
+        .hscroll-header { display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2rem;flex-shrink:0;gap:1rem; }
         .hscroll-track  { display:flex;gap:1.25rem;width:max-content;padding-right:3rem; }
 
         /* ── service card ── */
@@ -876,22 +1032,6 @@ function TestiCard({ t }: { t: typeof TESTIMONIALS[number] }) {
       transform:hov?"translateY(-6px)":"translateY(0)",
       cursor:"default",
     }}>
-      {/* Avatar circle with initials */}
-      <div style={{ position:"relative" }}>
-        <div style={{
-          width:72, height:72, borderRadius:"50%",
-          background:`linear-gradient(135deg, ${t.color}33, ${t.color}11)`,
-          border:`2.5px solid ${t.color}`,
-          display:"flex", alignItems:"center", justifyContent:"center",
-          transition:"transform 0.3s",
-          transform:hov?"scale(1.06)":"scale(1)",
-        }}>
-          <span style={{ fontFamily:"'Playfair Display',Georgia,serif",fontSize:"1.5rem",fontWeight:400,color:t.color,letterSpacing:"-0.02em" }}>{t.initials}</span>
-        </div>
-        {/* online dot */}
-        <div style={{ position:"absolute",bottom:2,right:2,width:12,height:12,borderRadius:"50%",background:t.color,border:"2px solid #fff" }}/>
-      </div>
-
       {/* Name */}
       <div>
         <p style={{ fontSize:"1rem",fontWeight:700,color:P.text,marginBottom:"0.2rem",letterSpacing:"-0.01em" }}>{t.name}</p>
@@ -932,40 +1072,93 @@ function FAQItem({ q, a }: { q:string; a:string }) {
 ───────────────────────────────────────────── */
 function ContactForm() {
   const [form,setForm]=useState({name:"",email:"",service:"",msg:""});
+  const [focusField,setFocusField]=useState("");
   const [sent,setSent]=useState(false);
-  const inp:React.CSSProperties={ width:"100%",padding:"0.95rem 1.15rem",background:"rgba(255,255,255,0.05)",border:"1px solid rgba(255,255,255,0.1)",borderRadius:10,color:"#fff",fontSize:"0.9rem",outline:"none",transition:"border-color 0.2s,background 0.2s",fontFamily:"inherit" };
+
+  /* underline-only field style */
+  const lineInp=(field:string):React.CSSProperties=>({
+    width:"100%", background:"transparent", border:"none",
+    borderBottom:`1.5px solid ${focusField===field ? P.gold : "rgba(255,255,255,0.15)"}`,
+    color:"#fff", fontSize:"1rem", outline:"none", padding:"0.6rem 0",
+    fontFamily:"inherit", transition:"border-color 0.25s",
+  });
+
   if(sent)return(
-    <div style={{ padding:"3.5rem",border:"1px solid rgba(201,150,58,0.3)",borderRadius:20,textAlign:"center",background:"rgba(255,255,255,0.03)" }}>
-      <DiamondLogo size={44} accent={P.gold}/>
-      <p style={{ fontFamily:"'Playfair Display',Georgia,serif",fontStyle:"italic",fontSize:"1.7rem",color:P.gold,margin:"1.25rem 0 0.75rem" }}>We&apos;ve got it.</p>
-      <p style={{ fontSize:"0.83rem",color:"rgba(255,255,255,0.4)",lineHeight:1.75 }}>Expect a reply within 24 hours. We&apos;re already thinking about your project.</p>
+    <div style={{ display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:"1rem",padding:"4rem 2rem",textAlign:"center" }}>
+      <div style={{ width:56,height:56,borderRadius:16,background:`${P.gold}18`,border:`1px solid ${P.gold}44`,display:"flex",alignItems:"center",justifyContent:"center" }}>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={P.gold} strokeWidth="2.5" strokeLinecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <p style={{ fontFamily:"'Playfair Display',Georgia,serif",fontStyle:"italic",fontSize:"1.6rem",color:"#fff" }}>We&apos;ve got it.</p>
+      <p style={{ fontSize:"0.82rem",color:"rgba(255,255,255,0.38)",lineHeight:1.75,maxWidth:300 }}>Expect a reply within 24 hours.</p>
     </div>
   );
+
   return(
-    <form className="gsap-up" onSubmit={e=>{e.preventDefault();setSent(true);}} style={{ background:"rgba(255,255,255,0.04)",border:"1px solid rgba(255,255,255,0.08)",borderRadius:20,padding:"2.5rem",display:"flex",flexDirection:"column",gap:"1.4rem" }}>
-      <div className="form-row">
+    <form className="gsap-up" onSubmit={e=>{e.preventDefault();setSent(true);}}>
+
+      {/* Two underline fields side by side */}
+      <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:"0 2.5rem",marginBottom:"2.5rem" }}>
         <div>
-          <label style={{ display:"block",fontSize:"0.58rem",fontWeight:700,letterSpacing:"0.18em",textTransform:"uppercase",color:"rgba(255,255,255,0.32)",marginBottom:"0.5rem" }}>Full Name *</label>
-          <input type="text" value={form.name} onChange={e=>setForm({...form,name:e.target.value})} required placeholder="Jane Smith" style={inp} onFocus={e=>{e.target.style.borderColor=P.gold;e.target.style.background="rgba(255,255,255,0.08)";}} onBlur={e=>{e.target.style.borderColor="rgba(255,255,255,0.1)";e.target.style.background="rgba(255,255,255,0.05)";}}/>
+          <label style={{ display:"block",fontSize:"0.55rem",fontWeight:700,letterSpacing:"0.2em",textTransform:"uppercase",color:focusField==="name"?P.gold:"rgba(255,255,255,0.25)",marginBottom:"0.35rem",transition:"color 0.25s" }}>Your Name</label>
+          <input type="text" value={form.name} required placeholder="Jane Smith"
+            style={lineInp("name")}
+            onFocus={()=>setFocusField("name")} onBlur={()=>setFocusField("")}
+            onChange={e=>setForm({...form,name:e.target.value})}
+          />
         </div>
         <div>
-          <label style={{ display:"block",fontSize:"0.58rem",fontWeight:700,letterSpacing:"0.18em",textTransform:"uppercase",color:"rgba(255,255,255,0.32)",marginBottom:"0.5rem" }}>Email Address *</label>
-          <input type="email" value={form.email} onChange={e=>setForm({...form,email:e.target.value})} required placeholder="jane@company.com" style={inp} onFocus={e=>{e.target.style.borderColor=P.gold;e.target.style.background="rgba(255,255,255,0.08)";}} onBlur={e=>{e.target.style.borderColor="rgba(255,255,255,0.1)";e.target.style.background="rgba(255,255,255,0.05)";}}/>
+          <label style={{ display:"block",fontSize:"0.55rem",fontWeight:700,letterSpacing:"0.2em",textTransform:"uppercase",color:focusField==="email"?P.gold:"rgba(255,255,255,0.25)",marginBottom:"0.35rem",transition:"color 0.25s" }}>Email</label>
+          <input type="email" value={form.email} required placeholder="you@company.com"
+            style={lineInp("email")}
+            onFocus={()=>setFocusField("email")} onBlur={()=>setFocusField("")}
+            onChange={e=>setForm({...form,email:e.target.value})}
+          />
         </div>
       </div>
-      <div>
-        <label style={{ display:"block",fontSize:"0.58rem",fontWeight:700,letterSpacing:"0.18em",textTransform:"uppercase",color:"rgba(255,255,255,0.32)",marginBottom:"0.6rem" }}>What do you need?</label>
+
+      {/* Service — minimal toggle row */}
+      <div style={{ marginBottom:"2.5rem" }}>
+        <p style={{ fontSize:"0.55rem",fontWeight:700,letterSpacing:"0.2em",textTransform:"uppercase",color:"rgba(255,255,255,0.25)",marginBottom:"1rem" }}>I need</p>
         <div style={{ display:"flex",gap:"0.5rem",flexWrap:"wrap" }}>
-          {["Brand Strategy","Web Design","Full Project","Not Sure Yet"].map(s=>(
-            <button key={s} type="button" onClick={()=>setForm({...form,service:s})} style={{ padding:"7px 16px",borderRadius:999,fontFamily:"inherit",fontSize:"0.75rem",fontWeight:600,cursor:"pointer",background:form.service===s?P.gold:"rgba(255,255,255,0.06)",color:form.service===s?P.dark:"rgba(255,255,255,0.5)",border:`1px solid ${form.service===s?P.gold:"rgba(255,255,255,0.1)"}`,transition:"all 0.2s" }}>{s}</button>
-          ))}
+          {["Brand Strategy","Web Design","Event / Influencer","Full Project"].map(s=>{
+            const active = form.service===s;
+            return (
+              <button key={s} type="button" onClick={()=>setForm({...form,service:s})}
+                style={{ padding:"6px 14px",borderRadius:8,fontFamily:"inherit",fontSize:"0.75rem",fontWeight:600,cursor:"pointer",
+                  background:active?P.gold:"transparent",
+                  color:active?P.dark:"rgba(255,255,255,0.45)",
+                  border:`1px solid ${active?P.gold:"rgba(255,255,255,0.12)"}`,
+                  transition:"all 0.2s",
+                }}>{s}</button>
+            );
+          })}
         </div>
       </div>
-      <div>
-        <label style={{ display:"block",fontSize:"0.58rem",fontWeight:700,letterSpacing:"0.18em",textTransform:"uppercase",color:"rgba(255,255,255,0.32)",marginBottom:"0.5rem" }}>Tell us about your project *</label>
-        <textarea value={form.msg} onChange={e=>setForm({...form,msg:e.target.value})} required rows={5} placeholder="What are you building? What's the goal? What's not working right now?" style={{...inp,resize:"vertical",lineHeight:1.7}} onFocus={e=>{e.target.style.borderColor=P.gold;e.target.style.background="rgba(255,255,255,0.08)";}} onBlur={e=>{e.target.style.borderColor="rgba(255,255,255,0.1)";e.target.style.background="rgba(255,255,255,0.05)";}}/>
+
+      {/* Message — underline textarea */}
+      <div style={{ marginBottom:"2.5rem" }}>
+        <label style={{ display:"block",fontSize:"0.55rem",fontWeight:700,letterSpacing:"0.2em",textTransform:"uppercase",color:focusField==="msg"?P.gold:"rgba(255,255,255,0.25)",marginBottom:"0.35rem",transition:"color 0.25s" }}>Tell us about your project</label>
+        <textarea value={form.msg} required rows={3} placeholder="What's the goal? What's the timeline?"
+          style={{ ...lineInp("msg"), resize:"none", lineHeight:1.8 }}
+          onFocus={()=>setFocusField("msg")} onBlur={()=>setFocusField("")}
+          onChange={e=>setForm({...form,msg:e.target.value})}
+        />
       </div>
-      <Mag><PillBtn white>Send It →</PillBtn></Mag>
+
+      {/* Submit — full width accent button */}
+      <button type="submit" style={{
+        width:"100%", padding:"1rem", border:"none", borderRadius:12, cursor:"pointer",
+        background:`linear-gradient(135deg, ${P.accent} 0%, ${P.accent2} 100%)`,
+        color:"#fff", fontSize:"0.85rem", fontWeight:700, letterSpacing:"0.05em",
+        textTransform:"uppercase", fontFamily:"inherit",
+        transition:"opacity 0.2s, transform 0.2s",
+        boxShadow:`0 8px 28px ${P.accent}44`,
+      }}
+        onMouseEnter={e=>{e.currentTarget.style.opacity="0.88";e.currentTarget.style.transform="translateY(-1px)";}}
+        onMouseLeave={e=>{e.currentTarget.style.opacity="1";e.currentTarget.style.transform="none";}}
+      >Send Message →</button>
+
+      <style>{`.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}@media(max-width:600px){.form-row{grid-template-columns:1fr;}}`}</style>
     </form>
   );
 }
@@ -981,5 +1174,513 @@ function NLForm() {
       <input type="email" value={em} onChange={e=>setEm(e.target.value)} placeholder="your@email.com" required style={{ flex:1,background:"rgba(255,255,255,0.06)",border:"1px solid rgba(255,255,255,0.1)",borderRight:"none",outline:"none",padding:"11px 16px",color:"#fff",fontSize:"0.83rem",borderRadius:"999px 0 0 999px",fontFamily:"inherit" }}/>
       <button type="submit" style={{ background:P.accent,color:"#fff",border:"none",padding:"11px 22px",fontWeight:700,fontSize:"0.76rem",cursor:"pointer",borderRadius:"0 999px 999px 0",whiteSpace:"nowrap",fontFamily:"inherit",transition:"background 0.2s" }} onMouseEnter={e=>(e.currentTarget.style.background=P.accent2)} onMouseLeave={e=>(e.currentTarget.style.background=P.accent)}>Subscribe</button>
     </form>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   SOCIAL FLOAT — fixed right side, desktop only
+   SVG icons, ripple on hover, no WhatsApp
+───────────────────────────────────────────── */
+const IGIcon = () => (
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+  </svg>
+);
+const LIIcon = () => (
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+  </svg>
+);
+const FBIcon = () => (
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+  </svg>
+);
+
+function SocialIcon({ icon, href, color }: { icon:React.ReactNode; href:string; color:string }) {
+  const [hov,setHov]=useState(false);
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer"
+      onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)}
+      className="social-icon"
+      style={{
+        background: "#fff",
+        border: `1.5px solid ${hov ? color : "rgba(30,47,110,0.13)"}`,
+        color: hov ? "#fff" : color,
+        boxShadow: hov ? `0 6px 22px ${color}44, 0 2px 6px rgba(0,0,0,0.06)` : "0 2px 8px rgba(30,47,110,0.07)",
+        transform: hov ? "translateX(-3px)" : "translateX(0)",
+        transition: "border-color 0.28s, box-shadow 0.28s, color 0.28s, transform 0.28s",
+      }}
+    >
+      {/* slide-fill layer */}
+      <span className="social-icon-fill" style={{ background: color }}/>
+      {icon}
+    </a>
+  );
+}
+function SocialFloat() {
+  return (
+    <div className="social-float">
+      <SocialIcon icon={<IGIcon/>} href="https://www.instagram.com/idea.shapers?igsh=eXVtdTBrejR0YW44&utm_source=qr" color={P.accent}/>
+      <SocialIcon icon={<LIIcon/>} href="https://www.linkedin.com/company/ideashapers-india" color={P.navy}/>
+      <SocialIcon icon={<FBIcon/>} href={CONTACT.facebook} color={P.navy2}/>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   HERO CLIENTS MARQUEE — single row inside hero
+───────────────────────────────────────────── */
+function HeroClientsMarquee() {
+  const [paused, setPaused] = useState(false);
+  return (
+    <div
+      style={{ overflow:"hidden", position:"relative", paddingBottom:"1.75rem" }}
+      onMouseEnter={()=>setPaused(true)}
+      onMouseLeave={()=>setPaused(false)}
+    >
+      {/* edge fades */}
+      <div style={{ position:"absolute",inset:0,background:`linear-gradient(90deg,${P.cream} 0%,transparent 8%,transparent 92%,${P.cream} 100%)`,pointerEvents:"none",zIndex:2 }}/>
+      <div style={{
+        display:"inline-flex", gap:0,
+        animation:"mq 36s linear infinite",
+        animationPlayState: paused ? "paused" : "running",
+      }}>
+        {[...CLIENTS,...CLIENTS].map((c,i)=>{
+          const col = CLIENT_COLORS[i % CLIENT_COLORS.length];
+          const initials = c.name.split(" ").map((w:string)=>w[0]).join("").slice(0,2).toUpperCase();
+          return (
+            <span key={i} style={{ display:"inline-flex",alignItems:"center",gap:"0.75rem",padding:"0.3rem 1.5rem 0.3rem 0.3rem",whiteSpace:"nowrap",
+              background:"rgba(255,255,255,0.65)",border:`1px solid ${P.border}`,borderRadius:999,margin:"0 0.5rem",
+              backdropFilter:"blur(4px)",
+            }}>
+              <span style={{ width:32,height:32,borderRadius:"50%",background:`${col}18`,border:`1.5px solid ${col}44`,display:"inline-flex",alignItems:"center",justifyContent:"center",flexShrink:0 }}>
+                <span style={{ fontSize:"0.58rem",fontWeight:800,color:col }}>{initials}</span>
+              </span>
+              <span style={{ display:"flex",flexDirection:"column",gap:1 }}>
+                <span style={{ fontSize:"0.8rem",fontWeight:600,color:P.text,letterSpacing:"-0.01em" }}>{c.name}</span>
+                <span style={{ fontSize:"0.52rem",fontWeight:600,letterSpacing:"0.1em",textTransform:"uppercase",color:P.muted }}>{c.cat}</span>
+              </span>
+            </span>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   CLIENTS MARQUEE
+   Logo circle (initials) + brand name + category
+   Two rows, opposite directions, pause on hover
+───────────────────────────────────────────── */
+const CLIENT_COLORS = [P.navy, P.accent, P.gold, P.navy2, P.dark3, "#2d8a6a", "#8ab4c2", P.dark, P.navy, P.accent2, P.gold2, P.navy];
+
+function ClientsMarquee() {
+  const [p1,setP1]=useState(false);
+  const [p2,setP2]=useState(false);
+  const bg = P.cream2;
+
+  const ClientChip = ({ c, i }: { c: typeof CLIENTS[number]; i: number }) => {
+    const col = CLIENT_COLORS[i % CLIENT_COLORS.length];
+    const initials = c.name.split(" ").map(w=>w[0]).join("").slice(0,2).toUpperCase();
+    return (
+      <span style={{ display:"inline-flex",alignItems:"center",gap:"0.85rem",padding:"0.4rem 1.75rem 0.4rem 0.4rem",whiteSpace:"nowrap",
+        background:"rgba(255,255,255,0.7)",border:`1px solid ${P.border}`,borderRadius:999,margin:"0 0.6rem",
+        boxShadow:"0 2px 8px rgba(30,47,110,0.06)",backdropFilter:"blur(4px)",
+      }}>
+        {/* Logo circle */}
+        <span style={{ width:36,height:36,borderRadius:"50%",background:`${col}18`,border:`1.5px solid ${col}44`,display:"inline-flex",alignItems:"center",justifyContent:"center",flexShrink:0 }}>
+          <span style={{ fontSize:"0.62rem",fontWeight:800,color:col,letterSpacing:"0.02em" }}>{initials}</span>
+        </span>
+        {/* Name + cat */}
+        <span style={{ display:"flex",flexDirection:"column",gap:"0.1rem" }}>
+          <span style={{ fontSize:"0.85rem",fontWeight:600,color:P.text,letterSpacing:"-0.01em" }}>{c.name}</span>
+          <span style={{ fontSize:"0.55rem",fontWeight:600,letterSpacing:"0.12em",textTransform:"uppercase",color:P.muted }}>{c.cat}</span>
+        </span>
+      </span>
+    );
+  };
+
+  return (
+    <div style={{ background:bg, padding:"2.5rem 0", overflow:"hidden", position:"relative" }}>
+      {/* label */}
+      <p style={{ textAlign:"center",fontSize:"0.58rem",fontWeight:700,letterSpacing:"0.28em",textTransform:"uppercase",color:P.muted,marginBottom:"1.5rem" }}>Trusted by leading brands</p>
+
+      {/* edge fades */}
+      <div style={{ position:"absolute",inset:0,pointerEvents:"none",background:`linear-gradient(90deg,${bg} 0%,transparent 6%,transparent 94%,${bg} 100%)`,zIndex:3 }}/>
+
+      {/* Row 1 — left */}
+      <div style={{ overflow:"hidden",marginBottom:"0.85rem" }}
+        onMouseEnter={()=>setP1(true)} onMouseLeave={()=>setP1(false)}
+      >
+        <div style={{ display:"inline-flex",animation:`mq 34s linear infinite`,animationPlayState:p1?"paused":"running" }}>
+          {[...CLIENTS,...CLIENTS].map((c,i)=><ClientChip key={i} c={c} i={i}/>)}
+        </div>
+      </div>
+
+      {/* Row 2 — right */}
+      <div style={{ overflow:"hidden" }}
+        onMouseEnter={()=>setP2(true)} onMouseLeave={()=>setP2(false)}
+      >
+        <div style={{ display:"inline-flex",animation:`mqRev 40s linear infinite`,animationPlayState:p2?"paused":"running" }}>
+          {[...[...CLIENTS].reverse(),...[...CLIENTS].reverse()].map((c,i)=><ClientChip key={i} c={c} i={i+6}/>)}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   INFLUENCER MANAGEMENT SECTION
+   Left: headline + stats + carousel of proof cards
+   Right: service grid
+───────────────────────────────────────────── */
+const INFL_PROOF = [
+  { name:"@priyastylesup",  platform:"Instagram", followers:"2.4M", cat:"Fashion & Lifestyle", result:"₹1.2Cr GMV in 48h",    color:"#c4622a", bg:"linear-gradient(135deg,#1a0a06,#2d1010)" },
+  { name:"@techwithrahul",  platform:"YouTube",   followers:"890K",  cat:"Tech Reviews",        result:"3.2M views campaign",  color:"#3d52a8", bg:"linear-gradient(135deg,#060d20,#0d1838)" },
+  { name:"@kolkatafoodies", platform:"Instagram", followers:"1.1M",  cat:"Food & Travel",       result:"40K orders attributed",color:"#c9963a", bg:"linear-gradient(135deg,#100800,#201400)" },
+  { name:"@fitnesswithneha",platform:"Instagram", followers:"650K",  cat:"Health & Fitness",    result:"18K app downloads",    color:"#2d8a6a", bg:"linear-gradient(135deg,#030a06,#061410)" },
+  { name:"@startupstories",  platform:"LinkedIn",  followers:"320K",  cat:"Business",            result:"5K B2B leads",         color:"#3d52a8", bg:"linear-gradient(135deg,#020618,#040c28)" },
+  { name:"@beautybyaisha",   platform:"Instagram", followers:"780K",  cat:"Beauty & Skincare",   result:"₹85L product sales",   color:"#d97b3f", bg:"linear-gradient(135deg,#150806,#241010)" },
+  { name:"@travelnomad_in",  platform:"YouTube",   followers:"450K",  cat:"Travel",              result:"22M impressions",      color:"#8ab4c2", bg:"linear-gradient(135deg,#050d10,#0a1820)" },
+  { name:"@cricketcrazyin",  platform:"Instagram", followers:"3.8M",  cat:"Sports",              result:"12M reach in 3 days",  color:"#c9963a", bg:"linear-gradient(135deg,#0c0800,#1c1200)" },
+];
+
+function InfluencerSection({ go }: { go:(id:string)=>void }) {
+  return (
+    <section id="influencer" style={{
+      background:`linear-gradient(150deg, #060d1f 0%, #0f1d4a 40%, #0a1540 100%)`,
+      position:"relative", overflow:"hidden",
+      padding:"clamp(30px,7vw,100px) clamp(1.25rem,5vw,3rem)",
+    }}>
+      {/* Ghost text */}
+      <div aria-hidden style={{ position:"absolute",top:"50%",left:"50%",transform:"translate(-50%,-50%)",fontSize:"clamp(5rem,18vw,20rem)",fontWeight:900,color:"rgba(255,255,255,0.025)",letterSpacing:"-0.05em",whiteSpace:"nowrap",userSelect:"none",pointerEvents:"none",fontFamily:"'Playfair Display',Georgia,serif",animation:"inflPulse 6s ease-in-out infinite" }}>INFLUENCE</div>
+      {[300,520].map((s,i)=>(
+        <div key={i} aria-hidden style={{ position:"absolute",top:"50%",right:"-12%",width:s,height:s,borderRadius:"50%",border:"1px solid rgba(201,150,58,0.06)",transform:"translateY(-50%)",pointerEvents:"none" }}/>
+      ))}
+
+      <div style={{ maxWidth:1100,margin:"0 auto",position:"relative",zIndex:1 }}>
+        {/* Header — centered, compact */}
+        <div className="gsap-up" style={{ textAlign:"center",marginBottom:"3rem" }}>
+          <div style={{ display:"inline-flex",alignItems:"center",gap:8,background:`${P.gold}18`,border:`1px solid ${P.gold}44`,borderRadius:999,padding:"6px 16px 6px 10px",marginBottom:"1.5rem" }}>
+            <span style={{ width:6,height:6,borderRadius:"50%",background:P.gold }}/>
+            <span style={{ fontSize:"0.62rem",fontWeight:700,letterSpacing:"0.18em",textTransform:"uppercase",color:P.gold }}>Influencer Management & Promotion</span>
+          </div>
+          <h2 style={{ fontFamily:"'Playfair Display',Georgia,serif",fontSize:"clamp(2.2rem,5vw,4rem)",fontWeight:400,color:"#fff",lineHeight:1.1,marginBottom:"1rem" }}>
+            500M+ minds. <em style={{ color:P.gold }}>One strategy.</em>
+          </h2>
+          <p style={{ fontSize:"0.9rem",color:"rgba(255,255,255,0.45)",maxWidth:520,margin:"0 auto 2rem" }}>
+            End-to-end influencer management — from sourcing and contracting to campaign execution and reporting.
+          </p>
+
+          {/* Stats row */}
+          <div className="infl-stats-row" style={{ maxWidth:640,margin:"0 auto 2rem",borderTop:"1px solid rgba(255,255,255,0.08)",borderBottom:"1px solid rgba(255,255,255,0.08)",padding:"1.5rem 0" }}>
+            {[["500M+","Reach"],["2000+","Creators"],["1000+","Campaigns"],["98%","Success"]].map(([n,l],i)=>(
+              <div key={l} className="infl-stat" style={{ borderRight:i<3?"1px solid rgba(255,255,255,0.08)":"none" }}>
+                <div style={{ fontFamily:"'Playfair Display',Georgia,serif",fontStyle:"italic",fontSize:"1.7rem",color:P.gold,lineHeight:1 }}>{n}</div>
+                <div style={{ fontSize:"0.55rem",letterSpacing:"0.14em",textTransform:"uppercase",color:"rgba(255,255,255,0.28)",marginTop:4 }}>{l}</div>
+              </div>
+            ))}
+          </div>
+
+          <Mag><PillBtn white onClick={()=>go("contact")}>Start a Campaign →</PillBtn></Mag>
+        </div>
+
+        {/* Creator carousel */}
+        <CreatorCarousel/>
+      </div>
+    </section>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   CREATOR CAROUSEL
+   4 cards visible, absolute left/right nav buttons,
+   overflow padding trick so hover lift isn't clipped
+───────────────────────────────────────────── */
+function CreatorCarousel() {
+  const CARD_W = 155;
+  const GAP    = 14;
+  const STEP   = CARD_W + GAP;
+
+  const containerRef  = useRef<HTMLDivElement>(null);
+  const [idx, setIdx] = useState(0);
+  const [maxTrans, setMaxTrans] = useState(0); // hard cap in px
+
+  useEffect(()=>{
+    const calc=()=>{
+      requestAnimationFrame(()=>{
+        if(!containerRef.current)return;
+        const cw  = containerRef.current.clientWidth;
+        const tw  = INFL_PROOF.length * CARD_W + (INFL_PROOF.length-1) * GAP;
+        setMaxTrans(Math.max(0, tw - cw));
+      });
+    };
+    calc();
+    window.addEventListener("resize",calc,{passive:true});
+    return ()=>window.removeEventListener("resize",calc);
+  },[]);
+
+  const maxIdx = maxTrans > 0 ? Math.ceil(maxTrans / STEP) : 0;
+  // translation never exceeds maxTrans → no empty space at end
+  const tx = Math.min(idx * STEP, maxTrans);
+
+  const prev = () => setIdx(i=>Math.max(0,i-1));
+  const next = () => setIdx(i=>Math.min(maxIdx,i+1));
+
+  const NavArrow=({dir,dis}:{dir:"l"|"r",dis:boolean})=>(
+    <button onClick={dir==="l"?prev:next} disabled={dis} style={{
+      position:"absolute", [dir==="l"?"left":"right"]:-28, top:"50%", transform:"translateY(-50%)",
+      zIndex:10, width:40, height:40, borderRadius:10, border:"none",
+      cursor:dis?"default":"pointer",
+      background:dis?"rgba(255,255,255,0.03)":"rgba(255,255,255,0.09)",
+      color:dis?"rgba(255,255,255,0.15)":"#fff",
+      fontSize:"1rem", display:"flex", alignItems:"center", justifyContent:"center",
+      transition:"background 0.2s,transform 0.2s",
+    }}
+      onMouseEnter={e=>{if(!dis){e.currentTarget.style.background=P.gold;e.currentTarget.style.transform="translateY(-50%) scale(1.06)";}}}
+      onMouseLeave={e=>{e.currentTarget.style.background=dis?"rgba(255,255,255,0.03)":"rgba(255,255,255,0.09)";e.currentTarget.style.transform="translateY(-50%)";}}
+    >{dir==="l"?"←":"→"}</button>
+  );
+
+  return (
+    <div style={{ borderTop:"1px solid rgba(255,255,255,0.07)", paddingTop:"2.5rem" }}>
+      <div style={{ display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:"1.5rem",flexWrap:"wrap",gap:"0.75rem" }}>
+        <div>
+          <p style={{ fontSize:"0.56rem",fontWeight:700,letterSpacing:"0.22em",textTransform:"uppercase",color:"rgba(255,255,255,0.28)",marginBottom:"0.35rem" }}>Our Creator Network</p>
+          <h3 style={{ fontFamily:"'Playfair Display',Georgia,serif",fontSize:"clamp(1.2rem,2.5vw,1.6rem)",fontWeight:400,color:"#fff" }}>
+            Talent we manage &amp; <em style={{ color:P.gold }}>campaigns we run</em>
+          </h3>
+        </div>
+        {/* Inline dots */}
+        <div style={{ display:"flex",gap:5 }}>
+          {Array.from({length:Math.min(maxIdx+1,8)}).map((_,i)=>(
+            <button key={i} onClick={()=>setIdx(i)} style={{ width:i===idx?20:6,height:6,borderRadius:999,border:"none",cursor:"pointer",background:i===idx?P.gold:"rgba(255,255,255,0.14)",transition:"width 0.3s,background 0.3s",padding:0 }}/>
+          ))}
+        </div>
+      </div>
+
+      <div style={{ position:"relative" }}>
+        <NavArrow dir="l" dis={idx===0}/>
+        <NavArrow dir="r" dis={idx>=maxIdx}/>
+
+        {/* overflow hidden wrapper — padding trick for hover lift */}
+        <div ref={containerRef} style={{ overflow:"hidden", padding:"16px 0", margin:"-16px 0" }}>
+          <div style={{ display:"flex", gap:GAP, transform:`translateX(-${tx}px)`, transition:"transform 0.42s cubic-bezier(0.4,0,0.2,1)", willChange:"transform" }}>
+            {INFL_PROOF.map((inf,i)=>(
+              <CreatorAvatarCard key={i} inf={inf} cardW={CARD_W}/>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Minimal creator chip: avatar + handle + followers ── */
+function CreatorAvatarCard({ inf, cardW }: { inf: typeof INFL_PROOF[number]; cardW:number }) {
+  const [hov,setHov]=useState(false);
+  const [imgOk,setImgOk]=useState(true);
+  const seed     = inf.name.replace(/[^a-z]/gi,"");
+  const initials = inf.name.replace("@","").slice(0,2).toUpperCase();
+  const SZ       = 72; // avatar diameter
+
+  return (
+    <div
+      onMouseEnter={()=>setHov(true)}
+      onMouseLeave={()=>setHov(false)}
+      style={{
+        width:cardW, flexShrink:0,
+        display:"flex", flexDirection:"column", alignItems:"center", gap:"0.55rem",
+        padding:"1rem 0.5rem",
+        borderRadius:14,
+        background: hov ? `${inf.color}10` : "transparent",
+        border:`1px solid ${hov ? inf.color+"44" : "transparent"}`,
+        transition:"background 0.25s,border-color 0.25s,transform 0.3s",
+        transform: hov ? "translateY(-5px)" : "translateY(0)",
+        cursor:"default",
+      }}
+    >
+      {/* Avatar */}
+      <div style={{
+        width:SZ, height:SZ, borderRadius:"50%", overflow:"hidden", flexShrink:0,
+        border:`2px solid ${hov ? inf.color : inf.color+"44"}`,
+        background:inf.bg,
+        transition:"border-color 0.25s, box-shadow 0.25s",
+        boxShadow: hov ? `0 0 0 4px ${inf.color}22` : "none",
+      }}>
+        {imgOk
+          ? <img src={`https://picsum.photos/seed/${seed}p/${SZ}/${SZ}`} alt={inf.name}
+              width={SZ} height={SZ}
+              style={{ width:"100%",height:"100%",objectFit:"cover",display:"block" }}
+              onError={()=>setImgOk(false)}
+            />
+          : <div style={{ width:"100%",height:"100%",display:"flex",alignItems:"center",justifyContent:"center",background:inf.bg }}>
+              <span style={{ fontFamily:"'Playfair Display',Georgia,serif",fontSize:"1.2rem",color:inf.color }}>{initials}</span>
+            </div>
+        }
+      </div>
+
+      {/* Handle */}
+      <p style={{ fontSize:"0.78rem",fontWeight:600,color: hov?"#fff":"rgba(255,255,255,0.72)",
+        letterSpacing:"-0.01em",textAlign:"center",
+        overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",maxWidth:cardW-8,
+        transition:"color 0.25s",
+      }}>{inf.name}</p>
+
+      {/* Followers */}
+      <p style={{ fontSize:"0.65rem",fontWeight:700,color:inf.color,letterSpacing:"0.04em" }}>
+        {inf.followers}
+      </p>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   EVENT GALLERY — horizontal image marquee
+   Auto-plays, hover pauses. "Images" are rich
+   gradient cards that feel like editorial photography.
+   Includes an auto-play video-style card.
+───────────────────────────────────────────── */
+
+/* Extended event data — more cards for a fuller marquee */
+const GALLERY_ITEMS = [
+  { title:"Lakme Fashion Week",    type:"Fashion",    year:"2024", w:320, h:240, r:-2,  bg:"linear-gradient(135deg,#1a0818,#2d1040)", accent:"#c9963a", img:"https://picsum.photos/seed/fashion2024/640/480" },
+  { title:"TEDx Kolkata 2024",     type:"Conference", year:"2024", w:280, h:260, r:1.5, bg:"linear-gradient(135deg,#060d18,#0d1a30)", accent:"#3d52a8", img:"https://picsum.photos/seed/tedxstage/560/520"  },
+  { title:"Sunburn Kolkata",       type:"Music Fest", year:"2025", w:360, h:240, r:-1,  bg:"linear-gradient(135deg,#180408,#2c0810)", accent:"#c4622a", img:"https://picsum.photos/seed/concert2025/720/480" },
+  { title:"Brand Equity Summit",   type:"Corporate",  year:"2025", w:280, h:280, r:2,   bg:"linear-gradient(135deg,#040a08,#081814)", accent:"#2d8a6a", img:"https://picsum.photos/seed/corporatesum/560/560"},
+  { title:"Film Awards Gala",      type:"Gala Night", year:"2024", w:340, h:240, r:-1.5,bg:"linear-gradient(135deg,#100a00,#201800)", accent:"#c9963a", img:"https://picsum.photos/seed/galanight/680/480"   },
+  { title:"StartupIndia Expo",     type:"Exhibition", year:"2025", w:260, h:260, r:1,   bg:"linear-gradient(135deg,#020818,#040e28)", accent:"#3d52a8", img:"https://picsum.photos/seed/startupexpo/520/520" },
+  { title:"Art & Culture Festival",type:"Cultural",   year:"2024", w:340, h:240, r:-2,  bg:"linear-gradient(135deg,#0d0020,#1a0038)", accent:"#d97b3f", img:"https://picsum.photos/seed/cultfest24/680/480"   },
+  { title:"Corporate Diwali Bash", type:"Corporate",  year:"2024", w:280, h:260, r:1.5, bg:"linear-gradient(135deg,#140800,#281000)", accent:"#c9963a", img:"https://picsum.photos/seed/diwaliparty/560/520" },
+];
+
+function EventGallery() {
+  const [paused, setPaused] = useState(false);
+  const EVT_TYPES = ["Product Launch","Fashion Show","Corporate Summit","Music Festival","Award Gala","Brand Activation","Press Conference","Art Exhibition","Sports Event","Cultural Night"];
+
+  return (
+    <section style={{ background:P.dark2, padding:"clamp(30px,7vw,100px) 0", overflow:"hidden" }}>
+      {/* Header */}
+      <div style={{ maxWidth:1440,margin:"0 auto",padding:"0 clamp(1.25rem,5vw,3rem)",marginBottom:"3rem" }}>
+        <div className="gsap-up" style={{ display:"flex",justifyContent:"space-between",alignItems:"flex-end",flexWrap:"wrap",gap:"1.5rem" }}>
+          <div>
+            <p style={{ fontSize:"0.62rem",fontWeight:700,letterSpacing:"0.22em",textTransform:"uppercase",color:"rgba(255,255,255,0.3)",marginBottom:"0.75rem" }}>Event Management</p>
+            <h2 style={{ fontFamily:"'Playfair Display',Georgia,serif",fontSize:"clamp(1.8rem,4vw,3.2rem)",fontWeight:400,color:"#fff",lineHeight:1.1 }}>
+              Events that <em style={{ color:P.gold }}>leave a mark</em>
+            </h2>
+            <p style={{ fontSize:"0.9rem",color:"rgba(255,255,255,0.4)",lineHeight:1.8,maxWidth:480,marginTop:"0.75rem" }}>
+              From intimate brand activations to 10,000-seat spectaculars — we design, produce, and deliver events people talk about long after.
+            </p>
+          </div>
+          <Mag><PillBtn white onClick={()=>{ const el=document.getElementById("contact"); if(!el)return; let t=0,c:HTMLElement|null=el; while(c&&c!==document.body){t+=c.offsetTop;c=c.offsetParent as HTMLElement|null;} window.scrollTo({top:t,behavior:"smooth"}); }}>Plan Your Event →</PillBtn></Mag>
+        </div>
+      </div>
+
+      {/* IMAGE MARQUEE — row 1 (→ left) */}
+      <div style={{ marginBottom:"1rem",position:"relative" }}>
+        <div style={{ position:"absolute",inset:0,background:`linear-gradient(90deg,${P.dark2} 0%,transparent 5%,transparent 95%,${P.dark2} 100%)`,pointerEvents:"none",zIndex:2 }}/>
+        <div
+          style={{ overflow:"hidden" }}
+          onMouseEnter={e=>{const t=e.currentTarget.querySelector<HTMLElement>(".gal-row1");if(t)t.style.animationPlayState="paused";}}
+          onMouseLeave={e=>{const t=e.currentTarget.querySelector<HTMLElement>(".gal-row1");if(t)t.style.animationPlayState="running";}}
+        >
+          <div className="gal-row1" style={{ display:"inline-flex",gap:"1rem",animation:"mq 35s linear infinite",padding:"0.5rem 0" }}>
+            {[...GALLERY_ITEMS,...GALLERY_ITEMS].map((item,i)=>(
+              <GalleryCard key={i} item={item}/>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* IMAGE MARQUEE — row 2 (→ right, reversed) */}
+      <div style={{ marginBottom:"3rem",position:"relative" }}>
+        <div style={{ position:"absolute",inset:0,background:`linear-gradient(90deg,${P.dark2} 0%,transparent 5%,transparent 95%,${P.dark2} 100%)`,pointerEvents:"none",zIndex:2 }}/>
+        <div
+          style={{ overflow:"hidden" }}
+          onMouseEnter={e=>{const t=e.currentTarget.querySelector<HTMLElement>(".gal-row2");if(t)t.style.animationPlayState="paused";}}
+          onMouseLeave={e=>{const t=e.currentTarget.querySelector<HTMLElement>(".gal-row2");if(t)t.style.animationPlayState="running";}}
+        >
+          <div className="gal-row2" style={{ display:"inline-flex",gap:"1rem",animation:"mqRev 40s linear infinite",padding:"0.5rem 0" }}>
+            {[...[...GALLERY_ITEMS].reverse(),...[...GALLERY_ITEMS].reverse()].map((item,i)=>(
+              <GalleryCard key={i} item={item} variant="tall"/>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Event type marquee strip */}
+      <div style={{ borderTop:"1px solid rgba(255,255,255,0.06)",paddingTop:"2rem",overflow:"hidden" }}
+        onMouseEnter={e=>{const t=e.currentTarget.querySelector<HTMLElement>(".event-mq-inner");if(t)t.style.animationPlayState="paused";}}
+        onMouseLeave={e=>{const t=e.currentTarget.querySelector<HTMLElement>(".event-mq-inner");if(t)t.style.animationPlayState="running";}}
+      >
+        <div style={{ overflow:"hidden",whiteSpace:"nowrap" }}>
+          <div className="event-mq-inner" style={{ display:"inline-flex",animation:"mq 24s linear infinite" }}>
+            {[...EVT_TYPES,...EVT_TYPES].map((t,i)=>(
+              <span key={i} style={{ display:"inline-flex",alignItems:"center",gap:"0.75rem",padding:"0 2.5rem",whiteSpace:"nowrap" }}>
+                <span style={{ width:5,height:5,borderRadius:"50%",background:i%3===0?P.gold:i%3===1?P.accent:"rgba(255,255,255,0.3)" }}/>
+                <span style={{ fontSize:"0.82rem",fontWeight:600,letterSpacing:"0.12em",textTransform:"uppercase",color:"rgba(255,255,255,0.45)" }}>{t}</span>
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* Gallery card — real photo, unstructured rotation + mixed sizing */
+function GalleryCard({ item, variant="normal" }: { item:typeof GALLERY_ITEMS[number]; variant?:"normal"|"tall" }) {
+  const [hov,setHov]=useState(false);
+  const [imgErr,setImgErr]=useState(false);
+  const h = variant==="tall" ? item.h + 40 : item.h;
+  /* row 2 gets a vertical offset for the "scattered" look */
+  const yOffset = variant==="tall" ? `${Math.abs(item.r) * 8}px` : "0px";
+  return (
+    <div
+      onMouseEnter={()=>setHov(true)}
+      onMouseLeave={()=>setHov(false)}
+      style={{
+        width:item.w, height:h, flexShrink:0,
+        borderRadius: item.r > 0 ? "14px 20px 14px 20px" : "20px 14px 20px 14px",
+        overflow:"hidden", position:"relative", cursor:"pointer",
+        background: item.bg,
+        boxShadow: "none",
+        transition:"box-shadow 0.35s, transform 0.45s cubic-bezier(0.34,1.1,0.64,1)",
+        transform: hov
+          ? `rotate(0deg) translateY(-8px) scale(1.04)`
+          : `rotate(${item.r}deg) translateY(${yOffset})`,
+        marginTop: variant==="tall" ? yOffset : "0",
+      }}
+    >
+      {/* Real photo — fills card, zooms on hover */}
+      {!imgErr && (
+        <img
+          src={item.img}
+          alt={item.title}
+          onError={()=>setImgErr(true)}
+          style={{
+            position:"absolute", inset:0,
+            width:"100%", height:"100%",
+            objectFit:"cover", display:"block",
+            transition:"transform 0.55s ease",
+            transform: hov?"scale(1.08)":"scale(1)",
+          }}
+        />
+      )}
+
+      {/* Accent top bar */}
+      <div style={{ position:"absolute",top:0,left:0,right:0,height:3,background:`linear-gradient(90deg,${item.accent},transparent)`,zIndex:3 }}/>
+
+      {/* Dark gradient overlay — deepens on hover */}
+      <div style={{ position:"absolute",inset:0,background:"linear-gradient(to top,rgba(0,0,0,0.88) 0%,rgba(0,0,0,0.25) 55%,transparent 100%)",opacity:hov?1:0.78,transition:"opacity 0.35s",zIndex:2 }}/>
+
+      {/* Content */}
+      <div style={{ position:"absolute",bottom:0,left:0,right:0,padding:"1.25rem",transform:hov?"translateY(0)":"translateY(6px)",transition:"transform 0.32s",zIndex:4 }}>
+        <span style={{ fontSize:"0.52rem",fontWeight:700,letterSpacing:"0.14em",textTransform:"uppercase",color:item.accent,display:"block",marginBottom:"0.3rem" }}>{item.type} · {item.year}</span>
+        <h3 style={{ fontFamily:"'Playfair Display',Georgia,serif",fontSize:"1rem",fontWeight:400,color:"#fff",lineHeight:1.25 }}>{item.title}</h3>
+      </div>
+    </div>
   );
 }

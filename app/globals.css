@@ -2,36 +2,42 @@
 
 @layer base {
   :root {
-    /* ── Core palette ── */
-    --cream:       #f7f3ee;
-    --cream-2:     #f0ebe2;
-    --cream-3:     #e8e0d4;
+    /* ── Core palette — white base + maroon + navy (logo blue) ── */
+    --white:       #ffffff;
+    --off-white:   #f8f9fc;   /* faint navy-tinted white for alt sections   */
+    --off-white-2: #eef0f7;   /* slightly deeper navy tint                  */
 
-    /* Red-brown (replaces teal everywhere) */
-    --dark:        #3d1a0d;   /* deepest — backgrounds */
-    --dark-2:      #5a2a15;   /* mid dark */
-    --dark-3:      #7a3820;   /* lighter dark */
-    --accent:      #c4622a;   /* warm terracotta accent */
-    --accent-2:    #d97b3f;   /* lighter accent hover */
+    /* Maroon / dark reds — from logo swan */
+    --dark:        #2c1008;
+    --dark-2:      #4a1e0e;
+    --dark-3:      #6b2d14;
+    --accent:      #c4622a;
+    --accent-2:    #d97b3f;
 
-    --gold:        #c9963a;   /* kept for highlights */
+    /* Navy blue — from logo "I" letterform */
+    --navy:        #1e2f6e;
+    --navy-2:      #2d3d8a;
+    --navy-light:  #3d52a8;
+
+    /* Gold — logo oval border */
+    --gold:        #c9963a;
     --gold-2:      #e8b84b;
 
-    --text:        #1c1208;   /* near-black warm */
-    --text-2:      #3a2a1a;
-    --muted:       #8a7060;
-    --border:      rgba(60,26,13,0.12);
-    --border-2:    rgba(60,26,13,0.07);
-    --white:       #ffffff;
+    /* Text / UI */
+    --text:        #141414;
+    --text-2:      #2a2a2a;
+    --muted:       #6b7280;
+    --border:      rgba(30,47,110,0.1);   /* navy-tinted border */
+    --border-2:    rgba(30,47,110,0.06);
 
     /* WhatsApp */
     --wa:          #25d366;
   }
 
-  html { background: var(--cream); color: var(--text); scroll-behavior: auto; overflow: auto; }
+  html { background: #ffffff; color: var(--text); scroll-behavior: smooth; overflow: auto; }
 
   body {
-    background: var(--cream);
+    background: #ffffff;
     color: var(--text);
     font-family: 'DM Sans', 'Helvetica Neue', Arial, sans-serif;
     font-size: 16px;
@@ -41,7 +47,7 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  ::selection { background: var(--dark); color: var(--cream); }
+  ::selection { background: var(--navy); color: #fff; }
   ::-webkit-scrollbar { width: 0; }
 }
 
