@@ -21,63 +21,73 @@ const P = {
   navy:    "#1e2f6e",
   navy2:   "#2d3d8a",
   navyL:   "#3d52a8",
-  /* gold — logo oval */
-  gold:    "#c9963a",
-  gold2:   "#e8b84b",
+  /* maroon — replaces gold accent on light backgrounds */
+  maroon:  "#7a1f2b",
+  maroon2: "#9c2c3a",
   /* text / ui */
   text:    "#141414",
   muted:   "#6b7280",
   border:  "rgba(30,47,110,0.1)",
 };
 
+const WORK_DOMAINS = ["All","Brand & Identity","Web Development","Growth & Strategy","Influencer & Events"];
+
 const WORK = [
-  { title:"VisionCraft Labs",  tag:"Brand + Web",        year:"2025", result:"Closed 2 enterprise deals within 60 days", color:"#1a0e06", accent:"#c9963a" },
-  { title:"Pulse Creative",    tag:"Strategy + Design",  year:"2025", result:"Conversion rate doubled in 30 days",       color:"#0d0818", accent:"#c4622a" },
-  { title:"Meridian Studio",   tag:"Full Website",        year:"2026", result:"3× organic traffic in first quarter",      color:"#060d10", accent:"#8ab4c2" },
-  { title:"NorthStar",         tag:"Growth + One-Pager", year:"2025", result:"Raised seed round 2 weeks post-launch",    color:"#0e0804", accent:"#c9963a" },
-  { title:"Flux Agency",       tag:"Website + Growth",   year:"2025", result:"40% revenue growth quarter after launch",  color:"#060810", accent:"#c4622a" },
-  { title:"Sable & Co.",       tag:"Brand + Web",        year:"2025", result:"Brand recognition up 65% in 6 months",     color:"#0c0a04", accent:"#d97b3f" },
+  { title:"VisionCraft Labs",  domain:"Brand & Identity",    tag:"Brand + Web",         year:"2025", result:"Closed 2 enterprise deals within 60 days", accent:P.navy,
+    desc:"A full identity overhaul and conversion-ready website for an early-stage SaaS founder." },
+  { title:"Pulse Creative",    domain:"Growth & Strategy",   tag:"Strategy + Design",   year:"2025", result:"Conversion rate doubled in 30 days",       accent:P.accent,
+    desc:"A sharper story and clearer funnel for a boutique creative agency going global." },
+  { title:"Meridian Studio",   domain:"Web Development",     tag:"Full Website",        year:"2026", result:"3× organic traffic in first quarter",      accent:P.navyL,
+    desc:"A fast, considered digital home for an architectural photography studio." },
+  { title:"NorthStar",         domain:"Growth & Strategy",   tag:"Growth + One Pager",  year:"2025", result:"Raised seed round 2 weeks post launch",    accent:P.maroon,
+    desc:"One focused one-pager and growth plan that won a freelance educator collective its funding." },
+  { title:"Flux Agency",       domain:"Web Development",     tag:"Website + Growth",    year:"2025", result:"40% revenue growth quarter after launch",  accent:P.accent2,
+    desc:"A rebuilt site, content engine, and growth loop for a fast-scaling digital agency." },
+  { title:"Sable & Co.",       domain:"Brand & Identity",    tag:"Brand + Web",         year:"2025", result:"Brand recognition up 65% in 6 months",     accent:P.maroon2,
+    desc:"Premium brand, site, and social positioning for a luxury styling service entering a new market." },
+  { title:"Lumen & Co",        domain:"Influencer & Events", tag:"Influencer + Events", year:"2025", result:"12M reach across 3 launch activations",    accent:P.navyL,
+    desc:"Creator casting and on-ground event production for a D2C beauty brand's market entry." },
 ];
 
 const SERVICES = [
   { n:"01", title:"Brand Strategy",   desc:"We uncover what makes you unmissable — positioning, messaging, and a voice that cuts through the noise.",                     items:["Brand Audit","Positioning Framework","Messaging System","Voice & Tone"] },
-  { n:"02", title:"Web Design",       desc:"Conversion-focused websites built for humans. Every screen, every interaction, designed to make people act.",                 items:["UX Research","Visual Design","Interaction Design","Design Systems"] },
+  { n:"02", title:"Web Design",       desc:"Conversion focused websites built for humans. Every screen, every interaction, designed to make people act.",                 items:["UX Research","Visual Design","Interaction Design","Design Systems"] },
   { n:"03", title:"Development",      desc:"Clean Next.js code — every animation pixel-perfect, every page under 2 seconds. Built to last.",                             items:["Next.js / React","GSAP Animations","CMS Integration","Core Web Vitals"] },
   { n:"04", title:"Content Creation", desc:"Copy and creative that earns attention, builds trust, and gives people a genuine reason to care.",                           items:["Copywriting","Art Direction","Campaign Concepts","Brand Storytelling"] },
-  { n:"05", title:"Growth Marketing", desc:"Systematic, data-driven strategies to put your offer in front of the right people at the exact right moment.",               items:["Launch Strategy","SEO","Paid Advertising","Analytics"] },
+  { n:"05", title:"Growth Marketing", desc:"Systematic, data driven strategies to put your offer in front of the right people at the exact right moment.",               items:["Launch Strategy","SEO","Paid Advertising","Analytics"] },
 ];
 
 const PROCESS = [
-  { n:"01", title:"Discovery",       time:"Week 1",   desc:"Deep-dive into your brand, goals, audience, and competitive landscape. We leave knowing the exact story that needs to be told." },
+  { n:"01", title:"Discovery",       time:"Week 1",   desc:"Deep dive into your brand, goals, audience, and competitive landscape. We leave knowing the exact story that needs to be told." },
   { n:"02", title:"Strategy",        time:"Week 1–2", desc:"Sitemap, messaging, information architecture, and conversion strategy. The blueprint governing every design decision." },
   { n:"03", title:"Design",          time:"Week 2–4", desc:"Visual systems that capture your brand's full weight. Desktop and mobile designed simultaneously, iterated until exactly right." },
   { n:"04", title:"Development",     time:"Week 4–6", desc:"Clean, fast, accessible Next.js code. Every animation and interaction built to spec and optimised for performance." },
-  { n:"05", title:"Launch + Growth", time:"Ongoing",  desc:"30 days post-launch support. We're with you through the critical first month — and beyond if you want us." },
+  { n:"05", title:"Launch + Growth", time:"Ongoing",  desc:"30 days post launch support. We're with you through the critical first month — and beyond if you want us." },
 ];
 
 const TESTIMONIALS = [
-  { name:"James Kim",    role:"Founder, VisionCraft Labs",   initials:"JK", color:"#c9963a", quote:"IdeaShapers turned our brand into a deal-closing machine." },
+  { name:"James Kim",    role:"Founder, VisionCraft Labs",   initials:"JK", color:"#ffffff", quote:"IdeaShapers turned our brand into a deal closing machine." },
   { name:"Sara Okafor",  role:"CEO, Pulse Creative",         initials:"SO", color:"#c4622a", quote:"Our conversion rate doubled in the first month after launch." },
-  { name:"Marcus Reid",  role:"Co-founder, Meridian Studio",  initials:"MR", color:"#8ab4c2", quote:"Beyond what we imagined. Delivered in 5 weeks, no compromises." },
-  { name:"Priya Nair",   role:"Founder, NorthStar",          initials:"PN", color:"#c9963a", quote:"Raised our seed round two weeks after going live. Coincidence? No." },
+  { name:"Marcus Reid",  role:"Co founder, Meridian Studio",  initials:"MR", color:"#8ab4c2", quote:"Beyond what we imagined. Delivered in 5 weeks, no compromises." },
+  { name:"Priya Nair",   role:"Founder, NorthStar",          initials:"PN", color:"#ffffff", quote:"Raised our seed round two weeks after going live. Coincidence? No." },
   { name:"Tom Ellsworth",role:"Director, Flux Agency",       initials:"TE", color:"#d97b3f", quote:"Revenue up 40% the quarter after launch. They build businesses." },
   { name:"Ana Souza",    role:"CEO, Bloom Studio",           initials:"AS", color:"#a8c5b5", quote:"Finally a studio that listens first and designs second." },
 ];
 
 const TEAM = [
   { name:"Aryan Mehta",  role:"Creative Director", bio:"10 years crafting brand identities for startups and Fortune 500s. Obsessed with the gap between good and iconic.", initials:"AM", color:"#c4622a" },
-  { name:"Zara Patel",   role:"Head of Strategy",  bio:"Ex-McKinsey. Spent 8 years helping companies find their unfair advantage. Now she does it through design.",       initials:"ZP", color:"#c9963a" },
+  { name:"Zara Patel",   role:"Head of Strategy",  bio:"Ex-McKinsey. Spent 8 years helping companies find their unfair advantage. Now she does it through design.",       initials:"ZP", color:"#ffffff" },
   { name:"Leo Fontaine", role:"Lead Developer",    bio:"Built products used by millions. Believes great code is invisible — you only notice it when it's gone.",         initials:"LF", color:"#8ab4c2" },
   { name:"Maya Osei",    role:"UX & Content Lead", bio:"Former journalist turned UX researcher. Writes copy that converts and designs flows that delight.",               initials:"MO", color:"#d97b3f" },
 ];
 
 const FAQS = [
-  { q:"How long does a typical project take?",  a:"Most brand + web projects run 5–8 weeks from kickoff to launch. Smaller engagements like one-pagers or brand-only work typically land in 2–4 weeks. We'll give you a precise timeline in your discovery call." },
+  { q:"How long does a typical project take?",  a:"Most brand + web projects run 5–8 weeks from kickoff to launch. Smaller engagements like one pagers or brand only work typically land in 2–4 weeks. We'll give you a precise timeline in your discovery call." },
   { q:"What does the process look like?",        a:"We work in five phases: Discovery, Strategy, Design, Development, and Launch + Growth. You're involved at each stage — we don't disappear for weeks and surprise you with a finished product." },
-  { q:"Do you work with early-stage founders?",  a:"Absolutely. Many of our best projects started with founders who had a vision but no brand yet. We love helping you build from the ground up — it's where we have the most creative impact." },
-  { q:"What's included after launch?",           a:"Every project includes 30 days of post-launch support. We're with you through the critical first month to iron out anything unexpected. Extended retainer support is available if you want us ongoing." },
+  { q:"Do you work with early stage founders?",  a:"Absolutely. Many of our best projects started with founders who had a vision but no brand yet. We love helping you build from the ground up — it's where we have the most creative impact." },
+  { q:"What's included after launch?",           a:"Every project includes 30 days of post launch support. We're with you through the critical first month to iron out anything unexpected. Extended retainer support is available if you want us ongoing." },
   { q:"Can you work with our existing brand?",   a:"Yes. We can work within your existing brand guidelines, evolve them, or start fresh — whatever your goals demand. We'll advise on what makes the most strategic sense after our discovery session." },
-  { q:"How do we get started?",                  a:"Hit 'Start a Project' and fill in the contact form. We'll get back to you within 24 hours to schedule a free 30-minute discovery call. No commitment, no pressure — just a conversation." },
+  { q:"How do we get started?",                  a:"Hit 'Start a Project' and fill in the contact form. We'll get back to you within 24 hours to schedule a free 30 minute discovery call. No commitment, no pressure — just a conversation." },
 ];
 
 const WA_PRESETS = [
@@ -105,21 +115,21 @@ const CLIENTS = [
 
 /* ── influencer services ── */
 const INFL_SERVICES = [
-  { n:"01", title:"Campaign Strategy",     desc:"End-to-end campaign planning aligned with your brand goals, KPIs, and timeline." },
+  { n:"01", title:"Campaign Strategy",     desc:"End to end campaign planning aligned with your brand goals, KPIs, and timeline." },
   { n:"02", title:"Creator Matchmaking",   desc:"Nano to celebrity — we connect you with creators whose audiences trust them." },
-  { n:"03", title:"Content Production",    desc:"Platform-native content that stops the scroll and drives real action." },
+  { n:"03", title:"Content Production",    desc:"Platform native content that stops the scroll and drives real action." },
   { n:"04", title:"Performance Analytics", desc:"Live dashboards tracking reach, engagement, conversions, and brand sentiment." },
   { n:"05", title:"Brand Promotions",      desc:"Product launches and activations engineered to create cultural moments." },
-  { n:"06", title:"Paid Amplification",    desc:"Boost winning organic content with precision-targeted paid strategies." },
+  { n:"06", title:"Paid Amplification",    desc:"Boost winning organic content with precision targeted paid strategies." },
 ];
 
 /* ── event gallery ── */
 const EVENTS_DATA = [
-  { title:"Fashion Week",      type:"Fashion & Lifestyle",   year:"2024", bg:"linear-gradient(145deg,#1a0a18 0%,#2d1040 100%)", accent:"#c9963a" },
+  { title:"Fashion Week",      type:"Fashion & Lifestyle",   year:"2024", bg:"linear-gradient(145deg,#1a0a18 0%,#2d1040 100%)", accent:"#ffffff" },
   { title:"TEDx Kolkata",      type:"Conference & Summit",   year:"2024", bg:"linear-gradient(145deg,#060d18 0%,#0d1a30 100%)", accent:"#3d52a8" },
   { title:"Music Festival",    type:"Entertainment",         year:"2025", bg:"linear-gradient(145deg,#180408 0%,#2c0810 100%)", accent:"#c4622a" },
   { title:"Corporate Summit",  type:"Business",              year:"2025", bg:"linear-gradient(145deg,#040a08 0%,#081814 100%)", accent:"#2d8a6a" },
-  { title:"Gala Award Night",  type:"Gala & Ceremony",       year:"2024", bg:"linear-gradient(145deg,#100a00 0%,#201800 100%)", accent:"#c9963a" },
+  { title:"Gala Award Night",  type:"Gala & Ceremony",       year:"2024", bg:"linear-gradient(145deg,#100a00 0%,#201800 100%)", accent:"#ffffff" },
   { title:"Product Launch",    type:"Brand Activation",      year:"2025", bg:"linear-gradient(145deg,#020618 0%,#040c28 100%)", accent:"#3d52a8" },
 ];
 
@@ -207,7 +217,7 @@ function WAWidget() {
             <p style={{ fontSize:"0.6rem",fontWeight:700,letterSpacing:"0.16em",textTransform:"uppercase",color:P.muted,marginBottom:"0.5rem" }}>Quick messages</p>
             {WA_PRESETS.map(p=>(
               <button key={p} onClick={()=>send(p)} style={{ display:"block",width:"100%",textAlign:"left",background:P.cream2,border:`1px solid ${P.border}`,borderRadius:8,padding:"0.55rem 0.8rem",fontSize:"0.78rem",color:P.text,cursor:"pointer",marginBottom:"0.4rem",fontFamily:"inherit",transition:"background 0.15s" }}
-                onMouseEnter={e=>{e.currentTarget.style.background=P.cream3;e.currentTarget.style.borderColor=P.accent;}}
+                onMouseEnter={e=>{e.currentTarget.style.background=P.cream3;e.currentTarget.style.borderColor=P.navy;}}
                 onMouseLeave={e=>{e.currentTarget.style.background=P.cream2;e.currentTarget.style.borderColor=P.border;}}
               >{p}</button>
             ))}
@@ -231,12 +241,10 @@ export default function Home() {
   const blob1Ref  = useRef<HTMLDivElement>(null);
   const blob2Ref  = useRef<HTMLDivElement>(null);
   const blob3Ref  = useRef<HTMLDivElement>(null);
-  const svcOuter  = useRef<HTMLDivElement>(null);
-  const svcTrack  = useRef<HTMLDivElement>(null);
-  const workOuter = useRef<HTMLDivElement>(null);
-  const workTrack = useRef<HTMLDivElement>(null);
   const [active,   setActive]   = useState("hero");
   const [mobileMenu, setMobileMenu] = useState(false);
+  const [workFilter, setWorkFilter] = useState("All");
+  const [activeProject, setActiveProject] = useState<typeof WORK[number] | null>(null);
 
   /* hero entrance */
   useEffect(() => {
@@ -259,71 +267,6 @@ export default function Home() {
     return () => ctx.revert();
   }, []);
 
-  /* WORK horizontal scroll — standard gsap.to() + scrollTrigger pattern */
-  useEffect(() => {
-    if (isMobile()) return;
-    if (!workOuter.current || !workTrack.current) return;
-    const track = workTrack.current;
-    const outer = workOuter.current;
-    const ctx = gsap.context(() => {
-      gsap.to(track, {
-        x: () => -(track.scrollWidth - outer.offsetWidth),
-        ease: "none",
-        scrollTrigger: {
-          trigger: outer,
-          start: "top top",
-          end: () => `+=${track.scrollWidth - outer.offsetWidth}`,
-          scrub: 1,
-          pin: true,
-          invalidateOnRefresh: true,
-        },
-      });
-    });
-    return () => ctx.revert();
-  }, []);
-
-  /* SERVICES horizontal scroll */
-  useEffect(() => {
-    if (isMobile()) return;
-    if (!svcOuter.current || !svcTrack.current) return;
-    const track = svcTrack.current;
-    const outer = svcOuter.current;
-    const ctx = gsap.context(() => {
-      gsap.to(track, {
-        x: () => -(track.scrollWidth - outer.offsetWidth),
-        ease: "none",
-        scrollTrigger: {
-          trigger: outer,
-          start: "top top",
-          end: () => `+=${track.scrollWidth - outer.offsetWidth}`,
-          scrub: 1,
-          pin: true,
-          invalidateOnRefresh: true,
-        },
-      });
-    });
-    return () => ctx.revert();
-  }, []);
-
-  /* centre hscroll content in visible viewport (accounting for sticky nav) */
-  useEffect(() => {
-    const applyPadding = () => {
-      const header = document.querySelector<HTMLElement>('header');
-      const annBar = document.querySelector<HTMLElement>('.announce-bar');
-      const navH   = (header?.offsetHeight ?? 0) + (annBar?.offsetHeight ?? 0);
-      document.querySelectorAll<HTMLElement>('.hscroll-inner').forEach(el => {
-        el.style.paddingTop    = "0px";
-        el.style.paddingBottom = `${navH}px`;
-      });
-      // tell GSAP to recalculate spacer sizes after layout change
-      ScrollTrigger.refresh();
-    };
-    // two rAF to ensure DOM is fully painted before measuring
-    requestAnimationFrame(() => requestAnimationFrame(applyPadding));
-    window.addEventListener('resize', applyPadding, { passive: true });
-    return () => window.removeEventListener('resize', applyPadding);
-  }, []);
-
   /* generic fade-up */
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -336,7 +279,7 @@ export default function Home() {
 
   /* section nav highlight */
   useEffect(() => {
-    const ids=["hero","work","services","about","process","contact"];
+    const ids=["hero","work","services","about","process","influencer","faq","contact"];
     const obs=ids.map(id=>{
       const el=document.getElementById(id); if(!el)return null;
       const o=new IntersectionObserver(([e])=>{if(e.isIntersecting)setActive(id);},{threshold:0.2});
@@ -406,14 +349,13 @@ export default function Home() {
       <nav className="bnav-tube">
         {/* Logo */}
         <button onClick={()=>go("hero")} className="bnav-logo">
-          {/* Logo always inverted white since nav bg is always dark */}
-          <Image src="/logo.png" alt="IdeaShapers" width={52} height={52} style={{ objectFit:"contain", filter:"brightness(0) invert(1)" }}/>
+          <Image src="/logo.png" alt="IdeaShapers" width={52} height={52} style={{ objectFit:"contain" }}/>
         </button>
 
         {/* Desktop nav links */}
         <span className="bnav-divider desktop-only"/>
         <span className="bnav-links desktop-only">
-          {["Work","Services","About","Process"].map(item=>{
+          {["Work","Services","About","FAQ","Contact"].map(item=>{
             const id=item.toLowerCase(), isAct=active===id;
             return <button key={item} onClick={()=>go(id)} className={`bnav-item${isAct?" act":""}`}>{item}</button>;
           })}
@@ -422,34 +364,36 @@ export default function Home() {
 
         {/* Mobile burger */}
         <button className="bnav-burger mobile-only" onClick={()=>setMobileMenu(!mobileMenu)} aria-label="Menu">
-          <span style={{ display:"block",width:18,height:1.5,background:"#fff",borderRadius:1,transition:"all 0.25s",transform:mobileMenu?"rotate(45deg) translateY(3px)":"none" }}/>
-          <span style={{ display:"block",width:18,height:1.5,background:"#fff",borderRadius:1,transition:"all 0.25s",opacity:mobileMenu?0:1 }}/>
-          <span style={{ display:"block",width:18,height:1.5,background:"#fff",borderRadius:1,transition:"all 0.25s",transform:mobileMenu?"rotate(-45deg) translateY(-3px)":"none" }}/>
+          <span style={{ display:"block",width:18,height:1.5,background:P.navy,borderRadius:1,transition:"all 0.25s",transform:mobileMenu?"rotate(45deg) translateY(3px)":"none" }}/>
+          <span style={{ display:"block",width:18,height:1.5,background:P.navy,borderRadius:1,transition:"all 0.25s",opacity:mobileMenu?0:1 }}/>
+          <span style={{ display:"block",width:18,height:1.5,background:P.navy,borderRadius:1,transition:"all 0.25s",transform:mobileMenu?"rotate(-45deg) translateY(-3px)":"none" }}/>
         </button>
       </nav>
 
       <WAWidget/>
+
+      {activeProject && <ProjectModal project={activeProject} onClose={()=>setActiveProject(null)} go={go}/>}
 
       {/* ═══════════════════════════════════════
           HERO
       ═══════════════════════════════════════ */}
       <section id="hero" ref={heroRef} style={{ background:P.cream, position:"relative", minHeight:"100vh", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", padding:"clamp(30px,7vw,100px) clamp(1.25rem,5vw,3rem) clamp(160px,18vw,220px)", overflow:"hidden", textAlign:"center" }}>
         <div ref={blob1Ref} style={{ position:"absolute",width:620,height:620,borderRadius:"50%",pointerEvents:"none",background:"radial-gradient(circle,rgba(196,98,42,0.14) 0%,transparent 70%)",top:"50%",left:"50%",transform:"translate(-50%,-50%)",willChange:"transform" }}/>
-        <div ref={blob2Ref} style={{ position:"absolute",width:340,height:340,borderRadius:"50%",pointerEvents:"none",background:"radial-gradient(circle,rgba(201,150,58,0.12) 0%,transparent 70%)",top:"18%",right:"10%",willChange:"transform" }}/>
+        <div ref={blob2Ref} style={{ position:"absolute",width:340,height:340,borderRadius:"50%",pointerEvents:"none",background:"radial-gradient(circle,rgba(122,31,43,0.12) 0%,transparent 70%)",top:"18%",right:"10%",willChange:"transform" }}/>
         <div ref={blob3Ref} style={{ position:"absolute",width:260,height:260,borderRadius:"50%",pointerEvents:"none",background:"radial-gradient(circle,rgba(44,16,8,0.07) 0%,transparent 70%)",bottom:"18%",left:"7%",willChange:"transform" }}/>
 
         {/* Logo — brand anchor, centred and prominent */}
         <div className="hero-sub" style={{ marginBottom:"2.5rem" }}>
-          <Image src="/logo.png" alt="IdeaShapers" width={110} height={110} style={{ objectFit:"contain" }}/>
+          <Image src="/logo.png" alt="IdeaShapers" width={150} height={150} style={{ objectFit:"contain" }}/>
         </div>
 
         {/* Headline — the brand statement */}
-        <h1 style={{ fontSize:"clamp(2.6rem,5.5vw,6.4rem)",fontWeight:400,lineHeight:1.07,color:P.text,maxWidth:960,marginBottom:"1.75rem" }}>
+        <h1 style={{ fontSize:"clamp(2.2rem,4.6vw,5.4rem)",fontWeight:400,lineHeight:1.1,color:P.text,maxWidth:960,marginBottom:"1.75rem" }}>
           <span className="hero-line" style={{ display:"block" }}>
-            We build{" "}<em style={{ fontFamily:"'Playfair Display',Georgia,serif",fontStyle:"italic",color:P.dark }}>brands</em>{" "}and
+            We build{" "}<em style={{ fontFamily:"'Playfair Display',Georgia,serif",fontStyle:"italic",color:P.dark }}>Brands</em>{" "}and
           </span>
           <span className="hero-line" style={{ display:"block" }}>
-            <em style={{ fontFamily:"'Playfair Display',Georgia,serif",fontStyle:"italic",color:P.accent }}>digital experiences</em>
+            <em style={{ fontFamily:"'Playfair Display',Georgia,serif",fontStyle:"italic",color:P.navy }}>Digital Experiences</em>
           </span>
           <span className="hero-line" style={{ display:"block" }}>
             the world can&apos;t ignore.
@@ -457,7 +401,7 @@ export default function Home() {
         </h1>
 
         <p className="hero-sub" style={{ fontSize:"1rem",color:P.muted,lineHeight:1.75,maxWidth:480,marginBottom:"2.5rem" }}>
-          Strategy-first studio for founders, creators, and innovators. We turn your vision into a digital presence that makes people stop and act.
+          Strategy first studio for founders, creators, and innovators. We turn your vision into a digital presence that makes people stop and act.
         </p>
 
         <div className="hero-btns" style={{ display:"flex",gap:"0.85rem",alignItems:"center",justifyContent:"center",flexWrap:"wrap" }}>
@@ -465,8 +409,8 @@ export default function Home() {
           <Mag><ArrowBtn onClick={()=>go("services")}>Our Services</ArrowBtn></Mag>
         </div>
 
-        {/* Clients marquee — inside hero, anchored at bottom */}
-        <div style={{ position:"absolute", bottom:"4rem", left:0, right:0 }}>
+        {/* Clients marquee — anchored at bottom on desktop, flows in-line on mobile to avoid overlapping hero content */}
+        <div className="hero-marquee-wrap" style={{ position:"absolute", bottom:"4rem", left:0, right:0 }}>
           <p style={{ textAlign:"center",fontSize:"0.58rem",fontWeight:700,letterSpacing:"0.28em",textTransform:"uppercase",color:P.muted,marginBottom:"1rem",opacity:0.6 }}>Trusted by leading brands</p>
           <HeroClientsMarquee/>
         </div>
@@ -479,71 +423,56 @@ export default function Home() {
       <InfluencerSection go={go}/>
 
       {/* ═══════════════════════════════════════
-          WORK
-          Desktop: GSAP pinned horizontal scroll
-          Mobile:  normal vertical stack
+          WORK — domain-filtered project carousel
+          steps one card at a time via edge arrows
       ═══════════════════════════════════════ */}
-      <div id="work" ref={workOuter} className="hscroll-outer" style={{ background:P.cream2 }}>
-        <div className="hscroll-inner">
-          <div className="hscroll-header">
+      <section id="work" style={{ background:P.cream2, padding:"clamp(4rem,9vw,7rem) 0" }}>
+        <div style={{ maxWidth:1440, margin:"0 auto", padding:"0 clamp(1.25rem,5vw,3rem)" }}>
+
+          <div className="gsap-up" style={{ display:"flex",justifyContent:"space-between",alignItems:"flex-end",flexWrap:"wrap",gap:"1rem",marginBottom:"2rem" }}>
             <div>
               <p style={{ fontSize:"0.62rem",fontWeight:700,letterSpacing:"0.22em",textTransform:"uppercase",color:P.muted,marginBottom:"0.75rem" }}>Selected Work</p>
               <h2 style={{ fontFamily:"'Playfair Display',Georgia,serif",fontSize:"clamp(1.8rem,4vw,3.2rem)",fontWeight:400,color:P.text,lineHeight:1.1 }}>
-                Projects that moved <em style={{ color:P.accent }}>the needle</em>
+                Projects that moved <em style={{ color:P.navy }}>the needle</em>
               </h2>
             </div>
-            <p className="desktop-only" style={{ fontSize:"0.75rem",color:P.muted,letterSpacing:"0.06em",flexShrink:0 }}>← Scroll to explore →</p>
           </div>
-          <div ref={workTrack} className="hscroll-track">
-            {WORK.map((w,i)=><WorkCard key={w.title} w={w} i={i}/>)}
+
+          {/* Domain filter tabs */}
+          <div className="gsap-up" style={{ display:"flex",gap:"0.5rem",flexWrap:"wrap",marginBottom:"2.5rem" }}>
+            {WORK_DOMAINS.map(d=>{
+              const isAct = workFilter===d;
+              return (
+                <button key={d} onClick={()=>setWorkFilter(d)} style={{
+                  padding:"0.5rem 1.1rem",borderRadius:999,fontFamily:"inherit",fontSize:"0.72rem",fontWeight:600,letterSpacing:"0.04em",
+                  cursor:"pointer",transition:"all 0.2s",
+                  background:isAct?P.navy:"transparent",
+                  color:isAct?"#ffffff":P.muted,
+                  border:`1px solid ${isAct?P.navy:P.border}`,
+                }}>{d}</button>
+              );
+            })}
           </div>
+
+          <WorkCarousel projects={WORK.filter(w=>workFilter==="All"||w.domain===workFilter)} onOpen={setActiveProject}/>
+
         </div>
-      </div>
+      </section>
 
       {/* ═══════════════════════════════════════
           SERVICES
       ═══════════════════════════════════════ */}
-      <div id="services" ref={svcOuter} className="hscroll-outer" style={{ background:P.cream }}>
-        <div className="hscroll-inner">
-          <div className="hscroll-header">
-            <div>
-              <p style={{ fontSize:"0.62rem",fontWeight:700,letterSpacing:"0.22em",textTransform:"uppercase",color:P.muted,marginBottom:"0.75rem" }}>What We Do</p>
-              <h2 style={{ fontFamily:"'Playfair Display',Georgia,serif",fontSize:"clamp(1.8rem,4vw,3.2rem)",fontWeight:400,color:P.text,lineHeight:1.1 }}>
-                Services built for <em style={{ color:P.accent }}>your ambition</em>
-              </h2>
-            </div>
-            <p className="desktop-only" style={{ fontSize:"0.75rem",color:P.muted,letterSpacing:"0.06em",flexShrink:0 }}>← Scroll to explore →</p>
+      <section id="services" style={{ background:P.cream, padding:"clamp(4rem,9vw,7rem) clamp(1.25rem,5vw,3rem)" }}>
+        <div style={{ maxWidth:1320, margin:"0 auto" }}>
+          <div style={{ marginBottom:"clamp(2.5rem,6vw,4rem)" }}>
+            <p style={{ fontSize:"0.62rem",fontWeight:700,letterSpacing:"0.22em",textTransform:"uppercase",color:P.muted,marginBottom:"0.75rem" }}>What We Do</p>
+            <h2 style={{ fontFamily:"'Playfair Display',Georgia,serif",fontSize:"clamp(1.8rem,4vw,3.2rem)",fontWeight:400,color:P.text,lineHeight:1.1 }}>
+              Services built for <em style={{ color:P.navy }}>your ambition</em>
+            </h2>
           </div>
-          <div ref={svcTrack} className="hscroll-track">
-            {SERVICES.map(svc=>(
-              <div key={svc.n} className="svc-card-item"
-                onMouseEnter={e=>{e.currentTarget.style.borderColor=P.accent;e.currentTarget.style.boxShadow="0 12px 40px rgba(44,16,8,0.1)";e.currentTarget.style.transform="translateY(-4px)";}}
-                onMouseLeave={e=>{e.currentTarget.style.borderColor=P.border;e.currentTarget.style.boxShadow="none";e.currentTarget.style.transform="translateY(0)";}}
-              >
-                <div style={{ display:"flex",justifyContent:"space-between",alignItems:"flex-start" }}>
-                  <span style={{ fontSize:"0.58rem",fontWeight:700,letterSpacing:"0.18em",color:P.muted }}>{svc.n}</span>
-                  <Image src="/logo.png" alt="" width={42} height={42} style={{ objectFit:"contain" }}/>
-                </div>
-                <div>
-                  <h3 style={{ fontFamily:"'Playfair Display',Georgia,serif",fontSize:"1.3rem",fontWeight:400,color:P.text,marginBottom:"0.65rem" }}>{svc.title}</h3>
-                  <p style={{ fontSize:"0.82rem",color:P.muted,lineHeight:1.75 }}>{svc.desc}</p>
-                </div>
-                <div style={{ marginTop:"auto" }}>
-                  <p style={{ fontSize:"0.56rem",fontWeight:700,letterSpacing:"0.16em",textTransform:"uppercase",color:P.text,marginBottom:"0.55rem" }}>Includes</p>
-                  <ul style={{ listStyle:"none",display:"flex",flexDirection:"column",gap:5 }}>
-                    {svc.items.map(it=>(
-                      <li key={it} style={{ display:"flex",alignItems:"center",gap:8,fontSize:"0.8rem",color:P.muted }}>
-                        <span style={{ width:4,height:4,borderRadius:"50%",background:P.accent,flexShrink:0 }}/>{it}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <Mag><PillBtn onClick={()=>go("contact")} style={{ fontSize:"0.7rem",padding:"9px 18px" }}>Get started →</PillBtn></Mag>
-              </div>
-            ))}
-          </div>
+          <ServicesList services={SERVICES} onOpen={()=>go("contact")} />
         </div>
-      </div>
+      </section>
 
       {/* ═══════════════════════════════════════
           ABOUT US
@@ -554,42 +483,40 @@ export default function Home() {
             <div className="gsap-up">
               <p style={{ fontSize:"0.62rem",fontWeight:700,letterSpacing:"0.22em",textTransform:"uppercase",color:"rgba(255,255,255,0.3)",marginBottom:"1.25rem" }}>Our Story</p>
               <h2 style={{ fontFamily:"'Playfair Display',Georgia,serif",fontSize:"clamp(2rem,4vw,4rem)",fontWeight:400,color:"#fff",lineHeight:1.1,marginBottom:"2rem" }}>
-                We shape ideas for founders who <em style={{ color:P.gold }}>refuse to be invisible.</em>
+                We shape ideas for founders who <em style={{ color:"#ffffff" }}>refuse to be invisible.</em>
               </h2>
-              <p style={{ fontSize:"0.9rem",color:"rgba(255,255,255,0.55)",lineHeight:1.9,marginBottom:"1.25rem",maxWidth:460 }}>
+              <p style={{ fontSize:"0.9rem",color:"rgba(255,255,255,0.55)",lineHeight:1.9,marginBottom:"1.25rem",maxWidth:560 }}>
                 IdeaShapers was founded in 2018 by designers and strategists who were tired of watching brilliant founders go unnoticed because of weak branding and forgettable websites.
               </p>
-              <p style={{ fontSize:"0.9rem",color:"rgba(255,255,255,0.55)",lineHeight:1.9,marginBottom:"2.5rem",maxWidth:460 }}>
+              <p style={{ fontSize:"0.9rem",color:"rgba(255,255,255,0.55)",lineHeight:1.9,marginBottom:"2.5rem",maxWidth:560 }}>
                 The gap between a founder&apos;s vision and their audience&apos;s understanding is almost always a design problem. We close that gap — with strategy, craft, and an obsessive attention to what actually moves people.
               </p>
               <Mag><PillBtn white onClick={()=>go("process")}>How We Work →</PillBtn></Mag>
             </div>
-            <div className="gsap-up" style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:"1px",background:"rgba(255,255,255,0.05)",alignSelf:"start" }}>
-              {[
-                { n:"01",h:"Strategy First",  b:"Every decision traces back to your goals. No guesswork — deliberate, purposeful design." },
-                { n:"02",h:"Radical Honesty", b:"We tell you what you need to hear. That's how we build things that actually work." },
-                { n:"03",h:"Obsessive Craft", b:"The 1px detail. The perfect micro-animation. The headline that makes someone feel something." },
-                { n:"04",h:"Founders First",  b:"We've worked with 150+ founders. We understand the stakes and treat your project like our own." },
-              ].map(v=>(
-                <div key={v.n} style={{ padding:"1.75rem",background:P.dark }}>
-                  <span style={{ fontSize:"0.56rem",fontWeight:700,letterSpacing:"0.18em",color:P.gold,display:"block",marginBottom:"0.75rem" }}>{v.n}</span>
-                  <h3 style={{ fontSize:"0.85rem",fontWeight:700,color:"#fff",textTransform:"uppercase",letterSpacing:"0.04em",marginBottom:"0.5rem" }}>{v.h}</h3>
-                  <p style={{ fontSize:"0.78rem",color:"rgba(255,255,255,0.4)",lineHeight:1.7 }}>{v.b}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Stats */}
-        <div className="gsap-up" style={{ maxWidth:1440,margin:"0 auto",padding:"0 clamp(1.25rem,5vw,3rem) clamp(3rem,5vw,4rem)" }}>
-          <div className="about-stats">
-            {[["150+","Projects Delivered"],["98%","Client Satisfaction"],["6 yrs","Studio Experience"],["40+","Industries Served"]].map(([n,l],i)=>(
-              <div key={l} style={{ textAlign:"center",borderRight:i<3?"1px solid rgba(255,255,255,0.06)":"none",padding:"2rem 1rem" }}>
-                <div style={{ fontFamily:"'Playfair Display',Georgia,serif",fontStyle:"italic",fontSize:"2.5rem",color:P.gold,letterSpacing:"-0.02em",lineHeight:1 }}>{n}</div>
-                <div style={{ fontSize:"0.6rem",letterSpacing:"0.16em",textTransform:"uppercase",color:"rgba(255,255,255,0.3)",marginTop:8 }}>{l}</div>
+            <div style={{ display:"flex",flexDirection:"column",gap:"1px" }}>
+              <div className="gsap-up" style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:"1px",background:"rgba(255,255,255,0.05)",alignSelf:"start" }}>
+                {[
+                  { n:"01",h:"Strategy First",  b:"Every decision traces back to your goals. No guesswork — deliberate, purposeful design." },
+                  { n:"02",h:"Radical Honesty", b:"We tell you what you need to hear. That's how we build things that actually work." },
+                  { n:"03",h:"Obsessive Craft", b:"The 1px detail. The perfect micro animation. The headline that makes someone feel something." },
+                  { n:"04",h:"Founders First",  b:"We've worked with 150+ founders. We understand the stakes and treat your project like our own." },
+                ].map(v=>(
+                  <div key={v.n} style={{ padding:"1.75rem",background:P.dark }}>
+                    <span style={{ fontSize:"0.56rem",fontWeight:700,letterSpacing:"0.18em",color:"#ffffff",display:"block",marginBottom:"0.75rem" }}>{v.n}</span>
+                    <h3 style={{ fontSize:"0.85rem",fontWeight:700,color:"#fff",textTransform:"uppercase",letterSpacing:"0.04em",marginBottom:"0.5rem" }}>{v.h}</h3>
+                    <p style={{ fontSize:"0.78rem",color:"rgba(255,255,255,0.4)",lineHeight:1.7 }}>{v.b}</p>
+                  </div>
+                ))}
               </div>
-            ))}
+              <div className="gsap-up about-stats">
+                {[["20+","Projects Delivered"],["98%","Client Satisfaction"],["40+","Industries Served"]].map(([n,l],i)=>(
+                  <div key={l} style={{ textAlign:"center",borderRight:i<2?"1px solid rgba(255,255,255,0.06)":"none",padding:"1.5rem 1rem",background:P.dark }}>
+                    <div style={{ fontFamily:"'Playfair Display',Georgia,serif",fontStyle:"italic",fontSize:"2rem",color:"#ffffff",letterSpacing:"-0.02em",lineHeight:1 }}>{n}</div>
+                    <div style={{ fontSize:"0.58rem",letterSpacing:"0.16em",textTransform:"uppercase",color:"rgba(255,255,255,0.3)",marginTop:8 }}>{l}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
@@ -599,7 +526,7 @@ export default function Home() {
             <div className="gsap-up" style={{ marginBottom:"3rem" }}>
               <p style={{ fontSize:"0.62rem",fontWeight:700,letterSpacing:"0.22em",textTransform:"uppercase",color:"rgba(255,255,255,0.3)",marginBottom:"0.75rem" }}>The People</p>
               <h2 style={{ fontFamily:"'Playfair Display',Georgia,serif",fontSize:"clamp(1.8rem,3.5vw,3rem)",fontWeight:400,color:"#fff",lineHeight:1.1 }}>
-                Meet the team <em style={{ color:P.gold }}>behind the work</em>
+                Meet the team <em style={{ color:"#ffffff" }}>behind the work</em>
               </h2>
             </div>
             <div className="team-grid">
@@ -623,7 +550,7 @@ export default function Home() {
           <div className="gsap-up" style={{ position:"sticky",top:"8rem" }}>
             <p style={{ fontSize:"0.62rem",fontWeight:700,letterSpacing:"0.22em",textTransform:"uppercase",color:P.muted,marginBottom:"1rem" }}>How We Work</p>
             <h2 style={{ fontFamily:"'Playfair Display',Georgia,serif",fontSize:"clamp(1.8rem,3.5vw,3rem)",fontWeight:400,color:P.text,lineHeight:1.15,marginBottom:"1.5rem" }}>
-              The IdeaShapers <em style={{ color:P.accent }}>Way</em>
+              The IdeaShapers <em style={{ color:P.navy }}>Way</em>
             </h2>
             <p style={{ fontSize:"0.88rem",color:P.muted,lineHeight:1.8,marginBottom:"2rem" }}>
               A proven 5-step framework refined across 150+ projects. Clear, thorough, and built entirely around your goals.
@@ -654,8 +581,8 @@ export default function Home() {
         <div style={{ overflow:"hidden",whiteSpace:"nowrap" }}>
           <div style={{ display:"inline-flex",animation:"mq 26s linear infinite" }}>
             {[...Array(2)].flatMap((_,gi)=>
-              ["Brand Strategy","Web Design","Development","Content","Growth Marketing","Visual Identity","UX Research","Copywriting","Conversion"].map((t,i)=>(
-                <span key={`${gi}-${t}`} style={{ fontSize:"0.85rem",fontWeight:600,letterSpacing:"0.18em",textTransform:"uppercase",color:i%4===0?P.gold:"rgba(255,255,255,0.55)",padding:"0 2.5rem",borderRight:"1px solid rgba(255,255,255,0.08)",whiteSpace:"nowrap" }}>{t}</span>
+              ["Brand Strategy","Web Design","Development","Content","Growth Marketing","Visual Identity","UX Research","Copywriting","Conversion","Brand Activities","Product Launch"].map((t,i)=>(
+                <span key={`${gi}-${t}`} style={{ fontSize:"0.85rem",fontWeight:600,letterSpacing:"0.18em",textTransform:"uppercase",color:i%4===0?"#ffffff":"rgba(255,255,255,0.55)",padding:"0 2.5rem",borderRight:"1px solid rgba(255,255,255,0.08)",whiteSpace:"nowrap" }}>{t}</span>
               ))
             )}
           </div>
@@ -670,7 +597,7 @@ export default function Home() {
         <div style={{ maxWidth:1440,margin:"0 auto clamp(2.5rem,4vw,4rem)",padding:"0 clamp(1.25rem,5vw,3rem)" }}>
           <p className="gsap-up" style={{ fontSize:"0.62rem",fontWeight:700,letterSpacing:"0.22em",textTransform:"uppercase",color:P.muted,marginBottom:"0.75rem" }}>What Clients Say</p>
           <h2 className="gsap-up" style={{ fontFamily:"'Playfair Display',Georgia,serif",fontSize:"clamp(1.8rem,4vw,3.2rem)",fontWeight:400,color:P.text,lineHeight:1.1 }}>
-            Real results, <em style={{ color:P.accent }}>real people</em>
+            Real results, <em style={{ color:P.navy }}>real people</em>
           </h2>
         </div>
         <div
@@ -698,7 +625,7 @@ export default function Home() {
             <div>
               <p style={{ fontSize:"0.62rem",fontWeight:700,letterSpacing:"0.22em",textTransform:"uppercase",color:P.muted,marginBottom:"0.75rem" }}>Frequently Asked</p>
               <h2 style={{ fontFamily:"'Playfair Display',Georgia,serif",fontSize:"clamp(1.8rem,4vw,3.2rem)",fontWeight:400,color:P.text,lineHeight:1.1 }}>
-                Questions we <em style={{ color:P.accent }}>hear often</em>
+                Questions we <em style={{ color:P.navy }}>hear often</em>
               </h2>
             </div>
             <Mag><PillBtn onClick={()=>go("contact")}>Still have questions?</PillBtn></Mag>
@@ -715,7 +642,7 @@ export default function Home() {
           <div className="gsap-up">
             <p style={{ fontSize:"0.62rem",fontWeight:700,letterSpacing:"0.22em",textTransform:"uppercase",color:"rgba(255,255,255,0.3)",marginBottom:"1.5rem" }}>Let&apos;s Build Together</p>
             <h2 style={{ fontFamily:"'Playfair Display',Georgia,serif",fontStyle:"italic",fontSize:"clamp(2.2rem,5vw,5rem)",fontWeight:400,color:"#fff",lineHeight:1.0,marginBottom:"1.5rem" }}>
-              <span style={{ color:P.gold }}>Start</span> your<br/>project today
+              <span style={{ color:"#ffffff" }}>Start</span> your<br/>project today
             </h2>
             <p style={{ fontSize:"0.9rem",color:"rgba(255,255,255,0.5)",lineHeight:1.85,maxWidth:360,marginBottom:"2.5rem" }}>
               We take on a limited number of projects each quarter. Q3 2026 slots are open — reach out now before they fill.
@@ -723,7 +650,7 @@ export default function Home() {
             <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:"1.5rem 2.5rem" }}>
               {[
                 ["Email",    "info@ideashapers.org"],
-                ["Phone",    "+91 70771 02829"],
+                ["Phone",    "+91 70771 02829, +91 75968 10148"],
                 ["WhatsApp", "+91 99037 37067"],
                 ["Location", "Kolkata, India"],
               ].map(([l,v])=>(
@@ -751,7 +678,7 @@ export default function Home() {
             <p style={{ fontSize:"0.72rem",fontWeight:600,letterSpacing:"0.16em",textTransform:"uppercase",color:"rgba(255,255,255,0.3)" }}>Follow us</p>
             <div style={{ display:"flex",gap:"1rem",alignItems:"center" }}>
               {[
-                { label:"Instagram", href:"https://www.instagram.com/idea.shapers?igsh=eXVtdTBrejR0YW44&utm_source=qr", icon:<IGIcon/>, color:P.accent },
+                { label:"Instagram", href:"https://www.instagram.com/idea.shapers?igsh=eXVtdTBrejR0YW44&utm_source=qr", icon:<IGIcon/>, color:"#ffffff" },
                 { label:"LinkedIn",  href:"https://www.linkedin.com/company/ideashapers-india", icon:<LIIcon/>, color:P.navyL },
                 { label:"Facebook",  href:CONTACT.facebook, icon:<FBIcon/>, color:P.navy2 },
               ].map(s=>(
@@ -777,12 +704,13 @@ export default function Home() {
             <p style={{ fontSize:"0.75rem",color:"rgba(255,255,255,0.28)",lineHeight:1.75,maxWidth:220,marginBottom:"1rem" }}>Full-service marketing agency in Kolkata — brand building, creative marketing, and digital experiences.</p>
             <a href={`mailto:${CONTACT.email}`} style={{ fontSize:"0.75rem",color:`${P.navyL}`,display:"block",marginBottom:"0.35rem",textDecoration:"none" }}>{CONTACT.email}</a>
             <a href={`tel:${CONTACT.phone1.replace(/\s/g,"")}`} style={{ fontSize:"0.75rem",color:"rgba(255,255,255,0.38)",display:"block",textDecoration:"none" }}>{CONTACT.phone1}</a>
+            <a href="tel:+917596810148" style={{ fontSize:"0.75rem",color:"rgba(255,255,255,0.38)",display:"block",textDecoration:"none" }}>+91 75968 10148</a>
           </div>
           {[
             { h:"Services", ls:["Brand Strategy","Web Design","Development","Content","Growth"] },
-            { h:"Work",     ls:["Case Studies","Brand Projects","Web Projects","One-Pagers"] },
-            { h:"Studio",   ls:["About Us","Process","Values","Team"] },
-            { h:"Info",     ls:["FAQs","Start a Project","Refer a Friend","Privacy"] },
+            { h:"Work",     ls:["Brand Projects","Web Projects","One Pagers"] },
+            { h:"Studio",   ls:["About Us"] },
+            { h:"Info",     ls:["FAQs","Start a Project"] },
           ].map(col=>(
             <div key={col.h}>
               <p style={{ fontSize:"0.56rem",fontWeight:700,letterSpacing:"0.2em",textTransform:"uppercase",color:"#fff",marginBottom:"1rem" }}>{col.h}</p>
@@ -820,6 +748,9 @@ export default function Home() {
         @keyframes inflFloat   { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
         @keyframes inflPulse   { 0%,100%{opacity:0.06} 50%{opacity:0.1} }
         @keyframes spin        { 0%{transform:rotate(0deg)} 100%{transform:rotate(360deg)} }
+        @keyframes svcPreviewIn { from{opacity:0;transform:translateY(calc(-50% + 10px)) scale(0.96)} to{opacity:1;transform:translateY(-50%) scale(1)} }
+        @keyframes modalFade   { from{opacity:0} to{opacity:1} }
+        @keyframes modalRise   { from{opacity:0;transform:translateY(28px) scale(0.97)} to{opacity:1;transform:translateY(0) scale(1)} }
 
         /* ── social float (right side, desktop) ── */
         .social-float { position:fixed;right:1.25rem;top:50%;transform:translateY(-50%);z-index:997;display:flex;flex-direction:column;gap:0.6rem; }
@@ -858,29 +789,35 @@ export default function Home() {
         }
 
         /* ── bottom nav ── */
-        .bnav-tube       { position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);z-index:999;display:flex;align-items:center;gap:4px;background:${P.dark};border-radius:999px;padding:6px 8px;box-shadow:0 16px 56px rgba(44,16,8,0.6),0 4px 14px rgba(0,0,0,0.3);white-space:nowrap;backdrop-filter:blur(8px); }
+        .bnav-tube       { position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);z-index:999;display:flex;align-items:center;gap:4px;background:rgba(255,255,255,0.92);border:1px solid ${P.border};border-radius:999px;padding:6px 8px;box-shadow:0 16px 56px rgba(30,47,110,0.16),0 4px 14px rgba(20,20,20,0.08);white-space:nowrap;backdrop-filter:blur(12px); }
         /* logo button */
         .bnav-logo       { display:flex;align-items:center;background:none;border:none;cursor:pointer;padding:4px 10px 4px 6px;border-radius:999px;transition:background 0.25s; }
-        .bnav-logo:hover { background:rgba(255,255,255,0.08); }
+        .bnav-logo:hover { background:${P.navy}0d; }
         /* vertical divider */
-        .bnav-divider    { display:block;width:1px;height:22px;background:rgba(255,255,255,0.1);margin:0 4px;flex-shrink:0; }
+        .bnav-divider    { display:block;width:1px;height:22px;background:${P.border};margin:0 4px;flex-shrink:0; }
         /* nav links container */
         .bnav-links      { display:flex;align-items:center;gap:2px;padding:0 4px; }
         /* individual link — underline grows on hover */
-        .bnav-item       { position:relative;padding:9px 18px;border-radius:8px;border:none;cursor:pointer;font-family:inherit;background:transparent;color:rgba(255,255,255,0.45);font-size:0.8rem;font-weight:500;letter-spacing:0.02em;transition:color 0.22s,background 0.22s;overflow:hidden; }
-        .bnav-item::after { content:'';position:absolute;bottom:5px;left:50%;transform:translateX(-50%) scaleX(0);width:16px;height:1.5px;background:${P.gold};border-radius:999px;transition:transform 0.25s cubic-bezier(0.34,1.56,0.64,1); }
-        .bnav-item:hover { color:#fff;background:rgba(255,255,255,0.06); }
-        .bnav-item:hover::after { transform:translateX(-50%) scaleX(1); }
-        .bnav-item.act   { color:#fff;background:rgba(255,255,255,0.1); }
-        .bnav-item.act::after { transform:translateX(-50%) scaleX(1); }
+        .bnav-item       { position:relative;padding:9px 18px;border-radius:8px;border:none;cursor:pointer;font-family:inherit;background:transparent;color:${P.muted};font-size:0.8rem;font-weight:500;letter-spacing:0.02em;transition:color 0.22s,background 0.22s; }
+        .bnav-item::after {
+          content:'';position:absolute;bottom:5px;left:18px;right:18px;height:8px;
+          opacity:0;transform:translateY(3px);
+          background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='8' viewBox='0 0 16 8'%3E%3Cpath d='M0 4 Q4 0 8 4 T16 4' stroke='%231e2f6e' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+          background-repeat:repeat-x;background-position:left center;background-size:16px 8px;
+          transition:opacity 0.25s ease,transform 0.25s ease;
+        }
+        .bnav-item:hover { color:${P.navy};background:${P.navy}0a; }
+        .bnav-item:hover::after { opacity:1;transform:translateY(0); }
+        .bnav-item.act   { color:${P.navy};background:${P.navy}12; }
+        .bnav-item.act::after { opacity:1;transform:translateY(0); }
         /* CTA button — pill with gradient & shimmer */
-        .bnav-cta-btn    { position:relative;overflow:hidden;padding:9px 22px;border-radius:999px;border:none;cursor:pointer;font-family:inherit;margin-left:4px;background:linear-gradient(135deg,${P.navy} 0%,${P.navy2} 100%);color:#fff;font-size:0.8rem;font-weight:700;letter-spacing:0.04em;transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 2px 14px rgba(30,47,110,0.5); }
-        .bnav-cta-btn::before { content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.18),transparent);transition:left 0.45s ease; }
-        .bnav-cta-btn:hover { transform:translateY(-1px);box-shadow:0 6px 22px rgba(30,47,110,0.6); }
+        .bnav-cta-btn    { position:relative;overflow:hidden;padding:9px 22px;border-radius:999px;border:none;cursor:pointer;font-family:inherit;margin-left:4px;background:linear-gradient(135deg,${P.navy} 0%,${P.navy2} 100%);color:#fff;font-size:0.8rem;font-weight:700;letter-spacing:0.04em;transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 4px 18px rgba(30,47,110,0.35); }
+        .bnav-cta-btn::before { content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.22),transparent);transition:left 0.45s ease; }
+        .bnav-cta-btn:hover { transform:translateY(-1px);box-shadow:0 8px 26px rgba(30,47,110,0.45); }
         .bnav-cta-btn:hover::before { left:160%; }
         /* burger */
         .bnav-burger     { display:none;flex-direction:column;gap:4.5px;background:none;border:none;cursor:pointer;padding:9px 11px;border-radius:8px;transition:background 0.2s; }
-        .bnav-burger:hover { background:rgba(255,255,255,0.1); }
+        .bnav-burger:hover { background:${P.navy}0d; }
 
         /* ── wa ── */
         .wa-float { position:fixed;right:1.5rem;bottom:5.5rem;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:0.75rem; }
@@ -888,19 +825,12 @@ export default function Home() {
         .wa-btn:hover { transform:scale(1.1);box-shadow:0 6px 28px rgba(37,211,102,0.65); }
         .wa-btn::after { content:'';position:absolute;inset:-6px;border-radius:50%;border:2px solid rgba(37,211,102,0.4);animation:waPulse 2s ease-in-out infinite; }
 
-        /* ── horizontal scroll sections (desktop) ── */
-        .hscroll-outer  { height:100vh;overflow:hidden; }
-        /* JS sets padding-bottom = nav height to shift flex-center into visible viewport */
-        .hscroll-inner  { height:100vh;display:flex;flex-direction:column;justify-content:center;padding-left:clamp(1.25rem,5vw,3rem);padding-right:clamp(1.25rem,5vw,3rem); }
-        .hscroll-header { display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2rem;flex-shrink:0;gap:1rem; }
-        .hscroll-track  { display:flex;gap:1.25rem;width:max-content;padding-right:3rem; }
-
-        /* ── service card ── */
-        .svc-card-item { width:340px;flex-shrink:0;background:#fff;border-radius:16px;padding:2rem;border:1px solid ${P.border};display:flex;flex-direction:column;gap:1.1rem;min-height:370px;transition:border-color 0.25s,box-shadow 0.25s,transform 0.25s; }
+        /* ── project card (Work carousel) ── */
+        .proj-card   { width:330px;flex-shrink:0;border-radius:20px;display:flex;flex-direction:column;overflow:hidden;cursor:pointer;transition:border-color 0.3s,box-shadow 0.3s,transform 0.3s; }
 
         /* ── layout grids ── */
         .about-grid        { display:grid;grid-template-columns:1fr 1fr;gap:clamp(3rem,7vw,7rem);align-items:start; }
-        .about-stats       { display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(255,255,255,0.08); }
+        .about-stats       { display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(255,255,255,0.08); }
         .team-grid         { display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem; }
         .process-grid      { display:grid;grid-template-columns:320px 1fr;gap:5rem;align-items:start; }
         .process-row       { display:grid;grid-template-columns:52px 1fr auto;gap:1.5rem;padding:2rem 0;border-bottom:1px solid ${P.border};align-items:start; }
@@ -922,6 +852,12 @@ export default function Home() {
           .desktop-only { display:none !important; }
           .mobile-only  { display:flex !important; }
 
+          /* carousel nav arrows — tuck inward so they stay fully tappable
+             on narrow screens (the desktop offset of -28px slightly
+             overflows the viewport edge below ~420px) */
+          .carousel-arrow-l { left:6px !important; }
+          .carousel-arrow-r { right:6px !important; }
+
           /* bottom nav — logo + burger only */
           .bnav-tube    { bottom:1rem;left:50%;transform:translateX(-50%);padding:5px 5px 5px 8px;gap:4px; }
           .bnav-logo-text { display:none; }
@@ -931,20 +867,25 @@ export default function Home() {
           .wa-float { bottom:4.5rem;right:1rem; }
           .wa-btn   { width:44px;height:44px; }
 
-          /* horizontal scroll → native touch scroll */
-          .hscroll-outer  { height:auto !important;overflow:visible !important; }
-          .hscroll-inner  { height:auto !important;padding:3rem 0 !important; }
-          .hscroll-header { padding:0 1.25rem;margin-bottom:1.5rem !important; }
-          .hscroll-track  { width:100% !important;overflow-x:auto;padding:0 1.25rem 1rem !important;
-                            scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
-                            scrollbar-width:none;gap:1rem; }
-          .hscroll-track::-webkit-scrollbar { display:none; }
-          /* work cards fill most of screen width on mobile */
-          .hscroll-track > * { scroll-snap-align:start; }
+          /* hero — marquee flows in-line below CTAs instead of sitting
+             absolutely over the centred content (was overlapping on
+             short / narrow viewports) */
+          #hero { padding-bottom:clamp(2.5rem,8vw,4rem) !important; }
+          .hero-marquee-wrap { position:static !important;margin-top:2.5rem; }
+
+          /* services rows — stack number/title/arrow, drop the
+             right-hand description (shown instead inside the
+             tap-to-reveal preview card) and shrink paddings */
+          .svc-row {
+            grid-template-columns: auto 1fr auto !important;
+            gap: 1rem !important;
+            padding: 1.25rem !important;
+          }
+          .svc-row-title { font-size: clamp(1.35rem,6vw,2rem) !important; transform:none !important; }
 
           /* grids → single col */
           .about-grid        { grid-template-columns:1fr !important;gap:2.5rem !important; }
-          .about-stats       { grid-template-columns:repeat(2,1fr) !important; }
+          .about-stats       { grid-template-columns:repeat(3,1fr) !important; }
           .team-grid         { grid-template-columns:1fr 1fr !important;gap:1rem !important; }
           .process-grid      { grid-template-columns:1fr !important;gap:1.5rem !important; }
           .process-grid > div:first-child { position:static !important; }
@@ -955,16 +896,29 @@ export default function Home() {
           .footer-links-grid { grid-template-columns:1fr 1fr !important;gap:1.5rem !important; }
           .form-row          { grid-template-columns:1fr !important; }
           .team-card         { padding:1.25rem; }
-          .svc-card-item     { width:min(84vw,320px) !important; }
 
-          /* work cards on mobile */
-          #work .hscroll-track > div,
-          #work .hscroll-track > * { width:min(84vw,340px) !important;height:400px !important; }
+          /* work carousel — one full card fills the viewport per step
+             (no neighbour peek, so "next" always lands on a whole card) */
+          .proj-card    { width:100% !important; }
+        }
+
+        /* ═══════════════════════════════
+           TABLET 561px – 900px
+           (between phone-sized and desktop:
+           keep the description column, just
+           tighten spacing/type-scale)
+        ═══════════════════════════════ */
+        @media (min-width:561px) and (max-width:900px) {
+          .svc-row {
+            grid-template-columns: auto 1fr auto auto !important;
+            gap: 1.5rem !important;
+          }
+          .svc-row-desc { display:block !important; max-width:200px !important; font-size:0.78rem !important; }
         }
 
         @media (max-width: 560px) {
           .team-grid         { grid-template-columns:1fr !important; }
-          .about-stats       { grid-template-columns:1fr 1fr !important; }
+          .about-stats       { grid-template-columns:1fr !important; }
           .footer-links-grid { grid-template-columns:1fr 1fr !important; }
         }
       `}</style>
@@ -973,40 +927,286 @@ export default function Home() {
 }
 
 /* ─────────────────────────────────────────────
+   WORK CAROUSEL
+   Steps exactly one card at a time (same idx /
+   STEP / translateX mechanism as CreatorCarousel),
+   with the same nav-arrow design adapted to a
+   light surface.
+───────────────────────────────────────────── */
+function WorkCarousel({ projects, onOpen }: { projects: typeof WORK; onOpen:(p:typeof WORK[number])=>void }) {
+  const GAP = 24; // matches track's flex `gap`
+
+  const containerRef  = useRef<HTMLDivElement>(null);
+  const trackRef      = useRef<HTMLDivElement>(null);
+  const [idx, setIdx] = useState(0);
+  const [step, setStep] = useState(354);     // measured card width + gap — recalculated for the live breakpoint
+  const [maxTrans, setMaxTrans] = useState(0);
+
+  useEffect(()=>{
+    const calc=()=>{
+      requestAnimationFrame(()=>{
+        if(!containerRef.current || !trackRef.current) return;
+        const cw = containerRef.current.clientWidth;
+        const firstCard = trackRef.current.children[0] as HTMLElement | undefined;
+        const cardW = firstCard ? firstCard.getBoundingClientRect().width : 330;
+        const s = cardW + GAP;
+        setStep(s);
+        const tw = projects.length * cardW + Math.max(0,projects.length-1) * GAP;
+        setMaxTrans(Math.max(0, tw - cw));
+      });
+    };
+    calc();
+    window.addEventListener("resize",calc,{passive:true});
+    return ()=>window.removeEventListener("resize",calc);
+  },[projects.length]);
+
+  // clamp idx whenever the filtered list (and thus maxIdx) changes
+  const maxIdx = maxTrans > 0 ? Math.ceil(maxTrans / step) : 0;
+  useEffect(()=>{ setIdx(i=>Math.min(i,maxIdx)); },[maxIdx]);
+
+  const tx = Math.min(idx * step, maxTrans);
+  const prev = () => setIdx(i=>Math.max(0,i-1));
+  const next = () => setIdx(i=>Math.min(maxIdx,i+1));
+
+  return (
+    <div style={{ position:"relative" }}>
+      <CarouselArrow dir="l" dis={idx===0}     onClick={prev} light/>
+      <CarouselArrow dir="r" dis={idx>=maxIdx} onClick={next} light/>
+
+      {/* overflow hidden wrapper — padding trick so hover lift isn't clipped */}
+      <div ref={containerRef} style={{ overflow:"hidden", padding:"18px 0", margin:"-18px 0" }}>
+        <div ref={trackRef} style={{ display:"flex", gap:GAP, transform:`translateX(-${tx}px)`, transition:"transform 0.5s cubic-bezier(0.4,0,0.2,1)", willChange:"transform" }}>
+          {projects.map(w=><WorkCard key={w.title} w={w} onOpen={()=>onOpen(w)}/>)}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────
    WORK CARD
 ───────────────────────────────────────────── */
-function WorkCard({ w, i }: { w: typeof WORK[number]; i: number }) {
+function WorkCard({ w, onOpen }: { w: typeof WORK[number]; onOpen?: () => void }) {
   const [hov,setHov]=useState(false);
   return (
-    <div onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)} style={{
-      width:380, flexShrink:0, height:480, borderRadius:20, overflow:"hidden",
-      position:"relative", cursor:"pointer", background:w.color,
-      border:"1px solid rgba(255,255,255,0.06)",
-      transition:"transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94),box-shadow 0.4s",
-      transform:hov?"translateY(-8px) scale(1.01)":"translateY(0) scale(1)",
-      boxShadow:hov?`0 32px 64px rgba(0,0,0,0.4),0 0 0 1px ${w.accent}33`:"0 8px 32px rgba(0,0,0,0.2)",
+    <div onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)} onClick={onOpen} className="proj-card" style={{
+      background:"#fff",
+      border:`1px solid ${hov?w.accent+"40":P.border}`,
+      boxShadow:hov
+        ? `0 4px 12px rgba(20,20,20,0.04), 0 28px 64px -12px rgba(20,20,20,0.16), 0 0 0 1px ${w.accent}14`
+        : "0 1px 3px rgba(20,20,20,0.04)",
+      transform:hov?"translateY(-6px)":"translateY(0)",
     }}>
-      {/* accent top bar */}
-      <div style={{ position:"absolute",top:0,left:0,right:0,height:3,background:`linear-gradient(90deg,${w.accent},transparent)` }}/>
-      {/* ghost number */}
-      <div style={{ position:"absolute",top:"0.75rem",right:"1.25rem",fontFamily:"'Playfair Display',Georgia,serif",fontSize:"6rem",fontWeight:700,lineHeight:1,color:"rgba(255,255,255,0.04)",pointerEvents:"none",userSelect:"none",letterSpacing:"-0.04em" }}>0{i+1}</div>
-      {/* tag */}
-      <div style={{ position:"absolute",top:"1.5rem",left:"1.5rem",zIndex:2 }}>
-        <span style={{ fontSize:"0.56rem",fontWeight:700,letterSpacing:"0.16em",textTransform:"uppercase",color:w.accent,background:`${w.accent}18`,border:`1px solid ${w.accent}44`,padding:"5px 12px",borderRadius:999 }}>{w.tag}</span>
+      {/* accent header strip — domain tag sits on a tinted band */}
+      <div style={{ background:`${w.accent}0d`, borderBottom:`1px solid ${w.accent}26`, padding:"1.1rem 1.75rem" }}>
+        <span style={{ display:"inline-block",fontSize:"0.6rem",fontWeight:700,letterSpacing:"0.16em",textTransform:"uppercase",color:w.accent }}>{w.domain}</span>
       </div>
-      {/* arrow */}
-      <div style={{ position:"absolute",top:"1.5rem",right:"1.5rem",width:34,height:34,borderRadius:"50%",background:hov?w.accent:"rgba(255,255,255,0.08)",border:`1px solid ${hov?w.accent:"rgba(255,255,255,0.12)"}`,display:"flex",alignItems:"center",justifyContent:"center",color:"#fff",fontSize:"0.88rem",transform:hov?"rotate(45deg)":"rotate(0deg)",transition:"all 0.3s",zIndex:2 }}>→</div>
-      {/* diagonal lines */}
-      <div style={{ position:"absolute",inset:0,pointerEvents:"none",overflow:"hidden",opacity:0.04 }}>
-        {[...Array(8)].map((_,li)=><div key={li} style={{ position:"absolute",top:`${li*14-10}%`,left:"-20%",width:"140%",height:"1px",background:"#fff",transform:"rotate(-12deg)" }}/>)}
+
+      <div style={{ padding:"1.75rem", display:"flex", flexDirection:"column", flex:1 }}>
+        {/* title */}
+        <h3 style={{ fontFamily:"'Playfair Display',Georgia,serif",fontSize:"1.5rem",fontWeight:400,color:P.text,lineHeight:1.22,marginBottom:"0.6rem",letterSpacing:"-0.01em" }}>{w.title}</h3>
+
+        {/* tag line */}
+        <p style={{ fontSize:"0.78rem",color:P.muted,letterSpacing:"0.02em",marginBottom:"1.25rem" }}>{w.tag}</p>
+
+        {/* result — outcome highlight in its own framed line */}
+        <div style={{ display:"flex", alignItems:"flex-start", gap:"0.65rem", flex:1, marginBottom:"1.5rem" }}>
+          <span aria-hidden style={{ flexShrink:0,width:22,height:22,borderRadius:7,background:`${w.accent}16`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:"0.65rem",color:w.accent,marginTop:2 }}>↑</span>
+          <p style={{ fontSize:"0.88rem",color:P.text,lineHeight:1.6,fontWeight:500 }}>{w.result}</p>
+        </div>
+
+        {/* CTA */}
+        <div style={{ display:"flex",alignItems:"center",gap:"0.5rem",paddingTop:"1.25rem",borderTop:`1px solid ${P.border}` }}>
+          <span style={{ fontSize:"0.76rem",fontWeight:600,letterSpacing:"0.03em",color:hov?w.accent:P.text,transition:"color 0.25s" }}>More details</span>
+          <span style={{ display:"inline-flex",alignItems:"center",justifyContent:"center",width:24,height:24,borderRadius:"50%",background:hov?w.accent:`${w.accent}14`,color:hov?"#fff":w.accent,fontSize:"0.75rem",transform:hov?"translateX(4px)":"translateX(0)",transition:"all 0.3s cubic-bezier(0.4,0,0.2,1)" }}>→</span>
+        </div>
       </div>
-      {/* content */}
-      <div style={{ position:"absolute",bottom:0,left:0,right:0,padding:"2rem",zIndex:2 }}>
-        <span style={{ fontSize:"0.56rem",fontWeight:600,letterSpacing:"0.14em",color:"rgba(255,255,255,0.3)",display:"block",marginBottom:"0.5rem" }}>{w.year}</span>
-        <h3 style={{ fontFamily:"'Playfair Display',Georgia,serif",fontSize:"1.7rem",fontWeight:400,color:"#fff",lineHeight:1.15,marginBottom:"1.25rem",letterSpacing:"-0.01em" }}>{w.title}</h3>
-        <div style={{ display:"flex",alignItems:"center",gap:"0.65rem",padding:"0.75rem 1rem",background:"rgba(255,255,255,0.06)",border:"1px solid rgba(255,255,255,0.1)",borderRadius:10,transform:hov?"translateY(0)":"translateY(6px)",opacity:hov?1:0,transition:"transform 0.35s,opacity 0.35s" }}>
-          <span style={{ width:5,height:5,borderRadius:"50%",background:w.accent,flexShrink:0 }}/>
-          <span style={{ fontSize:"0.76rem",color:"rgba(255,255,255,0.75)",lineHeight:1.4 }}>{w.result}</span>
+    </div>
+  );
+}
+
+/* ── SERVICES — numbered row list with hover-reveal preview card ── */
+function ServiceRow({ svc, idx, total, active, onEnter, onLeave, onMove }: {
+  svc: typeof SERVICES[number]; idx:number; total:number; active:boolean;
+  onEnter:()=>void; onLeave:()=>void; onMove:(e:React.MouseEvent)=>void;
+}) {
+  return (
+    <div
+      onMouseEnter={onEnter}
+      onMouseLeave={onLeave}
+      onMouseMove={onMove}
+      className="svc-row"
+      style={{
+        display:"grid",
+        gridTemplateColumns:"auto 1fr auto auto",
+        alignItems:"center",
+        gap:"clamp(1.25rem,4vw,3rem)",
+        padding:"clamp(1.5rem,3.5vw,2.6rem) clamp(1.25rem,4vw,2rem)",
+        borderBottom: idx<total-1 ? `1px solid ${P.border}` : "none",
+        cursor:"pointer",
+        position:"relative",
+        transition:"background 0.35s ease",
+        background: active ? `${P.navy}06` : "transparent",
+      }}
+    >
+      <span style={{
+        fontFamily:"'Playfair Display',Georgia,serif",
+        fontSize:"clamp(1rem,2vw,1.3rem)",
+        fontWeight:400,
+        color: active ? P.navy : P.muted,
+        letterSpacing:"0.02em",
+        transition:"color 0.3s",
+        minWidth:"2.4ch",
+      }}>{svc.n}</span>
+
+      <h3 className="svc-row-title" style={{
+        fontFamily:"'Playfair Display',Georgia,serif",
+        fontSize:"clamp(1.6rem,4.4vw,3rem)",
+        fontWeight:400,
+        lineHeight:1.08,
+        letterSpacing:"-0.01em",
+        color: active ? P.navy : P.text,
+        transition:"color 0.35s ease, transform 0.35s ease",
+        transform: active ? "translateX(10px)" : "translateX(0)",
+      }}>{svc.title}</h3>
+
+      <p className="svc-row-desc desktop-only" style={{
+        fontSize:"0.85rem",
+        color:P.muted,
+        lineHeight:1.7,
+        maxWidth:280,
+        textAlign:"right",
+        opacity: active ? 0 : 0.7,
+        transition:"opacity 0.25s ease",
+      }}>{svc.desc}</p>
+
+      <span aria-hidden style={{
+        flexShrink:0,
+        width:46,
+        height:46,
+        borderRadius:"50%",
+        border:`1.5px solid ${active ? P.navy : P.border}`,
+        background: active ? P.navy : "transparent",
+        color: active ? "#fff" : P.text,
+        display:"flex",alignItems:"center",justifyContent:"center",
+        fontSize:"1rem",
+        transform: active ? "rotate(45deg)" : "rotate(0deg)",
+        transition:"all 0.35s cubic-bezier(0.4,0,0.2,1)",
+      }}>↗</span>
+    </div>
+  );
+}
+
+function ServicesList({ services, onOpen }: { services: typeof SERVICES; onOpen:(svc:typeof SERVICES[number])=>void }) {
+  const [activeIdx, setActiveIdx] = useState<number|null>(null);
+  const [rowTop, setRowTop] = useState(0);
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const rowRefs = useRef<Array<HTMLDivElement|null>>([]);
+
+  const activate = (i:number) => {
+    setActiveIdx(i);
+    const row = rowRefs.current[i];
+    if (row) setRowTop(row.offsetTop + row.offsetHeight/2);
+  };
+
+  const active = activeIdx!==null ? services[activeIdx] : null;
+
+  return (
+    <div ref={wrapRef} style={{ position:"relative" }}>
+      {services.map((svc,i)=>(
+        <div key={svc.n} ref={el=>{rowRefs.current[i]=el;}} onClick={()=>onOpen(svc)}>
+          <ServiceRow
+            svc={svc} idx={i} total={services.length}
+            active={activeIdx===i}
+            onEnter={()=>{ if(!isMobile()) activate(i); }}
+            onLeave={()=>setActiveIdx(null)}
+            onMove={()=>{}}
+          />
+        </div>
+      ))}
+
+      {/* floating hover-preview card — desktop only, anchored to the active row */}
+      {active && (
+        <div className="svc-preview desktop-only" style={{
+          position:"absolute",
+          right: "clamp(5.5rem,11vw,8rem)",
+          top: rowTop,
+          transform:"translateY(-50%)",
+          pointerEvents:"none",
+          zIndex:5,
+          width:"min(46vw,420px)",
+          background:P.navy,
+          borderRadius:16,
+          overflow:"hidden",
+          padding:"1.1rem 1.4rem",
+          display:"flex",
+          alignItems:"center",
+          gap:"1.25rem",
+          boxShadow:`0 24px 56px -14px ${P.navy}66, 0 6px 20px rgba(20,20,20,0.16)`,
+          opacity:1,
+          animation:"svcPreviewIn 0.3s cubic-bezier(0.4,0,0.2,1)",
+        }}>
+          <p style={{ flexShrink:0,fontSize:"0.56rem",fontWeight:700,letterSpacing:"0.16em",textTransform:"uppercase",color:"rgba(255,255,255,0.5)",lineHeight:1.6,maxWidth:"6.5ch",borderRight:"1px solid rgba(255,255,255,0.14)",paddingRight:"1.1rem" }}>What&apos;s included</p>
+          <ul style={{ listStyle:"none",display:"flex",flexWrap:"wrap",gap:"7px 10px",flex:1,alignContent:"center" }}>
+            {active.items.map(it=>(
+              <li key={it} style={{ display:"flex",alignItems:"center",gap:6,fontSize:"0.74rem",color:"#fff",fontWeight:500,whiteSpace:"nowrap",background:"rgba(255,255,255,0.08)",borderRadius:999,padding:"5px 11px" }}>
+                <span style={{ width:5,height:5,borderRadius:"50%",background:P.accent2,flexShrink:0 }}/>{it}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   PROJECT DETAIL MODAL — opens on work-card click
+───────────────────────────────────────────── */
+function ProjectModal({ project, onClose, go }: { project: typeof WORK[number]; onClose: () => void; go:(id:string)=>void }) {
+  const p = project;
+  const initials = p.title.split(" ").map(s=>s[0]).join("").slice(0,2).toUpperCase();
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => { window.removeEventListener("keydown", onKey); document.body.style.overflow = ""; };
+  }, [onClose]);
+
+  return (
+    <div onClick={onClose} className="proj-modal-overlay" style={{ position:"fixed",inset:0,zIndex:1050,background:"rgba(20,20,20,0.55)",backdropFilter:"blur(6px)",display:"flex",alignItems:"center",justifyContent:"center",padding:"clamp(1rem,4vw,3rem)",animation:"modalFade 0.25s ease" }}>
+      <div onClick={e=>e.stopPropagation()} style={{ position:"relative",width:"min(440px,100%)",maxHeight:"88vh",overflowY:"auto",background:"#fff",borderRadius:24,border:`1px solid ${P.border}`,boxShadow:"0 48px 120px rgba(30,47,110,0.22)",animation:"modalRise 0.3s cubic-bezier(0.25,0.46,0.45,0.94)",textAlign:"center" }}>
+        {/* close */}
+        <button onClick={onClose} aria-label="Close project details" style={{ position:"absolute",top:"1.25rem",right:"1.25rem",width:36,height:36,borderRadius:"50%",background:"rgba(30,47,110,0.06)",border:`1px solid ${P.border}`,display:"flex",alignItems:"center",justifyContent:"center",color:P.muted,fontSize:"0.95rem",cursor:"pointer",zIndex:3,transition:"all 0.2s" }}
+          onMouseEnter={e=>{e.currentTarget.style.background=p.accent;e.currentTarget.style.color="#fff";e.currentTarget.style.borderColor=p.accent;}}
+          onMouseLeave={e=>{e.currentTarget.style.background="rgba(30,47,110,0.06)";e.currentTarget.style.color=P.muted;e.currentTarget.style.borderColor=P.border;}}
+        >✕</button>
+
+        <div style={{ padding:"clamp(2.25rem,6vw,3rem) clamp(1.75rem,5vw,2.5rem) clamp(2rem,5vw,2.5rem)", display:"flex", flexDirection:"column", alignItems:"center" }}>
+          {/* logo / brand mark */}
+          <span style={{ width:72,height:72,borderRadius:20,background:`${p.accent}14`,border:`1px solid ${p.accent}33`,display:"flex",alignItems:"center",justifyContent:"center",marginBottom:"1.25rem",flexShrink:0 }}>
+            <span style={{ fontFamily:"'Playfair Display',Georgia,serif",fontWeight:700,fontSize:"1.5rem",color:p.accent }}>{initials}</span>
+          </span>
+
+          {/* event type / domain */}
+          <span style={{ fontSize:"0.6rem",fontWeight:700,letterSpacing:"0.18em",textTransform:"uppercase",color:p.accent,background:`${p.accent}14`,border:`1px solid ${p.accent}33`,padding:"5px 14px",borderRadius:999,display:"inline-block",marginBottom:"1rem" }}>{p.domain}</span>
+
+          {/* brand name */}
+          <h2 style={{ fontFamily:"'Playfair Display',Georgia,serif",fontSize:"clamp(1.5rem,5vw,1.9rem)",fontWeight:400,color:P.text,lineHeight:1.18,marginBottom:"0.6rem" }}>{p.title}</h2>
+
+          {/* short description */}
+          <p style={{ fontSize:"0.88rem",color:P.muted,lineHeight:1.75,maxWidth:340,marginBottom:"1.75rem" }}>{p.desc}</p>
+
+          {/* contact us — solid accent pill, built for this card's light surface */}
+          <button onClick={()=>{ onClose(); go("contact"); }} style={{
+            display:"inline-flex",alignItems:"center",gap:8,padding:"12px 30px",borderRadius:999,
+            border:"none",cursor:"pointer",fontSize:"0.8rem",fontWeight:700,letterSpacing:"0.05em",
+            textTransform:"uppercase",fontFamily:"inherit",color:"#fff",background:p.accent,
+            boxShadow:`0 12px 32px ${p.accent}40`,transition:"transform 0.25s,box-shadow 0.25s,background 0.25s",
+          }}
+            onMouseEnter={e=>{e.currentTarget.style.transform="translateY(-2px)";e.currentTarget.style.boxShadow=`0 16px 40px ${p.accent}55`;}}
+            onMouseLeave={e=>{e.currentTarget.style.transform="translateY(0)";e.currentTarget.style.boxShadow=`0 12px 32px ${p.accent}40`;}}
+          >Contact Us →</button>
         </div>
       </div>
     </div>
@@ -1078,15 +1278,15 @@ function ContactForm() {
   /* underline-only field style */
   const lineInp=(field:string):React.CSSProperties=>({
     width:"100%", background:"transparent", border:"none",
-    borderBottom:`1.5px solid ${focusField===field ? P.gold : "rgba(255,255,255,0.15)"}`,
+    borderBottom:`1.5px solid ${focusField===field ? "#ffffff" : "rgba(255,255,255,0.15)"}`,
     color:"#fff", fontSize:"1rem", outline:"none", padding:"0.6rem 0",
     fontFamily:"inherit", transition:"border-color 0.25s",
   });
 
   if(sent)return(
     <div style={{ display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:"1rem",padding:"4rem 2rem",textAlign:"center" }}>
-      <div style={{ width:56,height:56,borderRadius:16,background:`${P.gold}18`,border:`1px solid ${P.gold}44`,display:"flex",alignItems:"center",justifyContent:"center" }}>
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={P.gold} strokeWidth="2.5" strokeLinecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+      <div style={{ width:56,height:56,borderRadius:16,background:"rgba(255,255,255,0.1)",border:"1px solid rgba(255,255,255,0.27)",display:"flex",alignItems:"center",justifyContent:"center" }}>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={"#ffffff"} strokeWidth="2.5" strokeLinecap="round"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
       <p style={{ fontFamily:"'Playfair Display',Georgia,serif",fontStyle:"italic",fontSize:"1.6rem",color:"#fff" }}>We&apos;ve got it.</p>
       <p style={{ fontSize:"0.82rem",color:"rgba(255,255,255,0.38)",lineHeight:1.75,maxWidth:300 }}>Expect a reply within 24 hours.</p>
@@ -1099,7 +1299,7 @@ function ContactForm() {
       {/* Two underline fields side by side */}
       <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:"0 2.5rem",marginBottom:"2.5rem" }}>
         <div>
-          <label style={{ display:"block",fontSize:"0.55rem",fontWeight:700,letterSpacing:"0.2em",textTransform:"uppercase",color:focusField==="name"?P.gold:"rgba(255,255,255,0.25)",marginBottom:"0.35rem",transition:"color 0.25s" }}>Your Name</label>
+          <label style={{ display:"block",fontSize:"0.55rem",fontWeight:700,letterSpacing:"0.2em",textTransform:"uppercase",color:focusField==="name"?"#ffffff":"rgba(255,255,255,0.25)",marginBottom:"0.35rem",transition:"color 0.25s" }}>Your Name</label>
           <input type="text" value={form.name} required placeholder="Jane Smith"
             style={lineInp("name")}
             onFocus={()=>setFocusField("name")} onBlur={()=>setFocusField("")}
@@ -1107,7 +1307,7 @@ function ContactForm() {
           />
         </div>
         <div>
-          <label style={{ display:"block",fontSize:"0.55rem",fontWeight:700,letterSpacing:"0.2em",textTransform:"uppercase",color:focusField==="email"?P.gold:"rgba(255,255,255,0.25)",marginBottom:"0.35rem",transition:"color 0.25s" }}>Email</label>
+          <label style={{ display:"block",fontSize:"0.55rem",fontWeight:700,letterSpacing:"0.2em",textTransform:"uppercase",color:focusField==="email"?"#ffffff":"rgba(255,255,255,0.25)",marginBottom:"0.35rem",transition:"color 0.25s" }}>Email</label>
           <input type="email" value={form.email} required placeholder="you@company.com"
             style={lineInp("email")}
             onFocus={()=>setFocusField("email")} onBlur={()=>setFocusField("")}
@@ -1125,9 +1325,9 @@ function ContactForm() {
             return (
               <button key={s} type="button" onClick={()=>setForm({...form,service:s})}
                 style={{ padding:"6px 14px",borderRadius:8,fontFamily:"inherit",fontSize:"0.75rem",fontWeight:600,cursor:"pointer",
-                  background:active?P.gold:"transparent",
+                  background:active?"#ffffff":"transparent",
                   color:active?P.dark:"rgba(255,255,255,0.45)",
-                  border:`1px solid ${active?P.gold:"rgba(255,255,255,0.12)"}`,
+                  border:`1px solid ${active?"#ffffff":"rgba(255,255,255,0.12)"}`,
                   transition:"all 0.2s",
                 }}>{s}</button>
             );
@@ -1137,7 +1337,7 @@ function ContactForm() {
 
       {/* Message — underline textarea */}
       <div style={{ marginBottom:"2.5rem" }}>
-        <label style={{ display:"block",fontSize:"0.55rem",fontWeight:700,letterSpacing:"0.2em",textTransform:"uppercase",color:focusField==="msg"?P.gold:"rgba(255,255,255,0.25)",marginBottom:"0.35rem",transition:"color 0.25s" }}>Tell us about your project</label>
+        <label style={{ display:"block",fontSize:"0.55rem",fontWeight:700,letterSpacing:"0.2em",textTransform:"uppercase",color:focusField==="msg"?"#ffffff":"rgba(255,255,255,0.25)",marginBottom:"0.35rem",transition:"color 0.25s" }}>Tell us about your project</label>
         <textarea value={form.msg} required rows={3} placeholder="What's the goal? What's the timeline?"
           style={{ ...lineInp("msg"), resize:"none", lineHeight:1.8 }}
           onFocus={()=>setFocusField("msg")} onBlur={()=>setFocusField("")}
@@ -1148,11 +1348,11 @@ function ContactForm() {
       {/* Submit — full width accent button */}
       <button type="submit" style={{
         width:"100%", padding:"1rem", border:"none", borderRadius:12, cursor:"pointer",
-        background:`linear-gradient(135deg, ${P.accent} 0%, ${P.accent2} 100%)`,
+        background:`linear-gradient(135deg, ${P.navy} 0%, ${P.navy2} 100%)`,
         color:"#fff", fontSize:"0.85rem", fontWeight:700, letterSpacing:"0.05em",
         textTransform:"uppercase", fontFamily:"inherit",
         transition:"opacity 0.2s, transform 0.2s",
-        boxShadow:`0 8px 28px ${P.accent}44`,
+        boxShadow:`0 8px 28px ${P.navy}44`,
       }}
         onMouseEnter={e=>{e.currentTarget.style.opacity="0.88";e.currentTarget.style.transform="translateY(-1px)";}}
         onMouseLeave={e=>{e.currentTarget.style.opacity="1";e.currentTarget.style.transform="none";}}
@@ -1168,11 +1368,11 @@ function ContactForm() {
 ───────────────────────────────────────────── */
 function NLForm() {
   const [em,setEm]=useState(""), [done,setDone]=useState(false);
-  if(done)return<div style={{ display:"inline-flex",alignItems:"center",gap:8,padding:"10px 20px",border:"1px solid rgba(201,150,58,0.4)",borderRadius:999,color:P.gold,fontSize:"0.82rem",fontWeight:600 }}>✓ You&apos;re in — thanks!</div>;
+  if(done)return<div style={{ display:"inline-flex",alignItems:"center",gap:8,padding:"10px 20px",border:"1px solid rgba(255,255,255,0.4)",borderRadius:999,color:"#ffffff",fontSize:"0.82rem",fontWeight:600 }}>✓ You&apos;re in — thanks!</div>;
   return(
     <form onSubmit={e=>{e.preventDefault();setDone(true);}} style={{ display:"flex",maxWidth:400 }}>
       <input type="email" value={em} onChange={e=>setEm(e.target.value)} placeholder="your@email.com" required style={{ flex:1,background:"rgba(255,255,255,0.06)",border:"1px solid rgba(255,255,255,0.1)",borderRight:"none",outline:"none",padding:"11px 16px",color:"#fff",fontSize:"0.83rem",borderRadius:"999px 0 0 999px",fontFamily:"inherit" }}/>
-      <button type="submit" style={{ background:P.accent,color:"#fff",border:"none",padding:"11px 22px",fontWeight:700,fontSize:"0.76rem",cursor:"pointer",borderRadius:"0 999px 999px 0",whiteSpace:"nowrap",fontFamily:"inherit",transition:"background 0.2s" }} onMouseEnter={e=>(e.currentTarget.style.background=P.accent2)} onMouseLeave={e=>(e.currentTarget.style.background=P.accent)}>Subscribe</button>
+      <button type="submit" style={{ background:P.navy,color:"#fff",border:"none",padding:"11px 22px",fontWeight:700,fontSize:"0.76rem",cursor:"pointer",borderRadius:"0 999px 999px 0",whiteSpace:"nowrap",fontFamily:"inherit",transition:"background 0.2s" }} onMouseEnter={e=>(e.currentTarget.style.background=P.navy2)} onMouseLeave={e=>(e.currentTarget.style.background=P.navy)}>Subscribe</button>
     </form>
   );
 }
@@ -1221,7 +1421,7 @@ function SocialIcon({ icon, href, color }: { icon:React.ReactNode; href:string; 
 function SocialFloat() {
   return (
     <div className="social-float">
-      <SocialIcon icon={<IGIcon/>} href="https://www.instagram.com/idea.shapers?igsh=eXVtdTBrejR0YW44&utm_source=qr" color={P.accent}/>
+      <SocialIcon icon={<IGIcon/>} href="https://www.instagram.com/idea.shapers?igsh=eXVtdTBrejR0YW44&utm_source=qr" color={P.navyL}/>
       <SocialIcon icon={<LIIcon/>} href="https://www.linkedin.com/company/ideashapers-india" color={P.navy}/>
       <SocialIcon icon={<FBIcon/>} href={CONTACT.facebook} color={P.navy2}/>
     </div>
@@ -1274,7 +1474,7 @@ function HeroClientsMarquee() {
    Logo circle (initials) + brand name + category
    Two rows, opposite directions, pause on hover
 ───────────────────────────────────────────── */
-const CLIENT_COLORS = [P.navy, P.accent, P.gold, P.navy2, P.dark3, "#2d8a6a", "#8ab4c2", P.dark, P.navy, P.accent2, P.gold2, P.navy];
+const CLIENT_COLORS = [P.navy, P.navyL, P.maroon, P.navy2, P.dark3, "#2d8a6a", "#8ab4c2", P.dark, P.navy, "#ffffff", P.maroon2, P.navy];
 
 function ClientsMarquee() {
   const [p1,setP1]=useState(false);
@@ -1339,12 +1539,12 @@ function ClientsMarquee() {
 const INFL_PROOF = [
   { name:"@priyastylesup",  platform:"Instagram", followers:"2.4M", cat:"Fashion & Lifestyle", result:"₹1.2Cr GMV in 48h",    color:"#c4622a", bg:"linear-gradient(135deg,#1a0a06,#2d1010)" },
   { name:"@techwithrahul",  platform:"YouTube",   followers:"890K",  cat:"Tech Reviews",        result:"3.2M views campaign",  color:"#3d52a8", bg:"linear-gradient(135deg,#060d20,#0d1838)" },
-  { name:"@kolkatafoodies", platform:"Instagram", followers:"1.1M",  cat:"Food & Travel",       result:"40K orders attributed",color:"#c9963a", bg:"linear-gradient(135deg,#100800,#201400)" },
+  { name:"@kolkatafoodies", platform:"Instagram", followers:"1.1M",  cat:"Food & Travel",       result:"40K orders attributed",color:"#ffffff", bg:"linear-gradient(135deg,#100800,#201400)" },
   { name:"@fitnesswithneha",platform:"Instagram", followers:"650K",  cat:"Health & Fitness",    result:"18K app downloads",    color:"#2d8a6a", bg:"linear-gradient(135deg,#030a06,#061410)" },
   { name:"@startupstories",  platform:"LinkedIn",  followers:"320K",  cat:"Business",            result:"5K B2B leads",         color:"#3d52a8", bg:"linear-gradient(135deg,#020618,#040c28)" },
   { name:"@beautybyaisha",   platform:"Instagram", followers:"780K",  cat:"Beauty & Skincare",   result:"₹85L product sales",   color:"#d97b3f", bg:"linear-gradient(135deg,#150806,#241010)" },
   { name:"@travelnomad_in",  platform:"YouTube",   followers:"450K",  cat:"Travel",              result:"22M impressions",      color:"#8ab4c2", bg:"linear-gradient(135deg,#050d10,#0a1820)" },
-  { name:"@cricketcrazyin",  platform:"Instagram", followers:"3.8M",  cat:"Sports",              result:"12M reach in 3 days",  color:"#c9963a", bg:"linear-gradient(135deg,#0c0800,#1c1200)" },
+  { name:"@cricketcrazyin",  platform:"Instagram", followers:"3.8M",  cat:"Sports",              result:"12M reach in 3 days",  color:"#ffffff", bg:"linear-gradient(135deg,#0c0800,#1c1200)" },
 ];
 
 function InfluencerSection({ go }: { go:(id:string)=>void }) {
@@ -1357,28 +1557,28 @@ function InfluencerSection({ go }: { go:(id:string)=>void }) {
       {/* Ghost text */}
       <div aria-hidden style={{ position:"absolute",top:"50%",left:"50%",transform:"translate(-50%,-50%)",fontSize:"clamp(5rem,18vw,20rem)",fontWeight:900,color:"rgba(255,255,255,0.025)",letterSpacing:"-0.05em",whiteSpace:"nowrap",userSelect:"none",pointerEvents:"none",fontFamily:"'Playfair Display',Georgia,serif",animation:"inflPulse 6s ease-in-out infinite" }}>INFLUENCE</div>
       {[300,520].map((s,i)=>(
-        <div key={i} aria-hidden style={{ position:"absolute",top:"50%",right:"-12%",width:s,height:s,borderRadius:"50%",border:"1px solid rgba(201,150,58,0.06)",transform:"translateY(-50%)",pointerEvents:"none" }}/>
+        <div key={i} aria-hidden style={{ position:"absolute",top:"50%",right:"-12%",width:s,height:s,borderRadius:"50%",border:"1px solid rgba(255,255,255,0.06)",transform:"translateY(-50%)",pointerEvents:"none" }}/>
       ))}
 
       <div style={{ maxWidth:1100,margin:"0 auto",position:"relative",zIndex:1 }}>
         {/* Header — centered, compact */}
         <div className="gsap-up" style={{ textAlign:"center",marginBottom:"3rem" }}>
-          <div style={{ display:"inline-flex",alignItems:"center",gap:8,background:`${P.gold}18`,border:`1px solid ${P.gold}44`,borderRadius:999,padding:"6px 16px 6px 10px",marginBottom:"1.5rem" }}>
-            <span style={{ width:6,height:6,borderRadius:"50%",background:P.gold }}/>
-            <span style={{ fontSize:"0.62rem",fontWeight:700,letterSpacing:"0.18em",textTransform:"uppercase",color:P.gold }}>Influencer Management & Promotion</span>
+          <div style={{ display:"inline-flex",alignItems:"center",gap:8,background:"rgba(255,255,255,0.1)",border:"1px solid rgba(255,255,255,0.27)",borderRadius:999,padding:"6px 16px 6px 10px",marginBottom:"1.5rem" }}>
+            <span style={{ width:6,height:6,borderRadius:"50%",background:"#ffffff" }}/>
+            <span style={{ fontSize:"0.62rem",fontWeight:700,letterSpacing:"0.18em",textTransform:"uppercase",color:"#ffffff" }}>Influencer Management & Promotion</span>
           </div>
           <h2 style={{ fontFamily:"'Playfair Display',Georgia,serif",fontSize:"clamp(2.2rem,5vw,4rem)",fontWeight:400,color:"#fff",lineHeight:1.1,marginBottom:"1rem" }}>
-            500M+ minds. <em style={{ color:P.gold }}>One strategy.</em>
+            3 million+ minds. <em style={{ color:"#ffffff" }}>One strategy.</em>
           </h2>
           <p style={{ fontSize:"0.9rem",color:"rgba(255,255,255,0.45)",maxWidth:520,margin:"0 auto 2rem" }}>
-            End-to-end influencer management — from sourcing and contracting to campaign execution and reporting.
+            End to end influencer management, from sourcing and contracting to campaign execution and reporting.
           </p>
 
           {/* Stats row */}
           <div className="infl-stats-row" style={{ maxWidth:640,margin:"0 auto 2rem",borderTop:"1px solid rgba(255,255,255,0.08)",borderBottom:"1px solid rgba(255,255,255,0.08)",padding:"1.5rem 0" }}>
-            {[["500M+","Reach"],["2000+","Creators"],["1000+","Campaigns"],["98%","Success"]].map(([n,l],i)=>(
+            {[["3 million+","Reach"],["2000+","Creators"],["1000+","Campaigns"],["100%","Success"]].map(([n,l],i)=>(
               <div key={l} className="infl-stat" style={{ borderRight:i<3?"1px solid rgba(255,255,255,0.08)":"none" }}>
-                <div style={{ fontFamily:"'Playfair Display',Georgia,serif",fontStyle:"italic",fontSize:"1.7rem",color:P.gold,lineHeight:1 }}>{n}</div>
+                <div style={{ fontFamily:"'Playfair Display',Georgia,serif",fontStyle:"italic",fontSize:"1.7rem",color:"#ffffff",lineHeight:1 }}>{n}</div>
                 <div style={{ fontSize:"0.55rem",letterSpacing:"0.14em",textTransform:"uppercase",color:"rgba(255,255,255,0.28)",marginTop:4 }}>{l}</div>
               </div>
             ))}
@@ -1391,6 +1591,43 @@ function InfluencerSection({ go }: { go:(id:string)=>void }) {
         <CreatorCarousel/>
       </div>
     </section>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   CAROUSEL NAV ARROW — shared design
+   Used by both the Creator Network carousel (dark
+   surface) and the Work / Projects carousel (light
+   surface). Same shape, size, position — colour
+   inverts to suit the background it sits on.
+───────────────────────────────────────────── */
+function CarouselArrow({ dir, dis, onClick, light=false, offset=-28 }:{
+  dir:"l"|"r"; dis:boolean; onClick:()=>void; light?:boolean; offset?:number;
+}) {
+  const idleBg     = light ? "#fff"                  : "rgba(255,255,255,0.09)";
+  const idleColor  = light ? P.navy                  : "#fff";
+  const disBg      = light ? "rgba(30,47,110,0.04)"  : "rgba(255,255,255,0.03)";
+  const disColor   = light ? "rgba(30,47,110,0.18)"  : "rgba(255,255,255,0.15)";
+  const hovBg      = light ? P.navy                  : "#ffffff";
+  const hovColor   = light ? "#fff"                  : P.dark;
+  const border     = light ? `1px solid ${P.border}` : "none";
+  const shadow     = light ? "0 8px 28px rgba(30,47,110,0.12)" : "none";
+
+  return (
+    <button onClick={onClick} disabled={dis} aria-label={dir==="l"?"Previous":"Next"}
+      className={`carousel-arrow carousel-arrow-${dir}`} style={{
+      position:"absolute", [dir==="l"?"left":"right"]:offset, top:"50%", transform:"translateY(-50%)",
+      zIndex:10, width:40, height:40, borderRadius:10, border,
+      cursor:dis?"default":"pointer",
+      background:dis?disBg:idleBg,
+      color:dis?disColor:idleColor,
+      boxShadow:dis?"none":shadow,
+      fontSize:"1rem", display:"flex", alignItems:"center", justifyContent:"center",
+      transition:"background 0.2s,color 0.2s,transform 0.2s,box-shadow 0.2s",
+    }}
+      onMouseEnter={e=>{if(!dis){e.currentTarget.style.background=hovBg;e.currentTarget.style.color=hovColor;e.currentTarget.style.transform="translateY(-50%) scale(1.06)";}}}
+      onMouseLeave={e=>{e.currentTarget.style.background=dis?disBg:idleBg;e.currentTarget.style.color=dis?disColor:idleColor;e.currentTarget.style.transform="translateY(-50%)";}}
+    >{dir==="l"?"←":"→"}</button>
   );
 }
 
@@ -1429,41 +1666,25 @@ function CreatorCarousel() {
   const prev = () => setIdx(i=>Math.max(0,i-1));
   const next = () => setIdx(i=>Math.min(maxIdx,i+1));
 
-  const NavArrow=({dir,dis}:{dir:"l"|"r",dis:boolean})=>(
-    <button onClick={dir==="l"?prev:next} disabled={dis} style={{
-      position:"absolute", [dir==="l"?"left":"right"]:-28, top:"50%", transform:"translateY(-50%)",
-      zIndex:10, width:40, height:40, borderRadius:10, border:"none",
-      cursor:dis?"default":"pointer",
-      background:dis?"rgba(255,255,255,0.03)":"rgba(255,255,255,0.09)",
-      color:dis?"rgba(255,255,255,0.15)":"#fff",
-      fontSize:"1rem", display:"flex", alignItems:"center", justifyContent:"center",
-      transition:"background 0.2s,transform 0.2s",
-    }}
-      onMouseEnter={e=>{if(!dis){e.currentTarget.style.background=P.gold;e.currentTarget.style.transform="translateY(-50%) scale(1.06)";}}}
-      onMouseLeave={e=>{e.currentTarget.style.background=dis?"rgba(255,255,255,0.03)":"rgba(255,255,255,0.09)";e.currentTarget.style.transform="translateY(-50%)";}}
-    >{dir==="l"?"←":"→"}</button>
-  );
-
   return (
     <div style={{ borderTop:"1px solid rgba(255,255,255,0.07)", paddingTop:"2.5rem" }}>
       <div style={{ display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:"1.5rem",flexWrap:"wrap",gap:"0.75rem" }}>
         <div>
-          <p style={{ fontSize:"0.56rem",fontWeight:700,letterSpacing:"0.22em",textTransform:"uppercase",color:"rgba(255,255,255,0.28)",marginBottom:"0.35rem" }}>Our Creator Network</p>
           <h3 style={{ fontFamily:"'Playfair Display',Georgia,serif",fontSize:"clamp(1.2rem,2.5vw,1.6rem)",fontWeight:400,color:"#fff" }}>
-            Talent we manage &amp; <em style={{ color:P.gold }}>campaigns we run</em>
+            Our <em style={{ color:"#ffffff" }}>Creator Network</em>
           </h3>
         </div>
         {/* Inline dots */}
         <div style={{ display:"flex",gap:5 }}>
           {Array.from({length:Math.min(maxIdx+1,8)}).map((_,i)=>(
-            <button key={i} onClick={()=>setIdx(i)} style={{ width:i===idx?20:6,height:6,borderRadius:999,border:"none",cursor:"pointer",background:i===idx?P.gold:"rgba(255,255,255,0.14)",transition:"width 0.3s,background 0.3s",padding:0 }}/>
+            <button key={i} onClick={()=>setIdx(i)} style={{ width:i===idx?20:6,height:6,borderRadius:999,border:"none",cursor:"pointer",background:i===idx?"#ffffff":"rgba(255,255,255,0.14)",transition:"width 0.3s,background 0.3s",padding:0 }}/>
           ))}
         </div>
       </div>
 
       <div style={{ position:"relative" }}>
-        <NavArrow dir="l" dis={idx===0}/>
-        <NavArrow dir="r" dis={idx>=maxIdx}/>
+        <CarouselArrow dir="l" dis={idx===0} onClick={prev}/>
+        <CarouselArrow dir="r" dis={idx>=maxIdx} onClick={next}/>
 
         {/* overflow hidden wrapper — padding trick for hover lift */}
         <div ref={containerRef} style={{ overflow:"hidden", padding:"16px 0", margin:"-16px 0" }}>
@@ -1546,19 +1767,18 @@ function CreatorAvatarCard({ inf, cardW }: { inf: typeof INFL_PROOF[number]; car
 
 /* Extended event data — more cards for a fuller marquee */
 const GALLERY_ITEMS = [
-  { title:"Lakme Fashion Week",    type:"Fashion",    year:"2024", w:320, h:240, r:-2,  bg:"linear-gradient(135deg,#1a0818,#2d1040)", accent:"#c9963a", img:"https://picsum.photos/seed/fashion2024/640/480" },
+  { title:"Lakme Fashion Week",    type:"Fashion",    year:"2024", w:320, h:240, r:-2,  bg:"linear-gradient(135deg,#1a0818,#2d1040)", accent:"#ffffff", img:"https://picsum.photos/seed/fashion2024/640/480" },
   { title:"TEDx Kolkata 2024",     type:"Conference", year:"2024", w:280, h:260, r:1.5, bg:"linear-gradient(135deg,#060d18,#0d1a30)", accent:"#3d52a8", img:"https://picsum.photos/seed/tedxstage/560/520"  },
   { title:"Sunburn Kolkata",       type:"Music Fest", year:"2025", w:360, h:240, r:-1,  bg:"linear-gradient(135deg,#180408,#2c0810)", accent:"#c4622a", img:"https://picsum.photos/seed/concert2025/720/480" },
   { title:"Brand Equity Summit",   type:"Corporate",  year:"2025", w:280, h:280, r:2,   bg:"linear-gradient(135deg,#040a08,#081814)", accent:"#2d8a6a", img:"https://picsum.photos/seed/corporatesum/560/560"},
-  { title:"Film Awards Gala",      type:"Gala Night", year:"2024", w:340, h:240, r:-1.5,bg:"linear-gradient(135deg,#100a00,#201800)", accent:"#c9963a", img:"https://picsum.photos/seed/galanight/680/480"   },
+  { title:"Film Awards Gala",      type:"Gala Night", year:"2024", w:340, h:240, r:-1.5,bg:"linear-gradient(135deg,#100a00,#201800)", accent:"#ffffff", img:"https://picsum.photos/seed/galanight/680/480"   },
   { title:"StartupIndia Expo",     type:"Exhibition", year:"2025", w:260, h:260, r:1,   bg:"linear-gradient(135deg,#020818,#040e28)", accent:"#3d52a8", img:"https://picsum.photos/seed/startupexpo/520/520" },
   { title:"Art & Culture Festival",type:"Cultural",   year:"2024", w:340, h:240, r:-2,  bg:"linear-gradient(135deg,#0d0020,#1a0038)", accent:"#d97b3f", img:"https://picsum.photos/seed/cultfest24/680/480"   },
-  { title:"Corporate Diwali Bash", type:"Corporate",  year:"2024", w:280, h:260, r:1.5, bg:"linear-gradient(135deg,#140800,#281000)", accent:"#c9963a", img:"https://picsum.photos/seed/diwaliparty/560/520" },
+  { title:"Corporate Diwali Bash", type:"Corporate",  year:"2024", w:280, h:260, r:1.5, bg:"linear-gradient(135deg,#140800,#281000)", accent:"#ffffff", img:"https://picsum.photos/seed/diwaliparty/560/520" },
 ];
 
 function EventGallery() {
   const [paused, setPaused] = useState(false);
-  const EVT_TYPES = ["Product Launch","Fashion Show","Corporate Summit","Music Festival","Award Gala","Brand Activation","Press Conference","Art Exhibition","Sports Event","Cultural Night"];
 
   return (
     <section style={{ background:P.dark2, padding:"clamp(30px,7vw,100px) 0", overflow:"hidden" }}>
@@ -1568,7 +1788,7 @@ function EventGallery() {
           <div>
             <p style={{ fontSize:"0.62rem",fontWeight:700,letterSpacing:"0.22em",textTransform:"uppercase",color:"rgba(255,255,255,0.3)",marginBottom:"0.75rem" }}>Event Management</p>
             <h2 style={{ fontFamily:"'Playfair Display',Georgia,serif",fontSize:"clamp(1.8rem,4vw,3.2rem)",fontWeight:400,color:"#fff",lineHeight:1.1 }}>
-              Events that <em style={{ color:P.gold }}>leave a mark</em>
+              Events that <em style={{ color:"#ffffff" }}>leave a mark</em>
             </h2>
             <p style={{ fontSize:"0.9rem",color:"rgba(255,255,255,0.4)",lineHeight:1.8,maxWidth:480,marginTop:"0.75rem" }}>
               From intimate brand activations to 10,000-seat spectaculars — we design, produce, and deliver events people talk about long after.
@@ -1605,23 +1825,6 @@ function EventGallery() {
           <div className="gal-row2" style={{ display:"inline-flex",gap:"1rem",animation:"mqRev 40s linear infinite",padding:"0.5rem 0" }}>
             {[...[...GALLERY_ITEMS].reverse(),...[...GALLERY_ITEMS].reverse()].map((item,i)=>(
               <GalleryCard key={i} item={item} variant="tall"/>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Event type marquee strip */}
-      <div style={{ borderTop:"1px solid rgba(255,255,255,0.06)",paddingTop:"2rem",overflow:"hidden" }}
-        onMouseEnter={e=>{const t=e.currentTarget.querySelector<HTMLElement>(".event-mq-inner");if(t)t.style.animationPlayState="paused";}}
-        onMouseLeave={e=>{const t=e.currentTarget.querySelector<HTMLElement>(".event-mq-inner");if(t)t.style.animationPlayState="running";}}
-      >
-        <div style={{ overflow:"hidden",whiteSpace:"nowrap" }}>
-          <div className="event-mq-inner" style={{ display:"inline-flex",animation:"mq 24s linear infinite" }}>
-            {[...EVT_TYPES,...EVT_TYPES].map((t,i)=>(
-              <span key={i} style={{ display:"inline-flex",alignItems:"center",gap:"0.75rem",padding:"0 2.5rem",whiteSpace:"nowrap" }}>
-                <span style={{ width:5,height:5,borderRadius:"50%",background:i%3===0?P.gold:i%3===1?P.accent:"rgba(255,255,255,0.3)" }}/>
-                <span style={{ fontSize:"0.82rem",fontWeight:600,letterSpacing:"0.12em",textTransform:"uppercase",color:"rgba(255,255,255,0.45)" }}>{t}</span>
-              </span>
             ))}
           </div>
         </div>

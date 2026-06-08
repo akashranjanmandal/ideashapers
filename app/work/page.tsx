@@ -23,11 +23,11 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 }
 
 const PROJECTS = [
-  { title: "VisionCraft Labs", tag: "Brand + Web", date: "March 2025", desc: "Helping early-stage founders define their positioning and build product experiences that attract investors.", bg: "linear-gradient(160deg,#0f4f63 0%,#082830 100%)", size: "large" },
+  { title: "VisionCraft Labs", tag: "Brand + Web", date: "March 2025", desc: "Helping early stage founders define their positioning and build product experiences that attract investors.", bg: "linear-gradient(160deg,#0f4f63 0%,#082830 100%)", size: "large" },
   { title: "Pulse Creative", tag: "Strategy + Design", date: "November 2025", desc: "A boutique creative agency that needed their website to reflect the bold work they were doing globally.", bg: "linear-gradient(160deg,#2d1a4a 0%,#1a0d32 100%)", size: "small" },
   { title: "Meridian Studio", tag: "Full Website", date: "January 2026", desc: "An architectural photography studio whose identity deserved a digital home as considered as their work.", bg: "linear-gradient(160deg,#1a5c3a 0%,#0d3d28 100%)", size: "small" },
-  { title: "NorthStar Collective", tag: "One-Pager + Growth", date: "December 2025", desc: "A community-driven collective of freelance educators who needed one place to tell their collective story.", bg: "linear-gradient(160deg,#3d1a0d 0%,#2a0d0a 100%)", size: "large" },
-  { title: "Flux Agency", tag: "Website + Growth", date: "October 2025", desc: "A full-service digital agency scaling fast and needing systems to match their ambition.", bg: "linear-gradient(160deg,#0d3d4a 0%,#082830 100%)", size: "small" },
+  { title: "NorthStar Collective", tag: "One Pager + Growth", date: "December 2025", desc: "A community driven collective of freelance educators who needed one place to tell their collective story.", bg: "linear-gradient(160deg,#3d1a0d 0%,#2a0d0a 100%)", size: "large" },
+  { title: "Flux Agency", tag: "Website + Growth", date: "October 2025", desc: "A full service digital agency scaling fast and needing systems to match their ambition.", bg: "linear-gradient(160deg,#0d3d4a 0%,#082830 100%)", size: "small" },
   { title: "Sable & Co.", tag: "Brand + Web", date: "August 2025", desc: "A luxury personal styling service entering a new market and needing to communicate premium positioning.", bg: "linear-gradient(160deg,#2a2a1a 0%,#1a1a0d 100%)", size: "small" },
 ];
 
@@ -52,7 +52,7 @@ export default function WorkPage() {
           background: "linear-gradient(160deg,#0d4455 0%,#082830 100%)",
         }}
       >
-        <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse 50% 50% at 20% 60%, rgba(201,150,58,0.15) 0%, transparent 70%)" }} />
+        <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse 50% 50% at 20% 60%, rgba(255,255,255,0.12) 0%, transparent 70%)" }} />
         <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "30%", background: "linear-gradient(to top, #0b3540 0%, transparent 100%)" }} />
         <div style={{ position: "relative", zIndex: 2, padding: "0 3rem 5rem" }}>
           <Reveal>
@@ -112,7 +112,7 @@ export default function WorkPage() {
                     >
                       <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(11,53,64,0.7) 0%, transparent 60%)" }} />
                       <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                        <div style={{ width: "55%", height: "55%", border: "1px solid rgba(201,150,58,0.2)", transform: `rotate(${i * 9 - 18}deg)`, borderRadius: 4 }} />
+                        <div style={{ width: "55%", height: "55%", border: "1px solid rgba(255,255,255,0.18)", transform: `rotate(${i * 9 - 18}deg)`, borderRadius: 4 }} />
                       </div>
                       {/* Arrow badge */}
                       <div style={{

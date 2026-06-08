@@ -19,7 +19,7 @@ const COLS = [
       { label: "Case Studies", href: "/work" },
       { label: "Brand Projects", href: "/work" },
       { label: "Web Projects", href: "/work" },
-      { label: "One-Pagers", href: "/work" },
+      { label: "One Pagers", href: "/work" },
       { label: "Client Survey", href: "/contact" },
     ],
   },

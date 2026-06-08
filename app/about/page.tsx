@@ -25,7 +25,7 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 const VALUES = [
   { num: "01", title: "Strategy First", body: "Every pixel we place has a reason behind it. We start with your business goals and work backwards to the design." },
   { num: "02", title: "Radical Honesty", body: "We'll tell you what you need to hear, not what sounds nice. That's how we build things that actually work." },
-  { num: "03", title: "Obsessive Craft", body: "We care about the 1px detail, the micro-animation, the copy that makes someone feel something. All of it matters." },
+  { num: "03", title: "Obsessive Craft", body: "We care about the 1px detail, the micro animation, the copy that makes someone feel something. All of it matters." },
   { num: "04", title: "Founders First", body: "We work exclusively with founders and creators because we understand the stakes. This isn't just a website — it's your livelihood." },
 ];
 
@@ -45,7 +45,7 @@ export default function AboutPage() {
           background: "linear-gradient(160deg, #0d4455 0%, #082830 100%)",
         }}
       >
-        <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse 60% 50% at 30% 60%, rgba(201,150,58,0.15) 0%, transparent 70%)" }} />
+        <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse 60% 50% at 30% 60%, rgba(255,255,255,0.12) 0%, transparent 70%)" }} />
         <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "30%", background: "linear-gradient(to top, #0b3540 0%, transparent 100%)" }} />
         <div style={{ position: "relative", zIndex: 2, padding: "0 3rem 5rem", maxWidth: 860 }}>
           <Reveal>
@@ -119,7 +119,7 @@ export default function AboutPage() {
               { step: "Strategy", duration: "Week 1–2", desc: "Sitemap, information architecture, messaging framework, and conversion strategy. The blueprint for everything that follows." },
               { step: "Design", duration: "Week 2–4", desc: "Visual design that captures your brand's full weight. We design desktop and mobile simultaneously, iterating until exactly right." },
               { step: "Development", duration: "Week 4–6", desc: "Clean, fast, accessible code built in Next.js. Animated, optimised, and ready for launch." },
-              { step: "Launch + Support", duration: "Post-launch", desc: "We don't disappear at handoff. 30 days of post-launch support to make sure everything runs perfectly." },
+              { step: "Launch + Support", duration: "Post launch", desc: "We don't disappear at handoff. 30 days of post launch support to make sure everything runs perfectly." },
             ].map((p, i) => (
               <Reveal key={p.step} delay={i * 0.06}>
                 <div style={{

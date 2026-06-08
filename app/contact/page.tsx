@@ -33,7 +33,7 @@ export default function ContactPage() {
           background: "linear-gradient(160deg,#0d4455 0%,#082830 100%)",
         }}
       >
-        <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse 55% 50% at 25% 60%, rgba(201,150,58,0.15) 0%, transparent 70%)" }} />
+        <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse 55% 50% at 25% 60%, rgba(255,255,255,0.12) 0%, transparent 70%)" }} />
         <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "30%", background: "linear-gradient(to top, #0b3540 0%, transparent 100%)" }} />
         <div style={{ position: "relative", zIndex: 2, padding: "0 3rem 5rem" }}>
           <p style={{ fontSize: "0.7rem", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: "1.25rem", fontWeight: 600 }}>
@@ -117,7 +117,7 @@ export default function ContactPage() {
                     Service Needed
                   </label>
                   <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
-                    {["One-Pager Site", "Full Website", "Website + Growth", "Not Sure Yet"].map(s => (
+                    {["One Pager Site", "Full Website", "Website + Growth", "Not Sure Yet"].map(s => (
                       <button
                         key={s}
                         type="button"

@@ -5,7 +5,7 @@ import Preloader from "@/components/Preloader";
 
 export const metadata: Metadata = {
   title: "IdeaShapers — Transform Ideas Into Impact",
-  description: "Strategy-first digital studio for founders, creators, and innovators.",
+  description: "Strategy first digital studio for founders, creators, and innovators.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

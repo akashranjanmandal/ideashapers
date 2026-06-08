@@ -19,9 +19,9 @@
     --navy-2:      #2d3d8a;
     --navy-light:  #3d52a8;
 
-    /* Gold — logo oval border */
-    --gold:        #c9963a;
-    --gold-2:      #e8b84b;
+    /* Accent — replaces former gold on dark backgrounds */
+    --gold:        #ffffff;
+    --gold-2:      #f2f2f2;
 
     /* Text / UI */
     --text:        #141414;

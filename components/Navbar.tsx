@@ -13,10 +13,13 @@ const P = {
 };
 
 const NAV = [
-  { label:"Services", href:"/#services", children:["Brand Strategy","Web Design","Content Creation","Growth Marketing"] },
-  { label:"Work",     href:"/#work",     children:["Case Studies","Brand Projects","Web Projects"] },
-  { label:"About",    href:"/#about",    children:[] },
-  { label:"Contact",  href:"/#contact",  children:[] },
+  { label:"Services",    href:"/#services",    children:["Brand Strategy","Web Design","Content Creation","Growth Marketing"] },
+  { label:"Work",        href:"/#work",        children:["Case Studies","Brand Projects","Web Projects"] },
+  { label:"About",       href:"/#about",       children:[] },
+  { label:"Process",     href:"/#process",     children:[] },
+  { label:"FAQ",         href:"/#faq",         children:[] },
+  { label:"Influencers", href:"/#influencer",  children:[] },
+  { label:"Contact",     href:"/#contact",     children:[] },
 ];
 
 export default function Navbar() {
@@ -259,7 +262,7 @@ export default function Navbar() {
           left: 15px;
           right: 15px;
           height: 1.5px;
-          background: #1e2f6e;
+          background: #c9963a;
           border-radius: 999px;
           transform: scaleX(0);
           transform-origin: left center;
