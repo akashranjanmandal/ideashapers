@@ -113,6 +113,17 @@ const CLIENTS = [
   { name:"Merlin Group",          cat:"Real Estate"          },
 ];
 
+const CLIENT_LOGOS = [
+  { src:"/777restro.jpg",        name:"777 Restro & Bar"   },
+  { src:"/bluesky.jpg",          name:"Bluesky Education"  },
+  { src:"/dentlife.png",         name:"Dent Life"          },
+  { src:"/premiumliqour.png",    name:"Premium Liquor"     },
+  { src:"/silvermoon.jpg",       name:"Silver Moon"        },
+  { src:"/thesmileclinic.png",   name:"The Smile Clinique" },
+  { src:"/umafoods.png",         name:"Uma Foods"          },
+  { src:"/urbanplatters.png",    name:"Urban Platter"      },
+];
+
 /* ── influencer services ── */
 const INFL_SERVICES = [
   { n:"01", title:"Campaign Strategy",     desc:"End to end campaign planning aligned with your brand goals, KPIs, and timeline." },
@@ -377,7 +388,7 @@ export default function Home() {
       {/* ═══════════════════════════════════════
           HERO
       ═══════════════════════════════════════ */}
-      <section id="hero" ref={heroRef} style={{ background:P.cream, position:"relative", minHeight:"100vh", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", padding:"clamp(30px,7vw,100px) clamp(1.25rem,5vw,3rem) clamp(160px,18vw,220px)", overflow:"hidden", textAlign:"center" }}>
+      <section id="hero" ref={heroRef} style={{ background:P.cream, position:"relative", minHeight:"100vh", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", padding:"clamp(30px,7vw,100px) clamp(1.25rem,5vw,3rem) 0", overflow:"hidden", textAlign:"center" }}>
         <div ref={blob1Ref} style={{ position:"absolute",width:620,height:620,borderRadius:"50%",pointerEvents:"none",background:"radial-gradient(circle,rgba(196,98,42,0.14) 0%,transparent 70%)",top:"50%",left:"50%",transform:"translate(-50%,-50%)",willChange:"transform" }}/>
         <div ref={blob2Ref} style={{ position:"absolute",width:340,height:340,borderRadius:"50%",pointerEvents:"none",background:"radial-gradient(circle,rgba(122,31,43,0.12) 0%,transparent 70%)",top:"18%",right:"10%",willChange:"transform" }}/>
         <div ref={blob3Ref} style={{ position:"absolute",width:260,height:260,borderRadius:"50%",pointerEvents:"none",background:"radial-gradient(circle,rgba(44,16,8,0.07) 0%,transparent 70%)",bottom:"18%",left:"7%",willChange:"transform" }}/>
@@ -409,8 +420,8 @@ export default function Home() {
           <Mag><ArrowBtn onClick={()=>go("services")}>Our Services</ArrowBtn></Mag>
         </div>
 
-        {/* Clients marquee — anchored at bottom on desktop, flows in-line on mobile to avoid overlapping hero content */}
-        <div className="hero-marquee-wrap" style={{ position:"absolute", bottom:"4rem", left:0, right:0 }}>
+        {/* Clients marquee — below buttons, clears fixed nav with paddingBottom */}
+        <div className="hero-marquee-wrap" style={{ width:"100%", marginTop:"1.5rem", paddingBottom:"calc(1.5rem + 88px)" }}>
           <p style={{ textAlign:"center",fontSize:"0.58rem",fontWeight:700,letterSpacing:"0.28em",textTransform:"uppercase",color:P.muted,marginBottom:"1rem",opacity:0.6 }}>Trusted by leading brands</p>
           <HeroClientsMarquee/>
         </div>
@@ -871,7 +882,7 @@ export default function Home() {
              absolutely over the centred content (was overlapping on
              short / narrow viewports) */
           #hero { padding-bottom:clamp(2.5rem,8vw,4rem) !important; }
-          .hero-marquee-wrap { position:static !important;margin-top:2.5rem; }
+          .hero-marquee-wrap { position:static !important;margin-top:2rem;padding-bottom:1.5rem !important; }
 
           /* services rows — stack number/title/arrow, drop the
              right-hand description (shown instead inside the
@@ -1435,7 +1446,7 @@ function HeroClientsMarquee() {
   const [paused, setPaused] = useState(false);
   return (
     <div
-      style={{ overflow:"hidden", position:"relative", paddingBottom:"1.75rem" }}
+      style={{ overflow:"hidden", position:"relative", paddingBottom:"0.5rem" }}
       onMouseEnter={()=>setPaused(true)}
       onMouseLeave={()=>setPaused(false)}
     >
@@ -1446,24 +1457,42 @@ function HeroClientsMarquee() {
         animation:"mq 36s linear infinite",
         animationPlayState: paused ? "paused" : "running",
       }}>
-        {[...CLIENTS,...CLIENTS].map((c,i)=>{
-          const col = CLIENT_COLORS[i % CLIENT_COLORS.length];
-          const initials = c.name.split(" ").map((w:string)=>w[0]).join("").slice(0,2).toUpperCase();
-          return (
-            <span key={i} style={{ display:"inline-flex",alignItems:"center",gap:"0.75rem",padding:"0.3rem 1.5rem 0.3rem 0.3rem",whiteSpace:"nowrap",
-              background:"rgba(255,255,255,0.65)",border:`1px solid ${P.border}`,borderRadius:999,margin:"0 0.5rem",
-              backdropFilter:"blur(4px)",
+        {[...CLIENT_LOGOS,...CLIENT_LOGOS].map((cl,i)=>(
+          <span key={i} style={{
+            display:"inline-flex", alignItems:"center", gap:"0.9rem",
+            padding:"0.35rem 1.2rem 0.35rem 0.35rem",
+            whiteSpace:"nowrap",
+            background:"rgba(255,255,255,0.72)",
+            border:`1px solid ${P.border}`,
+            borderRadius:999,
+            margin:"0 0.6rem",
+            backdropFilter:"blur(4px)",
+            flexShrink:0,
+            boxShadow:"0 2px 12px rgba(30,47,110,0.08)",
+          }}>
+            {/* logo thumbnail */}
+            <span style={{
+              width:44, height:44, borderRadius:"50%",
+              background:"#fff",
+              border:`1px solid rgba(30,47,110,0.1)`,
+              display:"inline-flex", alignItems:"center", justifyContent:"center",
+              flexShrink:0, overflow:"hidden",
+              boxShadow:"0 1px 6px rgba(0,0,0,0.1)",
+              position:"relative",
             }}>
-              <span style={{ width:32,height:32,borderRadius:"50%",background:`${col}18`,border:`1.5px solid ${col}44`,display:"inline-flex",alignItems:"center",justifyContent:"center",flexShrink:0 }}>
-                <span style={{ fontSize:"0.58rem",fontWeight:800,color:col }}>{initials}</span>
-              </span>
-              <span style={{ display:"flex",flexDirection:"column",gap:1 }}>
-                <span style={{ fontSize:"0.8rem",fontWeight:600,color:P.text,letterSpacing:"-0.01em" }}>{c.name}</span>
-                <span style={{ fontSize:"0.52rem",fontWeight:600,letterSpacing:"0.1em",textTransform:"uppercase",color:P.muted }}>{c.cat}</span>
-              </span>
+              <Image
+                src={cl.src}
+                alt={cl.name}
+                fill
+                style={{ objectFit:"cover" }}
+              />
             </span>
-          );
-        })}
+            {/* brand name */}
+            <span style={{ fontSize:"0.88rem", fontWeight:600, color:P.text, letterSpacing:"-0.01em" }}>
+              {cl.name}
+            </span>
+          </span>
+        ))}
       </div>
     </div>
   );
