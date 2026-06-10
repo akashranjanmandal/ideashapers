@@ -812,15 +812,15 @@ export default function Home() {
         .bnav-item       { position:relative;padding:9px 18px;border-radius:8px;border:none;cursor:pointer;font-family:inherit;background:transparent;color:${P.muted};font-size:0.8rem;font-weight:500;letter-spacing:0.02em;transition:color 0.22s,background 0.22s; }
         .bnav-item::after {
           content:'';position:absolute;bottom:5px;left:18px;right:18px;height:8px;
-          opacity:0;transform:translateY(3px);
-          background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='8' viewBox='0 0 16 8'%3E%3Cpath d='M0 4 Q4 0 8 4 T16 4' stroke='%231e2f6e' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-          background-repeat:repeat-x;background-position:left center;background-size:16px 8px;
-          transition:opacity 0.25s ease,transform 0.25s ease;
+          background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 12' preserveAspectRatio='none'%3E%3Cpath d='M0,6 C10,0 20,12 30,6 C40,0 50,12 60,6 C70,0 80,12 90,6 C95,3 98,4 100,6' stroke='%231e2f6e' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+          background-repeat:no-repeat;background-position:center;background-size:100% 100%;
+          transform:scaleX(0);transform-origin:right;
+          opacity:0;transition:transform 0.45s cubic-bezier(.25,1,.5,1),opacity 0.3s;
         }
-        .bnav-item:hover { color:${P.navy};background:${P.navy}0a; }
-        .bnav-item:hover::after { opacity:1;transform:translateY(0); }
-        .bnav-item.act   { color:${P.navy};background:${P.navy}12; }
-        .bnav-item.act::after { opacity:1;transform:translateY(0); }
+        .bnav-item:hover { color:${P.navy}; }
+        .bnav-item:hover::after { transform:scaleX(1);transform-origin:left;opacity:1; }
+        .bnav-item.act   { color:${P.navy}; }
+        .bnav-item.act::after { transform:scaleX(1);transform-origin:left;opacity:1; }
         /* CTA button — pill with gradient & shimmer */
         .bnav-cta-btn    { position:relative;overflow:hidden;padding:9px 22px;border-radius:999px;border:none;cursor:pointer;font-family:inherit;margin-left:4px;background:linear-gradient(135deg,${P.navy} 0%,${P.navy2} 100%);color:#fff;font-size:0.8rem;font-weight:700;letter-spacing:0.04em;transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 4px 18px rgba(30,47,110,0.35); }
         .bnav-cta-btn::before { content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.22),transparent);transition:left 0.45s ease; }
