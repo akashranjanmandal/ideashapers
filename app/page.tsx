@@ -50,11 +50,11 @@ const WORK = [
 ];
 
 const SERVICES = [
-  { n:"01", title:"Brand Strategy",   desc:"We uncover what makes you unmissable — positioning, messaging, and a voice that cuts through the noise.",                     items:["Brand Audit","Positioning Framework","Messaging System","Voice & Tone"] },
-  { n:"02", title:"Web Design",       desc:"Conversion focused websites built for humans. Every screen, every interaction, designed to make people act.",                 items:["UX Research","Visual Design","Interaction Design","Design Systems"] },
-  { n:"03", title:"Development",      desc:"Clean Next.js code — every animation pixel-perfect, every page under 2 seconds. Built to last.",                             items:["Next.js / React","GSAP Animations","CMS Integration","Core Web Vitals"] },
-  { n:"04", title:"Content Creation", desc:"Copy and creative that earns attention, builds trust, and gives people a genuine reason to care.",                           items:["Copywriting","Art Direction","Campaign Concepts","Brand Storytelling"] },
-  { n:"05", title:"Growth Marketing", desc:"Systematic, data driven strategies to put your offer in front of the right people at the exact right moment.",               items:["Launch Strategy","SEO","Paid Advertising","Analytics"] },
+  { n:"01", title:"Brand Strategy",            desc:"We uncover what makes you unmissable — positioning, messaging, and a voice that cuts through the noise.",                                     items:["Brand Audit","Positioning Framework","Messaging System","Voice & Tone"] },
+  { n:"02", title:"Web / App Development",     desc:"Conversion-focused websites and apps built for humans. Pixel-perfect design, clean Next.js code — every screen, every interaction, built to last.", items:["UX Research","Visual Design","Next.js / React","GSAP Animations","CMS Integration","Core Web Vitals"] },
+  { n:"03", title:"Content Creation",          desc:"Copy and creative that earns attention, builds trust, and gives people a genuine reason to care.",                                           items:["Copywriting","Art Direction","Campaign Concepts","Brand Storytelling"] },
+  { n:"04", title:"Growth Marketing",          desc:"Systematic, data-driven strategies to put your offer in front of the right people at the exact right moment.",                              items:["Launch Strategy","SEO","Paid Advertising","Analytics"] },
+  { n:"05", title:"Influencer Management",     desc:"End-to-end influencer campaigns — from creator matchmaking to performance analytics — engineered to drive real reach and real results.",     items:["Campaign Strategy","Creator Matchmaking","Content Production","Performance Analytics","Brand Promotions","Paid Amplification"] },
 ];
 
 const PROCESS = [
@@ -192,7 +192,7 @@ function ArrowBtn({ children, onClick, light=false }: { children:React.ReactNode
   return (
     <button onClick={onClick} onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)} style={{ display:"inline-flex",alignItems:"center",gap:8,background:"none",border:"none",cursor:"pointer",fontSize:"0.78rem",fontWeight:600,letterSpacing:"0.05em",textTransform:"uppercase",fontFamily:"inherit" }}>
       <span style={{ color:light?(hov?"#fff":"rgba(255,255,255,0.6)"):(hov?P.text:P.muted) }}>{children}</span>
-      <span style={{ width:28,height:28,borderRadius:"50%",border:`1.5px solid ${light?"rgba(255,255,255,0.35)":P.border}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:"0.85rem",background:hov?(light?"#fff":P.dark):"transparent",color:hov?(light?P.dark:"#fff"):(light?"rgba(255,255,255,0.6)":P.muted),transform:hov?"rotate(45deg)":"rotate(0deg)",transition:"all 0.25s" }}>→</span>
+      <span style={{ width:28,height:28,borderRadius:"50%",border:`1.5px solid ${light?"rgba(255,255,255,0.35)":P.border}`,display:"flex",alignItems:"center",justifyContent:"center",background:hov?(light?"#fff":P.dark):"transparent",color:hov?(light?P.dark:"#fff"):(light?"rgba(255,255,255,0.6)":P.muted),transform:hov?"rotate(45deg)":"rotate(0deg)",transition:"all 0.25s" }}><svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden><path d="M3 10L10 3M10 3H5M10 3V8" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg></span>
     </button>
   );
 }
@@ -507,10 +507,12 @@ export default function Home() {
             <div style={{ display:"flex",flexDirection:"column",gap:"1px" }}>
               <div className="gsap-up" style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:"1px",background:"rgba(255,255,255,0.05)",alignSelf:"start" }}>
                 {[
-                  { n:"01",h:"Strategy First",  b:"Every decision traces back to your goals. No guesswork — deliberate, purposeful design." },
-                  { n:"02",h:"Radical Honesty", b:"We tell you what you need to hear. That's how we build things that actually work." },
-                  { n:"03",h:"Obsessive Craft", b:"The 1px detail. The perfect micro animation. The headline that makes someone feel something." },
-                  { n:"04",h:"Founders First",  b:"We've worked with 150+ founders. We understand the stakes and treat your project like our own." },
+                  { n:"01",h:"Client-Centric Approach",     b:"We put your business goals first. Every decision is driven by what genuinely serves your clients and moves your brand forward." },
+                  { n:"02",h:"Creative Excellence",         b:"We don't settle for good — we push for exceptional. Bold ideas, refined execution, and work that makes people stop and notice." },
+                  { n:"03",h:"Data-Driven Strategy",        b:"Every move we make is backed by insights. We combine creative instinct with real data so your brand decisions are always informed." },
+                  { n:"04",h:"End-to-End Execution",        b:"From the first idea to final launch — and beyond. We handle every phase so you never have to stitch together a fragmented team." },
+                  { n:"05",h:"Transparent Collaboration",   b:"You're always in the loop. Clear timelines, honest feedback, and open communication from kickoff to delivery." },
+                  { n:"06",h:"Results That Matter",         b:"Vanity metrics don't interest us. We're obsessed with outcomes — leads, conversions, reach — the numbers that actually grow your business." },
                 ].map(v=>(
                   <div key={v.n} style={{ padding:"1.75rem",background:P.dark }}>
                     <span style={{ fontSize:"0.56rem",fontWeight:700,letterSpacing:"0.18em",color:"#ffffff",display:"block",marginBottom:"0.75rem" }}>{v.n}</span>
@@ -560,8 +562,9 @@ export default function Home() {
         <div style={{ maxWidth:1440,margin:"0 auto" }} className="process-grid">
           <div className="gsap-up" style={{ position:"sticky",top:"8rem" }}>
             <p style={{ fontSize:"0.62rem",fontWeight:700,letterSpacing:"0.22em",textTransform:"uppercase",color:P.muted,marginBottom:"1rem" }}>How We Work</p>
-            <h2 style={{ fontFamily:"'Playfair Display',Georgia,serif",fontSize:"clamp(1.8rem,3.5vw,3rem)",fontWeight:400,color:P.text,lineHeight:1.15,marginBottom:"1.5rem" }}>
-              The IdeaShapers <em style={{ color:P.navy }}>Way</em>
+            <h2 style={{ fontSize:"clamp(1.8rem,3.5vw,3rem)",fontWeight:400,color:P.text,lineHeight:1.15,marginBottom:"1.5rem" }}>
+              <span style={{ fontFamily:"'Playfair Display',Georgia,serif",fontStyle:"italic",letterSpacing:"-0.01em" }}>The IdeaShapers</span>{" "}
+              <em style={{ fontFamily:"'Playfair Display',Georgia,serif",fontStyle:"italic",color:P.navy }}>Way</em>
             </h2>
             <p style={{ fontSize:"0.88rem",color:P.muted,lineHeight:1.8,marginBottom:"2rem" }}>
               A proven 5-step framework refined across 150+ projects. Clear, thorough, and built entirely around your goals.
@@ -592,8 +595,8 @@ export default function Home() {
         <div style={{ overflow:"hidden",whiteSpace:"nowrap" }}>
           <div style={{ display:"inline-flex",animation:"mq 26s linear infinite" }}>
             {[...Array(2)].flatMap((_,gi)=>
-              ["Brand Strategy","Web Design","Development","Content","Growth Marketing","Visual Identity","UX Research","Copywriting","Conversion","Brand Activities","Product Launch"].map((t,i)=>(
-                <span key={`${gi}-${t}`} style={{ fontSize:"0.85rem",fontWeight:600,letterSpacing:"0.18em",textTransform:"uppercase",color:i%4===0?"#ffffff":"rgba(255,255,255,0.55)",padding:"0 2.5rem",borderRight:"1px solid rgba(255,255,255,0.08)",whiteSpace:"nowrap" }}>{t}</span>
+              ["Brand Strategy","Web / App Development","Content Creation","Growth Marketing","Visual Identity","UX Research","Influencer Management","Brand Storytelling","Conversion","Brand Activities","Product Launch"].map((t,i)=>(
+                <span key={`${gi}-${t}`} style={{ fontSize:"0.85rem",fontWeight:700,letterSpacing:"0.18em",textTransform:"uppercase",color:"#ffffff",padding:"0 2.5rem",borderRight:"1px solid rgba(255,255,255,0.08)",whiteSpace:"nowrap" }}>{t}</span>
               ))
             )}
           </div>
@@ -762,6 +765,7 @@ export default function Home() {
         @keyframes svcPreviewIn { from{opacity:0;transform:translateY(calc(-50% + 10px)) scale(0.96)} to{opacity:1;transform:translateY(-50%) scale(1)} }
         @keyframes modalFade   { from{opacity:0} to{opacity:1} }
         @keyframes modalRise   { from{opacity:0;transform:translateY(28px) scale(0.97)} to{opacity:1;transform:translateY(0) scale(1)} }
+        @keyframes modalSlide  { from{opacity:0;transform:translateY(20px) scale(0.97)} to{opacity:1;transform:translateY(0) scale(1)} }
 
         /* ── social float (right side, desktop) ── */
         .social-float { position:fixed;right:1.25rem;top:50%;transform:translateY(-50%);z-index:997;display:flex;flex-direction:column;gap:0.6rem; }
@@ -1100,16 +1104,49 @@ function ServiceRow({ svc, idx, total, active, onEnter, onLeave, onMove }: {
         background: active ? P.navy : "transparent",
         color: active ? "#fff" : P.text,
         display:"flex",alignItems:"center",justifyContent:"center",
-        fontSize:"1rem",
         transform: active ? "rotate(45deg)" : "rotate(0deg)",
         transition:"all 0.35s cubic-bezier(0.4,0,0.2,1)",
-      }}>↗</span>
+      }}><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden><path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg></span>
+    </div>
+  );
+}
+
+function ServiceModal({ svc, onClose }: { svc: typeof SERVICES[number]; onClose: () => void }) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => { window.removeEventListener("keydown", onKey); document.body.style.overflow = ""; };
+  }, [onClose]);
+  return (
+    <div onClick={onClose} style={{ position:"fixed",inset:0,zIndex:1100,background:"rgba(20,20,20,0.6)",backdropFilter:"blur(8px)",display:"flex",alignItems:"center",justifyContent:"center",padding:"clamp(1rem,4vw,2.5rem)",animation:"modalFade 0.22s ease" }}>
+      <div onClick={e=>e.stopPropagation()} style={{ background:P.navy,borderRadius:20,maxWidth:500,width:"100%",padding:"clamp(1.75rem,5vw,2.75rem)",boxShadow:`0 32px 80px rgba(0,0,0,0.35)`,animation:"modalSlide 0.28s cubic-bezier(0.4,0,0.2,1)" }}>
+        <div style={{ display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:"1.25rem" }}>
+          <div>
+            <span style={{ fontSize:"0.56rem",fontWeight:700,letterSpacing:"0.18em",textTransform:"uppercase",color:"rgba(255,255,255,0.4)",display:"block",marginBottom:"0.4rem" }}>{svc.n}</span>
+            <h3 style={{ fontFamily:"'Playfair Display',Georgia,serif",fontSize:"clamp(1.4rem,4vw,2rem)",fontWeight:400,color:"#fff",lineHeight:1.1 }}>{svc.title}</h3>
+          </div>
+          <button onClick={onClose} aria-label="Close" style={{ background:"rgba(255,255,255,0.1)",border:"none",borderRadius:"50%",width:36,height:36,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",color:"rgba(255,255,255,0.7)",flexShrink:0,marginLeft:"1rem",marginTop:2 }}>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden><path d="M1 1L13 13M13 1L1 13" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/></svg>
+          </button>
+        </div>
+        <p style={{ fontSize:"0.88rem",color:"rgba(255,255,255,0.6)",lineHeight:1.75,marginBottom:"1.5rem" }}>{svc.desc}</p>
+        <p style={{ fontSize:"0.56rem",fontWeight:700,letterSpacing:"0.16em",textTransform:"uppercase",color:"rgba(255,255,255,0.35)",marginBottom:"0.75rem" }}>What&apos;s Included</p>
+        <ul style={{ listStyle:"none",display:"flex",flexWrap:"wrap",gap:"7px 10px" }}>
+          {svc.items.map(it=>(
+            <li key={it} style={{ display:"flex",alignItems:"center",gap:6,fontSize:"0.76rem",color:"#fff",fontWeight:500,background:"rgba(255,255,255,0.1)",borderRadius:999,padding:"6px 14px" }}>
+              <span style={{ width:5,height:5,borderRadius:"50%",background:P.accent2,flexShrink:0 }}/>{it}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
 
 function ServicesList({ services, onOpen }: { services: typeof SERVICES; onOpen:(svc:typeof SERVICES[number])=>void }) {
   const [activeIdx, setActiveIdx] = useState<number|null>(null);
+  const [modalSvc, setModalSvc] = useState<typeof SERVICES[number]|null>(null);
   const [rowTop, setRowTop] = useState(0);
   const wrapRef = useRef<HTMLDivElement>(null);
   const rowRefs = useRef<Array<HTMLDivElement|null>>([]);
@@ -1120,54 +1157,61 @@ function ServicesList({ services, onOpen }: { services: typeof SERVICES; onOpen:
     if (row) setRowTop(row.offsetTop + row.offsetHeight/2);
   };
 
+  const handleClick = (svc: typeof SERVICES[number]) => {
+    setModalSvc(svc);
+  };
+
   const active = activeIdx!==null ? services[activeIdx] : null;
 
   return (
-    <div ref={wrapRef} style={{ position:"relative" }}>
-      {services.map((svc,i)=>(
-        <div key={svc.n} ref={el=>{rowRefs.current[i]=el;}} onClick={()=>onOpen(svc)}>
-          <ServiceRow
-            svc={svc} idx={i} total={services.length}
-            active={activeIdx===i}
-            onEnter={()=>{ if(!isMobile()) activate(i); }}
-            onLeave={()=>setActiveIdx(null)}
-            onMove={()=>{}}
-          />
-        </div>
-      ))}
+    <>
+      <div ref={wrapRef} style={{ position:"relative" }}>
+        {services.map((svc,i)=>(
+          <div key={svc.n} ref={el=>{rowRefs.current[i]=el;}} onClick={()=>handleClick(svc)}>
+            <ServiceRow
+              svc={svc} idx={i} total={services.length}
+              active={activeIdx===i}
+              onEnter={()=>{ if(!isMobile()) activate(i); }}
+              onLeave={()=>setActiveIdx(null)}
+              onMove={()=>{}}
+            />
+          </div>
+        ))}
 
-      {/* floating hover-preview card — desktop only, anchored to the active row */}
-      {active && (
-        <div className="svc-preview desktop-only" style={{
-          position:"absolute",
-          right: "clamp(5.5rem,11vw,8rem)",
-          top: rowTop,
-          transform:"translateY(-50%)",
-          pointerEvents:"none",
-          zIndex:5,
-          width:"min(46vw,420px)",
-          background:P.navy,
-          borderRadius:16,
-          overflow:"hidden",
-          padding:"1.1rem 1.4rem",
-          display:"flex",
-          alignItems:"center",
-          gap:"1.25rem",
-          boxShadow:`0 24px 56px -14px ${P.navy}66, 0 6px 20px rgba(20,20,20,0.16)`,
-          opacity:1,
-          animation:"svcPreviewIn 0.3s cubic-bezier(0.4,0,0.2,1)",
-        }}>
-          <p style={{ flexShrink:0,fontSize:"0.56rem",fontWeight:700,letterSpacing:"0.16em",textTransform:"uppercase",color:"rgba(255,255,255,0.5)",lineHeight:1.6,maxWidth:"6.5ch",borderRight:"1px solid rgba(255,255,255,0.14)",paddingRight:"1.1rem" }}>What&apos;s included</p>
-          <ul style={{ listStyle:"none",display:"flex",flexWrap:"wrap",gap:"7px 10px",flex:1,alignContent:"center" }}>
-            {active.items.map(it=>(
-              <li key={it} style={{ display:"flex",alignItems:"center",gap:6,fontSize:"0.74rem",color:"#fff",fontWeight:500,whiteSpace:"nowrap",background:"rgba(255,255,255,0.08)",borderRadius:999,padding:"5px 11px" }}>
-                <span style={{ width:5,height:5,borderRadius:"50%",background:P.accent2,flexShrink:0 }}/>{it}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </div>
+        {/* floating hover-preview card — desktop only, anchored to the active row */}
+        {active && (
+          <div className="svc-preview desktop-only" style={{
+            position:"absolute",
+            right: "clamp(5.5rem,11vw,8rem)",
+            top: rowTop,
+            transform:"translateY(-50%)",
+            pointerEvents:"none",
+            zIndex:5,
+            width:"min(46vw,420px)",
+            background:P.navy,
+            borderRadius:16,
+            overflow:"hidden",
+            padding:"1.1rem 1.4rem",
+            display:"flex",
+            alignItems:"center",
+            gap:"1.25rem",
+            boxShadow:`0 24px 56px -14px ${P.navy}66, 0 6px 20px rgba(20,20,20,0.16)`,
+            opacity:1,
+            animation:"svcPreviewIn 0.3s cubic-bezier(0.4,0,0.2,1)",
+          }}>
+            <p style={{ flexShrink:0,fontSize:"0.56rem",fontWeight:700,letterSpacing:"0.16em",textTransform:"uppercase",color:"rgba(255,255,255,0.5)",lineHeight:1.6,maxWidth:"6.5ch",borderRight:"1px solid rgba(255,255,255,0.14)",paddingRight:"1.1rem" }}>What&apos;s included</p>
+            <ul style={{ listStyle:"none",display:"flex",flexWrap:"wrap",gap:"7px 10px",flex:1,alignContent:"center" }}>
+              {active.items.map(it=>(
+                <li key={it} style={{ display:"flex",alignItems:"center",gap:6,fontSize:"0.74rem",color:"#fff",fontWeight:500,whiteSpace:"nowrap",background:"rgba(255,255,255,0.08)",borderRadius:999,padding:"5px 11px" }}>
+                  <span style={{ width:5,height:5,borderRadius:"50%",background:P.accent2,flexShrink:0 }}/>{it}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+      {modalSvc && <ServiceModal svc={modalSvc} onClose={()=>setModalSvc(null)} />}
+    </>
   );
 }
 
@@ -1656,7 +1700,12 @@ function CarouselArrow({ dir, dis, onClick, light=false, offset=-28 }:{
     }}
       onMouseEnter={e=>{if(!dis){e.currentTarget.style.background=hovBg;e.currentTarget.style.color=hovColor;e.currentTarget.style.transform="translateY(-50%) scale(1.06)";}}}
       onMouseLeave={e=>{e.currentTarget.style.background=dis?disBg:idleBg;e.currentTarget.style.color=dis?disColor:idleColor;e.currentTarget.style.transform="translateY(-50%)";}}
-    >{dir==="l"?"←":"→"}</button>
+    >
+      {dir==="l"
+        ? <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden><path d="M10 3L5 8L10 13" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+        : <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden><path d="M6 3L11 8L6 13" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+      }
+    </button>
   );
 }
 
