@@ -1329,6 +1329,8 @@ function ContactForm() {
   const [form,setForm]=useState({name:"",email:"",service:"",msg:""});
   const [focusField,setFocusField]=useState("");
   const [sent,setSent]=useState(false);
+  const [sending,setSending]=useState(false);
+  const [error,setError]=useState("");
 
   /* underline-only field style */
   const lineInp=(field:string):React.CSSProperties=>({
@@ -1348,8 +1350,27 @@ function ContactForm() {
     </div>
   );
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSending(true);
+    setError("");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error("Failed to send");
+      setSent(true);
+    } catch {
+      setError("Something went wrong. Please try again or email us directly.");
+    } finally {
+      setSending(false);
+    }
+  };
+
   return(
-    <form className="gsap-up" onSubmit={e=>{e.preventDefault();setSent(true);}}>
+    <form className="gsap-up" onSubmit={handleSubmit}>
 
       {/* Two underline fields side by side */}
       <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:"0 2.5rem",marginBottom:"2.5rem" }}>
@@ -1401,17 +1422,20 @@ function ContactForm() {
       </div>
 
       {/* Submit — full width accent button */}
-      <button type="submit" style={{
-        width:"100%", padding:"1rem", border:"none", borderRadius:12, cursor:"pointer",
+      <button type="submit" disabled={sending} style={{
+        width:"100%", padding:"1rem", border:"none", borderRadius:12, cursor:sending?"default":"pointer",
         background:`linear-gradient(135deg, ${P.navy} 0%, ${P.navy2} 100%)`,
         color:"#fff", fontSize:"0.85rem", fontWeight:700, letterSpacing:"0.05em",
         textTransform:"uppercase", fontFamily:"inherit",
+        opacity: sending ? 0.7 : 1,
         transition:"opacity 0.2s, transform 0.2s",
         boxShadow:`0 8px 28px ${P.navy}44`,
       }}
-        onMouseEnter={e=>{e.currentTarget.style.opacity="0.88";e.currentTarget.style.transform="translateY(-1px)";}}
-        onMouseLeave={e=>{e.currentTarget.style.opacity="1";e.currentTarget.style.transform="none";}}
-      >Send Message →</button>
+        onMouseEnter={e=>{if(!sending){e.currentTarget.style.opacity="0.88";e.currentTarget.style.transform="translateY(-1px)";}}}
+        onMouseLeave={e=>{e.currentTarget.style.opacity=sending?"0.7":"1";e.currentTarget.style.transform="none";}}
+      >{sending ? "Sending…" : "Send Message →"}</button>
+
+      {error && <p style={{ color:"#ff8a8a", fontSize:"0.8rem", marginTop:"1rem" }}>{error}</p>}
 
       <style>{`.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}@media(max-width:600px){.form-row{grid-template-columns:1fr;}}`}</style>
     </form>
@@ -1772,6 +1796,20 @@ function CreatorCarousel() {
             ))}
           </div>
         </div>
+      </div>
+
+      <div style={{ textAlign:"center", marginTop:"2.5rem" }}>
+        <a href="/creators" style={{
+          display:"inline-flex", alignItems:"center", gap:8,
+          padding:"11px 26px", borderRadius:999,
+          border:"1.5px solid rgba(255,255,255,0.3)",
+          color:"#fff", fontSize:"0.8rem", fontWeight:700,
+          letterSpacing:"0.04em", textTransform:"uppercase",
+          textDecoration:"none", transition:"background 0.25s, border-color 0.25s",
+        }}
+          onMouseEnter={e=>{ e.currentTarget.style.background="rgba(255,255,255,0.1)"; e.currentTarget.style.borderColor="rgba(255,255,255,0.5)"; }}
+          onMouseLeave={e=>{ e.currentTarget.style.background="transparent"; e.currentTarget.style.borderColor="rgba(255,255,255,0.3)"; }}
+        >Show More Creators →</a>
       </div>
     </div>
   );
