@@ -1633,15 +1633,18 @@ function ClientsMarquee() {
    Left: headline + stats + carousel of proof cards
    Right: service grid
 ───────────────────────────────────────────── */
+/* Real creators from our roster — subset shown on homepage, full list at /creators */
 const INFL_PROOF = [
-  { name:"@priyastylesup",  platform:"Instagram", followers:"2.4M", cat:"Fashion & Lifestyle", result:"₹1.2Cr GMV in 48h",    color:"#c4622a", bg:"linear-gradient(135deg,#1a0a06,#2d1010)" },
-  { name:"@techwithrahul",  platform:"YouTube",   followers:"890K",  cat:"Tech Reviews",        result:"3.2M views campaign",  color:"#3d52a8", bg:"linear-gradient(135deg,#060d20,#0d1838)" },
-  { name:"@kolkatafoodies", platform:"Instagram", followers:"1.1M",  cat:"Food & Travel",       result:"40K orders attributed",color:"#ffffff", bg:"linear-gradient(135deg,#100800,#201400)" },
-  { name:"@fitnesswithneha",platform:"Instagram", followers:"650K",  cat:"Health & Fitness",    result:"18K app downloads",    color:"#2d8a6a", bg:"linear-gradient(135deg,#030a06,#061410)" },
-  { name:"@startupstories",  platform:"LinkedIn",  followers:"320K",  cat:"Business",            result:"5K B2B leads",         color:"#3d52a8", bg:"linear-gradient(135deg,#020618,#040c28)" },
-  { name:"@beautybyaisha",   platform:"Instagram", followers:"780K",  cat:"Beauty & Skincare",   result:"₹85L product sales",   color:"#d97b3f", bg:"linear-gradient(135deg,#150806,#241010)" },
-  { name:"@travelnomad_in",  platform:"YouTube",   followers:"450K",  cat:"Travel",              result:"22M impressions",      color:"#8ab4c2", bg:"linear-gradient(135deg,#050d10,#0a1820)" },
-  { name:"@cricketcrazyin",  platform:"Instagram", followers:"3.8M",  cat:"Sports",              result:"12M reach in 3 days",  color:"#ffffff", bg:"linear-gradient(135deg,#0c0800,#1c1200)" },
+  { name:"Abhinandan Sarkar",  handle:"abhinandan__sarkar",  link:"https://www.instagram.com/abhinandan__sarkar",  color:"#1e2f6e" },
+  { name:"Abhishek Ghosh",     handle:"thefoodgambler",      link:"https://www.instagram.com/thefoodgambler",      color:"#2d3d8a" },
+  { name:"Adrija Ghoshal",     handle:"adrija.gal",          link:"https://www.instagram.com/adrija.gal",          color:"#3d52a8" },
+  { name:"Ahana Roy",          handle:"ahana8243",           link:"https://www.instagram.com/ahana8243",           color:"#7a1f2b" },
+  { name:"Chef Neha Dipak Shah",handle:"nehadeepakshah",     link:"https://www.instagram.com/nehadeepakshah",      color:"#9c2c3a" },
+  { name:"Garima Banka",       handle:"garima_banka",        link:"https://www.instagram.com/garima_banka",        color:"#c4622a" },
+  { name:"Manpreet Singh",     handle:"manpreetverse",       link:"https://www.instagram.com/manpreetverse",       color:"#d97b3f" },
+  { name:"Sandipta Sen",       handle:"sandiptasen",         link:"https://www.instagram.com/sandiptasen",         color:"#1e2f6e" },
+  { name:"Soham Sinha",        handle:"kolkatadelites",      link:"https://www.instagram.com/kolkatadelites",      color:"#2d3d8a" },
+  { name:"Trisha Ganguly",     handle:"trisha_gunja_ganguly",link:"https://www.instagram.com/trisha_gunja_ganguly",color:"#3d52a8" },
 ];
 
 function InfluencerSection({ go }: { go:(id:string)=>void }) {
@@ -1815,16 +1818,17 @@ function CreatorCarousel() {
   );
 }
 
-/* ── Minimal creator chip: avatar + handle + followers ── */
+/* ── Minimal creator chip: initials avatar + name + handle — click opens full directory ── */
 function CreatorAvatarCard({ inf, cardW }: { inf: typeof INFL_PROOF[number]; cardW:number }) {
   const [hov,setHov]=useState(false);
-  const [imgOk,setImgOk]=useState(true);
-  const seed     = inf.name.replace(/[^a-z]/gi,"");
-  const initials = inf.name.replace("@","").slice(0,2).toUpperCase();
+  const initials = inf.name.split(" ").filter(Boolean).slice(0,2).map(w=>w[0]).join("").toUpperCase();
   const SZ       = 72; // avatar diameter
 
   return (
-    <div
+    <a
+      href={inf.link}
+      target="_blank"
+      rel="noopener noreferrer"
       onMouseEnter={()=>setHov(true)}
       onMouseLeave={()=>setHov(false)}
       style={{
@@ -1836,41 +1840,33 @@ function CreatorAvatarCard({ inf, cardW }: { inf: typeof INFL_PROOF[number]; car
         border:`1px solid ${hov ? inf.color+"44" : "transparent"}`,
         transition:"background 0.25s,border-color 0.25s,transform 0.3s",
         transform: hov ? "translateY(-5px)" : "translateY(0)",
-        cursor:"default",
+        textDecoration:"none", cursor:"pointer",
       }}
     >
-      {/* Avatar */}
+      {/* Avatar — initials, real photo to follow later */}
       <div style={{
         width:SZ, height:SZ, borderRadius:"50%", overflow:"hidden", flexShrink:0,
         border:`2px solid ${hov ? inf.color : inf.color+"44"}`,
-        background:inf.bg,
+        background:`linear-gradient(135deg, ${inf.color}, ${inf.color}cc)`,
+        display:"flex",alignItems:"center",justifyContent:"center",
         transition:"border-color 0.25s, box-shadow 0.25s",
         boxShadow: hov ? `0 0 0 4px ${inf.color}22` : "none",
       }}>
-        {imgOk
-          ? <img src={`https://picsum.photos/seed/${seed}p/${SZ}/${SZ}`} alt={inf.name}
-              width={SZ} height={SZ}
-              style={{ width:"100%",height:"100%",objectFit:"cover",display:"block" }}
-              onError={()=>setImgOk(false)}
-            />
-          : <div style={{ width:"100%",height:"100%",display:"flex",alignItems:"center",justifyContent:"center",background:inf.bg }}>
-              <span style={{ fontFamily:"'Playfair Display',Georgia,serif",fontSize:"1.2rem",color:inf.color }}>{initials}</span>
-            </div>
-        }
+        <span style={{ fontFamily:"'Playfair Display',Georgia,serif",fontSize:"1.3rem",color:"#fff" }}>{initials}</span>
       </div>
 
-      {/* Handle */}
+      {/* Name */}
       <p style={{ fontSize:"0.78rem",fontWeight:600,color: hov?"#fff":"rgba(255,255,255,0.72)",
         letterSpacing:"-0.01em",textAlign:"center",
         overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",maxWidth:cardW-8,
         transition:"color 0.25s",
       }}>{inf.name}</p>
 
-      {/* Followers */}
-      <p style={{ fontSize:"0.65rem",fontWeight:700,color:inf.color,letterSpacing:"0.04em" }}>
-        {inf.followers}
+      {/* Handle */}
+      <p style={{ fontSize:"0.65rem",fontWeight:700,color:inf.color,letterSpacing:"0.02em" }}>
+        @{inf.handle}
       </p>
-    </div>
+    </a>
   );
 }
 
