@@ -1635,16 +1635,16 @@ function ClientsMarquee() {
 ───────────────────────────────────────────── */
 /* Real creators from our roster — subset shown on homepage, full list at /creators */
 const INFL_PROOF = [
-  { name:"Abhinandan Sarkar",  handle:"abhinandan__sarkar",  link:"https://www.instagram.com/abhinandan__sarkar",  color:"#1e2f6e" },
-  { name:"Abhishek Ghosh",     handle:"thefoodgambler",      link:"https://www.instagram.com/thefoodgambler",      color:"#2d3d8a" },
-  { name:"Adrija Ghoshal",     handle:"adrija.gal",          link:"https://www.instagram.com/adrija.gal",          color:"#3d52a8" },
-  { name:"Ahana Roy",          handle:"ahana8243",           link:"https://www.instagram.com/ahana8243",           color:"#7a1f2b" },
-  { name:"Chef Neha Dipak Shah",handle:"nehadeepakshah",     link:"https://www.instagram.com/nehadeepakshah",      color:"#9c2c3a" },
-  { name:"Garima Banka",       handle:"garima_banka",        link:"https://www.instagram.com/garima_banka",        color:"#c4622a" },
-  { name:"Manpreet Singh",     handle:"manpreetverse",       link:"https://www.instagram.com/manpreetverse",       color:"#d97b3f" },
-  { name:"Sandipta Sen",       handle:"sandiptasen",         link:"https://www.instagram.com/sandiptasen",         color:"#1e2f6e" },
-  { name:"Soham Sinha",        handle:"kolkatadelites",      link:"https://www.instagram.com/kolkatadelites",      color:"#2d3d8a" },
-  { name:"Trisha Ganguly",     handle:"trisha_gunja_ganguly",link:"https://www.instagram.com/trisha_gunja_ganguly",color:"#3d52a8" },
+  { name:"Abhinandan Sarkar",  handle:"abhinandan__sarkar",  link:"https://www.instagram.com/abhinandan__sarkar",  color:"#1e2f6e", img:"/Influencers/1.png",  imgType:"avatar" as const },
+  { name:"Abhishek Ghosh",     handle:"thefoodgambler",      link:"https://www.instagram.com/thefoodgambler",      color:"#2d3d8a", img:"/Influencers/2.png",  imgType:"avatar" as const },
+  { name:"Adrija Ghoshal",     handle:"adrija.gal",          link:"https://www.instagram.com/adrija.gal",          color:"#3d52a8", img:"/Influencers/4.png",  imgType:"avatar" as const },
+  { name:"Ahana Roy",          handle:"ahana8243",           link:"https://www.instagram.com/ahana8243",           color:"#7a1f2b", img:"/Influencers/6.png",  imgType:"avatar" as const },
+  { name:"Chef Neha Dipak Shah",handle:"nehadeepakshah",     link:"https://www.instagram.com/nehadeepakshah",      color:"#9c2c3a", img:"/Influencers/21.png", imgType:"avatar" as const },
+  { name:"Garima Banka",       handle:"garima_banka",        link:"https://www.instagram.com/garima_banka",        color:"#c4622a", img:"/Influencers/30.png", imgType:"photo"  as const },
+  { name:"Manpreet Singh",     handle:"manpreetverse",       link:"https://www.instagram.com/manpreetverse",       color:"#d97b3f", img:"/Influencers/37.png", imgType:"photo"  as const },
+  { name:"Sandipta Sen",       handle:"sandiptasen",         link:"https://www.instagram.com/sandiptasen",         color:"#1e2f6e", img:"/Influencers/73.jpg", imgType:"photo"  as const },
+  { name:"Soham Sinha",        handle:"kolkatadelites",      link:"https://www.instagram.com/kolkatadelites",      color:"#2d3d8a", img:"/Influencers/78.jpg", imgType:"photo"  as const },
+  { name:"Tripti Guha",        handle:"triptiggupta",        link:"https://www.instagram.com/triptiggupta",        color:"#3d52a8", img:"/Influencers/98.png", imgType:"photo"  as const },
 ];
 
 function InfluencerSection({ go }: { go:(id:string)=>void }) {
@@ -1818,11 +1818,13 @@ function CreatorCarousel() {
   );
 }
 
-/* ── Minimal creator chip: initials avatar + name + handle — click opens full directory ── */
+/* ── Minimal creator chip: real photo (or initials fallback) + name + handle — click opens full directory ── */
 function CreatorAvatarCard({ inf, cardW }: { inf: typeof INFL_PROOF[number]; cardW:number }) {
   const [hov,setHov]=useState(false);
+  const [imgOk,setImgOk]=useState(true);
   const initials = inf.name.split(" ").filter(Boolean).slice(0,2).map(w=>w[0]).join("").toUpperCase();
   const SZ       = 72; // avatar diameter
+  const showImg  = "img" in inf && inf.img && imgOk;
 
   return (
     <a
@@ -1843,7 +1845,7 @@ function CreatorAvatarCard({ inf, cardW }: { inf: typeof INFL_PROOF[number]; car
         textDecoration:"none", cursor:"pointer",
       }}
     >
-      {/* Avatar — initials, real photo to follow later */}
+      {/* Avatar — real photo when available, initials fallback otherwise */}
       <div style={{
         width:SZ, height:SZ, borderRadius:"50%", overflow:"hidden", flexShrink:0,
         border:`2px solid ${hov ? inf.color : inf.color+"44"}`,
@@ -1851,8 +1853,16 @@ function CreatorAvatarCard({ inf, cardW }: { inf: typeof INFL_PROOF[number]; car
         display:"flex",alignItems:"center",justifyContent:"center",
         transition:"border-color 0.25s, box-shadow 0.25s",
         boxShadow: hov ? `0 0 0 4px ${inf.color}22` : "none",
+        padding: showImg ? 3 : 0,
       }}>
-        <span style={{ fontFamily:"'Playfair Display',Georgia,serif",fontSize:"1.3rem",color:"#fff" }}>{initials}</span>
+        {showImg
+          ? (
+            <div style={{ width:"100%", height:"100%", borderRadius:"50%", overflow:"hidden", border:"2px solid #fff" }}>
+              <img src={inf.img} alt={inf.name} onError={()=>setImgOk(false)} style={{ width:"100%",height:"100%",objectFit:"cover",objectPosition:"center top" }}/>
+            </div>
+          )
+          : <span style={{ fontFamily:"'Playfair Display',Georgia,serif",fontSize:"1.3rem",color:"#fff" }}>{initials}</span>
+        }
       </div>
 
       {/* Name */}
