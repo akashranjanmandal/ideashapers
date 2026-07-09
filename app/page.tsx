@@ -1639,12 +1639,12 @@ const INFL_PROOF = [
   { name:"Abhishek Ghosh",     handle:"thefoodgambler",      link:"https://www.instagram.com/thefoodgambler",      color:"#2d3d8a", img:"/Influencers/2.png",  imgType:"avatar" as const },
   { name:"Adrija Ghoshal",     handle:"adrija.gal",          link:"https://www.instagram.com/adrija.gal",          color:"#3d52a8", img:"/Influencers/4.png",  imgType:"avatar" as const },
   { name:"Ahana Roy",          handle:"ahana8243",           link:"https://www.instagram.com/ahana8243",           color:"#7a1f2b", img:"/Influencers/6.png",  imgType:"avatar" as const },
-  { name:"Chef Neha Dipak Shah",handle:"nehadeepakshah",     link:"https://www.instagram.com/nehadeepakshah",      color:"#9c2c3a", img:"/Influencers/21.png", imgType:"avatar" as const },
-  { name:"Garima Banka",       handle:"garima_banka",        link:"https://www.instagram.com/garima_banka",        color:"#c4622a", img:"/Influencers/30.png", imgType:"photo"  as const },
-  { name:"Manpreet Singh",     handle:"manpreetverse",       link:"https://www.instagram.com/manpreetverse",       color:"#d97b3f", img:"/Influencers/37.png", imgType:"photo"  as const },
-  { name:"Sandipta Sen",       handle:"sandiptasen",         link:"https://www.instagram.com/sandiptasen",         color:"#1e2f6e", img:"/Influencers/73.jpg", imgType:"photo"  as const },
-  { name:"Soham Sinha",        handle:"kolkatadelites",      link:"https://www.instagram.com/kolkatadelites",      color:"#2d3d8a", img:"/Influencers/78.jpg", imgType:"photo"  as const },
-  { name:"Tripti Guha",        handle:"triptiggupta",        link:"https://www.instagram.com/triptiggupta",        color:"#3d52a8", img:"/Influencers/98.png", imgType:"photo"  as const },
+  { name:"Chef Neha Dipak Shah",handle:"nehadeepakshah",     link:"https://www.instagram.com/nehadeepakshah",      color:"#9c2c3a", img:"/Influencers/20.png", imgType:"avatar" as const },
+  { name:"Garima Banka",       handle:"garima_banka",        link:"https://www.instagram.com/garima_banka",        color:"#c4622a", img:"/Influencers/29.png", imgType:"photo"  as const },
+  { name:"Manpreet Singh",     handle:"manpreetverse",       link:"https://www.instagram.com/manpreetverse",       color:"#d97b3f", img:"/Influencers/36.png", imgType:"photo"  as const },
+  { name:"Sandipta Sen",       handle:"sandiptasen",         link:"https://www.instagram.com/sandiptasen",         color:"#1e2f6e", img:"/Influencers/72.jpg", imgType:"photo"  as const },
+  { name:"Soham Sinha",        handle:"kolkatadelites",      link:"https://www.instagram.com/kolkatadelites",      color:"#2d3d8a", img:"/Influencers/77.jpg", imgType:"photo"  as const },
+  { name:"Trisha Ganguly",     handle:"trisha_gunja_ganguly",link:"https://www.instagram.com/trisha_gunja_ganguly",color:"#3d52a8", img:"/Influencers/99.png", imgType:"photo"  as const },
 ];
 
 function InfluencerSection({ go }: { go:(id:string)=>void }) {
