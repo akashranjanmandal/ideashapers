@@ -413,13 +413,7 @@
    CREATORS DIRECTORY — one profile per screen
 ══════════════════════════════════════════ */
 .creators-sidebar {
-  position: fixed;
-  top: 50%;
-  right: clamp(1.5rem, 3vw, 3.5rem);
-  transform: translateY(-50%);
-  z-index: 40;
-  width: 140px;
-  max-height: 70vh;
+  display: none;
 }
 .creators-sidebar-list {
   display: flex;
@@ -442,12 +436,78 @@
 }
 .creators-sidebar-item:hover { color: var(--navy); }
 
+/* Only large desktop monitors get the floating sidebar — mid-size screens use the A-Z jump instead
+   to avoid the sidebar overlapping the portrait photo when there isn't enough spare width. */
+@media (min-width: 1500px) {
+  .creators-sidebar {
+    display: block;
+    position: fixed;
+    top: 50%;
+    right: clamp(1.5rem, 3vw, 3.5rem);
+    transform: translateY(-50%);
+    z-index: 40;
+    width: 140px;
+    max-height: 70vh;
+  }
+}
+
+.creators-az-wrap { position: relative; display: block; }
+@media (min-width: 1500px) {
+  .creators-az-wrap { display: none; }
+}
+.creators-az-toggle {
+  font-family: inherit;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.5rem 0.9rem;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(30,47,110,0.08);
+}
+.creators-az-panel {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 12px 40px rgba(30,47,110,0.16);
+  padding: 0.6rem;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.3rem;
+  width: 220px;
+  max-height: 260px;
+  overflow-y: auto;
+}
+.creators-az-item {
+  font-family: inherit;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--muted);
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  padding: 0.4rem 0;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.creators-az-item:hover { background: var(--navy); color: #fff; }
+
 .creator-section {
   min-height: 100vh;
   display: flex;
   align-items: center;
   padding: 6.5rem clamp(1.25rem, 5vw, 3rem) 3rem;
   border-bottom: 1px solid var(--border-2);
+}
+@media (min-width: 1500px) {
+  .creator-section { padding-right: calc(clamp(1.25rem, 5vw, 3rem) + 190px); }
 }
 .creator-section-inner {
   max-width: 1320px;
@@ -457,6 +517,9 @@
   grid-template-columns: minmax(260px, 420px) 1fr;
   gap: clamp(2rem, 5vw, 5rem);
   align-items: center;
+}
+@media (max-width: 1150px) and (min-width: 901px) {
+  .creator-section-inner { grid-template-columns: minmax(240px, 360px) 1fr; gap: 2rem; }
 }
 
 .creator-info { min-width: 0; }

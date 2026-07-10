@@ -34,12 +34,20 @@ function avatarColor(name: string) {
 export default function CreatorsDirectory({ initialSlug }: { initialSlug?: string }) {
   const initialIdx = initialSlug ? CREATORS.findIndex(c => slugify(c.name) === initialSlug) : 0;
   const [activeIdx, setActiveIdx] = useState(initialIdx >= 0 ? initialIdx : 0);
+  const [letterOpen, setLetterOpen] = useState(false);
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
   const hasJumped = useRef(false);
 
   const goTo = (i: number) => {
+    setLetterOpen(false);
     const el = sectionRefs.current[i];
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const letters = Array.from(new Set(CREATORS.map(c => c.name[0].toUpperCase()))).sort();
+  const goToLetter = (letter: string) => {
+    const i = CREATORS.findIndex(c => c.name[0].toUpperCase() === letter);
+    if (i >= 0) goTo(i);
   };
 
   // Jump to the requested creator on first load (no smooth-scroll animation, land instantly)
@@ -97,9 +105,27 @@ export default function CreatorsDirectory({ initialSlug }: { initialSlug?: strin
             Back to Home
           </span>
         </Link>
+
+        {/* A-Z jump — shown on tablets/mid-size screens where the floating sidebar is hidden */}
+        <div className="creators-az-wrap" style={{ pointerEvents: "all" }}>
+          <button
+            onClick={() => setLetterOpen(v => !v)}
+            className="creators-az-toggle"
+            aria-label="Jump to letter"
+          >
+            A–Z
+          </button>
+          {letterOpen && (
+            <div className="creators-az-panel">
+              {letters.map(l => (
+                <button key={l} onClick={() => goToLetter(l)} className="creators-az-item">{l}</button>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
 
-      {/* Desktop sidebar — jump list of all creators */}
+      {/* Desktop sidebar — jump list of all creators (large screens only) */}
       <aside className="creators-sidebar">
         <p style={{ fontFamily: "'Playfair Display',Georgia,serif", fontSize: "1.05rem", color: P.text, marginBottom: "1rem" }}>creators</p>
         <div style={{ height: 1, background: P.border, marginBottom: "0.9rem" }} />
