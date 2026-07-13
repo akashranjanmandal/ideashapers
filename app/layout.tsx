@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
-import Preloader from "@/components/Preloader";  
+import Preloader from "@/components/Preloader";
 
 export const metadata: Metadata = {
   title: "IdeaShapers — Transform Ideas Into Impact",
@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="noise">
-        <Preloader /> 
+        <Preloader />
         <SmoothScroll />
         {children}
       </body>
