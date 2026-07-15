@@ -270,6 +270,7 @@ export default function Home() {
   const [mobileMenu, setMobileMenu] = useState(false);
   const [workFilter, setWorkFilter] = useState("All");
   const [activeProject, setActiveProject] = useState<typeof WORK[number] | null>(null);
+  const [aboutModalOpen, setAboutModalOpen] = useState(false);
 
   /* hero entrance */
   useEffect(() => {
@@ -398,6 +399,7 @@ export default function Home() {
       <WAWidget />
 
       {activeProject && <ProjectModal project={activeProject} onClose={() => setActiveProject(null)} go={go} />}
+      {aboutModalOpen && <AboutModal onClose={() => setAboutModalOpen(false)} />}
 
       {/* ═══════════════════════════════════════
           HERO
@@ -511,12 +513,15 @@ export default function Home() {
                 We shape ideas for founders who <em style={{ color: "#ffffff" }}>refuse to be invisible.</em>
               </h2>
               <p style={{ fontSize: "0.9rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.9, marginBottom: "1.25rem", maxWidth: 560 }}>
-                IdeaShapers was founded in 2018 by designers and strategists who were tired of watching brilliant founders go unnoticed because of weak branding and forgettable websites.
+                Founded in 2025, IdeaShapers is a full-service branding, creative, and digital marketing agency dedicated to helping businesses build powerful brands and establish a strong online presence.
               </p>
               <p style={{ fontSize: "0.9rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.9, marginBottom: "2.5rem", maxWidth: 560 }}>
-                The gap between a founder&apos;s vision and their audience&apos;s understanding is almost always a design problem. We close that gap — with strategy, craft, and an obsessive attention to what actually moves people.
+                The idea behind IdeaShapers emerged from a shared observation while working across different industries. Time and again, businesses were investing in websites, branding, and digital marketing services that either failed to meet expectations or came at prices that didn&apos;t reflect the value delivered.
               </p>
-              <Mag><PillBtn white onClick={() => go("process")}>How We Work →</PillBtn></Mag>
+              <div style={{ display: "flex", gap: "0.85rem", alignItems: "center", flexWrap: "wrap" }}>
+                <Mag><PillBtn white onClick={() => go("process")}>How We Work →</PillBtn></Mag>
+                <ArrowBtn light onClick={() => setAboutModalOpen(true)}>See More</ArrowBtn>
+              </div>
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: "1px" }}>
               <div className="gsap-up" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1px", background: "rgba(255,255,255,0.05)", alignSelf: "start" }}>
@@ -703,7 +708,7 @@ export default function Home() {
         {/* ── Social bar ── */}
         <div style={{ borderBottom: "1px solid rgba(255,255,255,0.06)", padding: "2rem clamp(1.25rem,5vw,3rem)" }}>
           <div style={{ maxWidth: 1440, margin: "0 auto", display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "1rem" }}>
-            <p style={{ fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)" }}>Follow us</p>
+            <p style={{ fontSize: "0.8rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255,255,255,0.7)" }}>Follow us</p>
             <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
               {[
                 { label: "Instagram", href: "https://www.instagram.com/idea.shapers?igsh=eXVtdTBrejR0YW44&utm_source=qr", icon: <IGIcon />, color: "#ffffff" },
@@ -729,33 +734,39 @@ export default function Home() {
         <div style={{ maxWidth: 1440, margin: "0 auto", padding: "clamp(3rem,6vw,5rem) clamp(1.25rem,5vw,3rem)" }} className="footer-links-grid">
           <div>
             <Image src="/logo.png" alt="IdeaShapers" width={100} height={100} style={{ objectFit: "contain", filter: "brightness(0) invert(1)", marginBottom: "1rem" }} />
-            <p style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.28)", lineHeight: 1.75, maxWidth: 220, marginBottom: "1rem" }}>Building brands through strategy, creativity, and digital experiences—right here in Kolkata.</p>
-            <a href={`mailto:${CONTACT.email}`} style={{ fontSize: "0.75rem", color: `${P.navyL}`, display: "block", marginBottom: "0.35rem", textDecoration: "none" }}>{CONTACT.email}</a>
-            <a href={`tel:${CONTACT.phone1.replace(/\s/g, "")}`} style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.38)", display: "block", textDecoration: "none" }}>{CONTACT.phone1}</a>
-            <a href="tel:+917596810148" style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.38)", display: "block", textDecoration: "none" }}>+91 75968 10148</a>
+            <p style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, maxWidth: 220, marginBottom: "1rem" }}>Building brands through strategy, creativity, and digital experiences—right here in Kolkata.</p>
+            <a href={`mailto:${CONTACT.email}`} style={{ fontSize: "0.82rem", color: `${P.navyL}`, display: "block", marginBottom: "0.35rem", textDecoration: "none", fontWeight: 600 }}>{CONTACT.email}</a>
+            <a href={`tel:${CONTACT.phone1.replace(/\s/g, "")}`} style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.6)", display: "block", textDecoration: "none" }}>{CONTACT.phone1}</a>
+            <a href="tel:+917596810148" style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.6)", display: "block", textDecoration: "none" }}>+91 75968 10148</a>
           </div>
           {[
-            { h: "Services", ls: ["Brand Strategy", "Web Design", "Development", "Content", "Growth"] },
-            { h: "Work", ls: ["Brand Projects", "Web Projects", "One Pagers"] },
-            { h: "Studio", ls: ["About Us"] },
-            { h: "Info", ls: ["FAQs", "Start a Project"] },
+            { h: "Services", ls: [{ label: "Brand Strategy" }, { label: "Web Design" }, { label: "Development" }, { label: "Content" }, { label: "Growth" }] },
+            { h: "Work", ls: [{ label: "Brand Projects" }, { label: "Web Projects" }, { label: "One Pagers" }] },
+            { h: "Studio", ls: [{ label: "Our Story", id: "about" }] },
+            { h: "Info", ls: [{ label: "FAQs", id: "faq" }, { label: "Start a Project", id: "contact" }] },
           ].map(col => (
             <div key={col.h}>
-              <p style={{ fontSize: "0.56rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#fff", marginBottom: "1rem" }}>{col.h}</p>
-              {col.ls.map(l => (
-                <a key={l} href="#" style={{ display: "block", fontSize: "0.78rem", color: "rgba(255,255,255,0.32)", textDecoration: "none", marginBottom: "0.5rem", transition: "color 0.2s" }}
+              <p style={{ fontSize: "0.64rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#fff", marginBottom: "1rem" }}>{col.h}</p>
+              {col.ls.map(l => l.id ? (
+                <button key={l.label} onClick={() => go(l.id!)} style={{ display: "block", width: "100%", textAlign: "left", background: "none", border: "none", padding: 0, cursor: "pointer", fontSize: "0.85rem", fontWeight: 500, fontFamily: "inherit", color: "rgba(255,255,255,0.55)", marginBottom: "0.5rem", transition: "color 0.2s" }}
                   onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
-                  onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.32)")}
-                >{l}</a>
+                  onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.55)")}
+                >{l.label}</button>
+              ) : (
+                <span key={l.label} style={{ display: "block", fontSize: "0.85rem", fontWeight: 500, color: "rgba(255,255,255,0.55)", marginBottom: "0.5rem", cursor: "default" }}>{l.label}</span>
               ))}
             </div>
           ))}
         </div>
         <div style={{ maxWidth: 1440, margin: "0 auto", padding: "1.25rem clamp(1.25rem,5vw,3rem)", borderTop: "1px solid rgba(255,255,255,0.05)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "0.75rem" }}>
-          <p style={{ fontSize: "0.65rem", color: "rgba(255,255,255,0.18)" }}>© 2026 IdeaShapers. All rights reserved.</p>
+          <p style={{ fontSize: "0.75rem", fontWeight: 500, color: "rgba(255,255,255,0.45)" }}>© 2026 IdeaShapers. All rights reserved.</p>
           <div style={{ display: "flex", gap: "1.5rem" }}>
-            {["Privacy", "Terms", "Imprint"].map(l => (
-              <a key={l} href="#" style={{ fontSize: "0.65rem", color: "rgba(255,255,255,0.18)", textDecoration: "none" }}>{l}</a>
+            {[
+              { label: "Privacy Policy", href: "/privacy-policy" },
+              { label: "Terms & Conditions", href: "/terms-and-conditions" },
+              { label: "Cookie Policy", href: "/cookie-policy" },
+            ].map(l => (
+              <a key={l.label} href={l.href} style={{ fontSize: "0.75rem", fontWeight: 500, color: "rgba(255,255,255,0.45)", textDecoration: "none" }}>{l.label}</a>
             ))}
           </div>
         </div>
@@ -1276,6 +1287,58 @@ function ProjectModal({ project, onClose, go }: { project: typeof WORK[number]; 
             onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = `0 16px 40px ${p.accent}55`; }}
             onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = `0 12px 32px ${p.accent}40`; }}
           >Contact Us →</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   ABOUT MODAL — full "Our Story" copy, responsive
+───────────────────────────────────────────── */
+function AboutModal({ onClose }: { onClose: () => void }) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => { window.removeEventListener("keydown", onKey); document.body.style.overflow = ""; };
+  }, [onClose]);
+
+  const paragraphs = [
+    "Founded in 2025, IdeaShapers is a full-service branding, creative, and digital marketing agency dedicated to helping businesses build powerful brands and establish a strong online presence.",
+    "The idea behind IdeaShapers emerged from a shared observation while working across different industries. Time and again, businesses were investing in websites, branding, and digital marketing services that either failed to meet expectations or came at prices that didn't reflect the value delivered. There was a clear gap between what businesses were looking for, what they actually received, and the affordability of quality digital solutions.",
+    "IdeaShapers was created to bridge that gap by making strategic, creative, and performance-driven digital services more accessible. We believe every business, whether a startup or an established brand, deserves high-quality branding, websites, and marketing solutions that deliver measurable results without unnecessary complexity or inflated costs.",
+    "At IdeaShapers, we combine strategic branding, creative design, high-performance website development, digital marketing, content creation, and brand communication to help businesses connect meaningfully with their audience. Every project is driven by research, creativity, and a deep understanding of consumer behaviour to create memorable brand experiences that inspire trust and drive sustainable growth.",
+    "Whether you're building your first brand identity, refreshing an existing one, launching a high-converting website, or scaling your digital presence, IdeaShapers delivers integrated solutions that bring together strategy, design, technology, and marketing to help your business stand out in a competitive marketplace.",
+  ];
+
+  return (
+    <div onClick={onClose} style={{ position: "fixed", inset: 0, zIndex: 1050, background: "rgba(20,20,20,0.55)", backdropFilter: "blur(6px)", display: "flex", alignItems: "center", justifyContent: "center", padding: "clamp(1rem,4vw,3rem)", animation: "modalFade 0.25s ease" }}>
+      <div onClick={e => e.stopPropagation()} style={{
+        position: "relative", width: "min(680px,100%)", maxHeight: "86vh", overflowY: "auto",
+        background: P.dark, borderRadius: 24, border: "1px solid rgba(255,255,255,0.1)",
+        boxShadow: "0 48px 120px rgba(0,0,0,0.4)", animation: "modalRise 0.3s cubic-bezier(0.25,0.46,0.45,0.94)",
+      }}>
+        <button onClick={onClose} aria-label="Close" style={{
+          position: "absolute", top: "1.25rem", right: "1.25rem", width: 36, height: 36, borderRadius: "50%",
+          background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)",
+          display: "flex", alignItems: "center", justifyContent: "center", color: "rgba(255,255,255,0.7)",
+          fontSize: "0.95rem", cursor: "pointer", zIndex: 3, transition: "all 0.2s",
+        }}
+          onMouseEnter={e => { e.currentTarget.style.background = "#fff"; e.currentTarget.style.color = P.dark; }}
+          onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.08)"; e.currentTarget.style.color = "rgba(255,255,255,0.7)"; }}
+        >✕</button>
+
+        <div style={{ padding: "clamp(2.25rem,6vw,3rem) clamp(1.75rem,5vw,3rem) clamp(2.5rem,6vw,3rem)" }}>
+          <p style={{ fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)", marginBottom: "1rem" }}>Our Story</p>
+          <h2 style={{ fontFamily: "'Playfair Display',Georgia,serif", fontSize: "clamp(1.6rem,4vw,2.4rem)", fontWeight: 400, color: "#fff", lineHeight: 1.15, marginBottom: "1.75rem" }}>
+            We shape ideas for founders who <em style={{ color: "#ffffff" }}>refuse to be invisible.</em>
+          </h2>
+          {paragraphs.map((para, i) => (
+            <p key={i} style={{ fontSize: "0.9rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.9, marginBottom: i < paragraphs.length - 1 ? "1.25rem" : 0 }}>
+              {para}
+            </p>
+          ))}
         </div>
       </div>
     </div>

@@ -211,7 +211,7 @@ function ProfileSection({
               <path d="M8 1.5c-2.4 0-4.3 1.9-4.3 4.3 0 3.2 4.3 8.7 4.3 8.7s4.3-5.5 4.3-8.7c0-2.4-1.9-4.3-4.3-4.3z" stroke={P.navy} strokeWidth="1.3"/>
               <circle cx="8" cy="5.8" r="1.5" stroke={P.navy} strokeWidth="1.3"/>
             </svg>
-            <span>kolkata, india</span>
+            <span>{(creator.location || "Kolkata, India").toLowerCase()}</span>
           </div>
 
           <div className="creator-social">
