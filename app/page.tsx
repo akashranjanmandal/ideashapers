@@ -739,12 +739,12 @@ export default function Home() {
             <a href={`tel:${CONTACT.phone1.replace(/\s/g, "")}`} style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.6)", display: "block", textDecoration: "none" }}>{CONTACT.phone1}</a>
             <a href="tel:+917596810148" style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.6)", display: "block", textDecoration: "none" }}>+91 75968 10148</a>
           </div>
-          {[
+          {(([
             { h: "Services", ls: [{ label: "Brand Strategy" }, { label: "Web Design" }, { label: "Development" }, { label: "Content" }, { label: "Growth" }] },
             { h: "Work", ls: [{ label: "Brand Projects" }, { label: "Web Projects" }, { label: "One Pagers" }] },
             { h: "Studio", ls: [{ label: "Our Story", id: "about" }] },
             { h: "Info", ls: [{ label: "FAQs", id: "faq" }, { label: "Start a Project", id: "contact" }] },
-          ].map(col => (
+          ]) as Array<{ h: string; ls: Array<{ label: string; id?: string }> }>).map(col => (
             <div key={col.h}>
               <p style={{ fontSize: "0.64rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#fff", marginBottom: "1rem" }}>{col.h}</p>
               {col.ls.map(l => l.id ? (
