@@ -89,10 +89,10 @@ const TESTIMONIALS = [
 ];
 
 const TEAM = [
-  { name: "Aryan Mehta", role: "Creative Director", bio: "10 years crafting brand identities for startups and Fortune 500s. Obsessed with the gap between good and iconic.", initials: "AM", color: "#c4622a" },
-  { name: "Zara Patel", role: "Head of Strategy", bio: "Ex-McKinsey. Spent 8 years helping companies find their unfair advantage. Now she does it through design.", initials: "ZP", color: "#ffffff" },
-  { name: "Leo Fontaine", role: "Lead Developer", bio: "Built products used by millions. Believes great code is invisible — you only notice it when it's gone.", initials: "LF", color: "#8ab4c2" },
-  { name: "Maya Osei", role: "UX & Content Lead", bio: "Former journalist turned UX researcher. Writes copy that converts and designs flows that delight.", initials: "MO", color: "#d97b3f" },
+  { name: "Sukanya", role: "Creative & PR Director", bio: "Ex-ISI professional, shaping brands through creativity, communication and strategic storytelling.", initials: "SK", color: "#c4622a" },
+  { name: "Sahil", role: "Co-Founder", bio: "Ex-IBM professional, business strategist and entrepreneur, helping brands grow through strategy, creativity and innovation.", initials: "SH", color: "#ffffff" },
+  { name: "Subhodeep", role: "Engineering Lead", bio: "6+ years of AI-enabled cyber-physical software development, having delivered over 130+ live projects and extensive work in Geophysical AI.", initials: "SG", color: "#8ab4c2" },
+  { name: "Suresh", role: "Lead Designer", bio: "8+ years of experience in branding, digital design and creative strategy, creating impactful visuals that strengthen brand identity and drive engagement.", initials: "SU", color: "#d97b3f" },
 ];
 
 const FAQS = [
