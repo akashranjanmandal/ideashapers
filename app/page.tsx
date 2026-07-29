@@ -89,8 +89,8 @@ const TESTIMONIALS = [
 ];
 
 const TEAM = [
-  { name: "Sukanya", role: "Creative & PR Director", bio: "Ex-ISI professional, shaping brands through creativity, communication and strategic storytelling.", initials: "SK", color: "#c4622a" },
-  { name: "Sahil", role: "Co-Founder", bio: "Ex-IBM professional, business strategist and entrepreneur, helping brands grow through strategy, creativity and innovation.", initials: "SH", color: "#ffffff" },
+  { name: "Sukanya", role: "PR & Communications", bio: "Ex-ISI professional, shaping brands through creativity, communication and strategic storytelling.", initials: "SK", color: "#c4622a" },
+  { name: "Sahil", role: "Head of Strategy", bio: "Ex-IBM professional, business strategist and entrepreneur, helping brands grow through strategy, creativity and innovation.", initials: "SH", color: "#ffffff" },
   { name: "Subhodeep", role: "Engineering Lead", bio: "6+ years of AI-enabled cyber-physical software development, having delivered over 130+ live projects and extensive work in Geophysical AI.", initials: "SG", color: "#8ab4c2" },
   { name: "Suresh", role: "Lead Designer", bio: "8+ years of experience in branding, digital design and creative strategy, creating impactful visuals that strengthen brand identity and drive engagement.", initials: "SU", color: "#d97b3f" },
 ];
