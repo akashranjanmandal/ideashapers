@@ -1,4 +1,13 @@
+import type { Metadata } from "next";
 import LegalPage from "../legal/LegalPage";
+import { socialMeta } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "Terms & Conditions",
+  description: "Terms and conditions for using the IdeaShapers website and services.",
+  alternates: { canonical: "/terms-and-conditions" },
+  ...socialMeta("Terms & Conditions | IdeaShapers", "Terms and conditions for using the IdeaShapers website and services.", "/terms-and-conditions"),
+};
 
 export default function TermsAndConditionsPage() {
   return (

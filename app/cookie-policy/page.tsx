@@ -1,4 +1,13 @@
+import type { Metadata } from "next";
 import LegalPage from "../legal/LegalPage";
+import { socialMeta } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "Cookie Policy",
+  description: "How IdeaShapers uses cookies and similar technologies on ideashapers.org.",
+  alternates: { canonical: "/cookie-policy" },
+  ...socialMeta("Cookie Policy | IdeaShapers", "How IdeaShapers uses cookies and similar technologies on ideashapers.org.", "/cookie-policy"),
+};
 
 export default function CookiePolicyPage() {
   return (

@@ -271,6 +271,8 @@ function ProfileSection({
           {hasPhoto && (
             <img
               src={creator.img}
+              loading="lazy"
+              decoding="async"
               alt={creator.name}
               onError={() => setImgOk(false)}
               className="creator-photo"
@@ -279,7 +281,7 @@ function ProfileSection({
 
           {hasAvatar && (
             <div className="creator-avatar-frame">
-              <img src={creator.img} alt={creator.name} onError={() => setImgOk(false)} className="creator-avatar-img" />
+              <img src={creator.img} alt={creator.name} loading="lazy" decoding="async" onError={() => setImgOk(false)} className="creator-avatar-img" />
             </div>
           )}
 

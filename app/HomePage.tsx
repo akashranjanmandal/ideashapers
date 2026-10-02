@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { FAQS } from "@/lib/faqs";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -95,14 +96,6 @@ const TEAM = [
   { name: "Suresh", role: "Lead Designer", bio: "8+ years of experience in branding, digital design and creative strategy, creating impactful visuals that strengthen brand identity and drive engagement.", initials: "SU", color: "#d97b3f" },
 ];
 
-const FAQS = [
-  { q: "How long does a typical project take?", a: "Most brand + web projects run 5–8 weeks from kickoff to launch. Smaller engagements like one pagers or brand only work typically land in 2–4 weeks. We'll give you a precise timeline in your discovery call." },
-  { q: "What does the process look like?", a: "We work in five phases: Discovery, Strategy, Design, Development, and Launch + Growth. You're involved at each stage — we don't disappear for weeks and surprise you with a finished product." },
-  { q: "Do you work with early stage founders?", a: "Absolutely. Many of our best projects started with founders who had a vision but no brand yet. We love helping you build from the ground up — it's where we have the most creative impact." },
-  { q: "What's included after launch?", a: "Every project includes 30 days of post launch support. We're with you through the critical first month to iron out anything unexpected. Extended retainer support is available if you want us ongoing." },
-  { q: "Can you work with our existing brand?", a: "Yes. We can work within your existing brand guidelines, evolve them, or start fresh — whatever your goals demand. We'll advise on what makes the most strategic sense after our discovery session." },
-  { q: "How do we get started?", a: "Hit 'Start a Project' and fill in the contact form. We'll get back to you within 24 hours to schedule a free 30 minute discovery call. No commitment, no pressure — just a conversation." },
-];
 
 const WA_PRESETS = [
   "Hi IdeaShapers! I'd like to start a new project.",
@@ -128,14 +121,14 @@ const CLIENTS = [
 ];
 
 const CLIENT_LOGOS = [
-  { src: "/777restro.jpg", name: "777 Restro & Bar" },
-  { src: "/bluesky.jpg", name: "Bluesky Education" },
-  { src: "/dentlife.png", name: "Dent Life" },
-  { src: "/premiumliqour.png", name: "Premium Liquor" },
-  { src: "/silvermoon.jpg", name: "Silver Moon" },
-  { src: "/thesmileclinic.png", name: "The Smile Clinique" },
-  { src: "/umafoods.png", name: "Uma Foods" },
-  { src: "/urbanplatters.png", name: "Urban Platter" },
+  { src: "/777restro.webp", name: "777 Restro & Bar" },
+  { src: "/bluesky.webp", name: "Bluesky Education" },
+  { src: "/dentlife.webp", name: "Dent Life" },
+  { src: "/premiumliqour.webp", name: "Premium Liquor" },
+  { src: "/silvermoon.webp", name: "Silver Moon" },
+  { src: "/thesmileclinic.webp", name: "The Smile Clinique" },
+  { src: "/umafoods.webp", name: "Uma Foods" },
+  { src: "/urbanplatters.webp", name: "Urban Platter" },
 ];
 
 /* ── influencer services ── */
@@ -740,11 +733,11 @@ export default function Home() {
             <a href="tel:+917596810148" style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.6)", display: "block", textDecoration: "none" }}>+91 75968 10148</a>
           </div>
           {(([
-            { h: "Services", ls: [{ label: "Brand Strategy" }, { label: "Web Design" }, { label: "Development" }, { label: "Content" }, { label: "Growth" }] },
-            { h: "Work", ls: [{ label: "Brand Projects" }, { label: "Web Projects" }, { label: "One Pagers" }] },
-            { h: "Studio", ls: [{ label: "Our Story", id: "about" }] },
+            { h: "Services", ls: [{ label: "Brand Strategy", id: "services" }, { label: "Web Design", id: "services" }, { label: "Development", id: "services" }, { label: "Content", id: "services" }, { label: "Growth", id: "services" }] },
+            { h: "Work", ls: [{ label: "Brand Projects", id: "work" }, { label: "Web Projects", id: "work" }, { label: "One Pagers", id: "work" }] },
+            { h: "Studio", ls: [{ label: "Our Story", id: "about" }, { label: "Process", id: "process" }, { label: "Creators", href: "/creators" }] },
             { h: "Info", ls: [{ label: "FAQs", id: "faq" }, { label: "Start a Project", id: "contact" }] },
-          ]) as Array<{ h: string; ls: Array<{ label: string; id?: string }> }>).map(col => (
+          ]) as Array<{ h: string; ls: Array<{ label: string; id?: string; href?: string }> }>).map(col => (
             <div key={col.h}>
               <p style={{ fontSize: "0.64rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#fff", marginBottom: "1rem" }}>{col.h}</p>
               {col.ls.map(l => l.id ? (
@@ -753,7 +746,7 @@ export default function Home() {
                   onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.55)")}
                 >{l.label}</button>
               ) : (
-                <span key={l.label} style={{ display: "block", fontSize: "0.85rem", fontWeight: 500, color: "rgba(255,255,255,0.55)", marginBottom: "0.5rem", cursor: "default" }}>{l.label}</span>
+                <a key={l.label} href={l.href} style={{ display: "block", fontSize: "0.85rem", fontWeight: 500, color: "rgba(255,255,255,0.55)", marginBottom: "0.5rem", textDecoration: "none" }}>{l.label}</a>
               ))}
             </div>
           ))}
@@ -1403,7 +1396,8 @@ function FAQItem({ q, a }: { q: string; a: string }) {
    CONTACT FORM
 ───────────────────────────────────────────── */
 function ContactForm() {
-  const [form, setForm] = useState({ name: "", email: "", service: "", msg: "" });
+  const [form, setForm] = useState({ name: "", email: "", service: "", msg: "", website: "" });
+  const [startedAt] = useState(() => Date.now());
   const [focusField, setFocusField] = useState("");
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
@@ -1435,12 +1429,15 @@ function ContactForm() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, t: startedAt }),
       });
-      if (!res.ok) throw new Error("Failed to send");
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(res.status === 500 ? "" : data.error ?? "");
+      }
       setSent(true);
-    } catch {
-      setError("Something went wrong. Please try again or email us directly.");
+    } catch (err) {
+      setError((err instanceof Error && err.message) || `Something went wrong. Please try again or email us at ${CONTACT.email}.`);
     } finally {
       setSending(false);
     }
@@ -1449,11 +1446,16 @@ function ContactForm() {
   return (
     <form className="gsap-up" onSubmit={handleSubmit}>
 
+      {/* Honeypot — hidden from people, bots fill it in */}
+      <div aria-hidden="true" style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }}>
+        <label>Website<input type="text" name="website" tabIndex={-1} autoComplete="off" value={form.website} onChange={e => setForm({ ...form, website: e.target.value })} /></label>
+      </div>
+
       {/* Two underline fields side by side */}
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 2.5rem", marginBottom: "2.5rem" }}>
         <div>
           <label style={{ display: "block", fontSize: "0.55rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: focusField === "name" ? "#ffffff" : "rgba(255,255,255,0.25)", marginBottom: "0.35rem", transition: "color 0.25s" }}>Your Name</label>
-          <input type="text" value={form.name} required placeholder="Rahul Agarwal"
+          <input type="text" value={form.name} required maxLength={100} placeholder="Rahul Agarwal"
             style={lineInp("name")}
             onFocus={() => setFocusField("name")} onBlur={() => setFocusField("")}
             onChange={e => setForm({ ...form, name: e.target.value })}
@@ -1461,7 +1463,7 @@ function ContactForm() {
         </div>
         <div>
           <label style={{ display: "block", fontSize: "0.55rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: focusField === "email" ? "#ffffff" : "rgba(255,255,255,0.25)", marginBottom: "0.35rem", transition: "color 0.25s" }}>Email</label>
-          <input type="email" value={form.email} required placeholder="you@company.com"
+          <input type="email" value={form.email} required maxLength={200} placeholder="you@company.com"
             style={lineInp("email")}
             onFocus={() => setFocusField("email")} onBlur={() => setFocusField("")}
             onChange={e => setForm({ ...form, email: e.target.value })}
@@ -1492,7 +1494,7 @@ function ContactForm() {
       {/* Message — underline textarea */}
       <div style={{ marginBottom: "2.5rem" }}>
         <label style={{ display: "block", fontSize: "0.55rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: focusField === "msg" ? "#ffffff" : "rgba(255,255,255,0.25)", marginBottom: "0.35rem", transition: "color 0.25s" }}>Tell us about your project</label>
-        <textarea value={form.msg} required rows={3} placeholder="What's the goal? What's the timeline?"
+        <textarea value={form.msg} required maxLength={5000} rows={3} placeholder="What's the goal? What's the timeline?"
           style={{ ...lineInp("msg"), resize: "none", lineHeight: 1.8 }}
           onFocus={() => setFocusField("msg")} onBlur={() => setFocusField("")}
           onChange={e => setForm({ ...form, msg: e.target.value })}
@@ -1516,20 +1518,6 @@ function ContactForm() {
       {error && <p style={{ color: "#ff8a8a", fontSize: "0.8rem", marginTop: "1rem" }}>{error}</p>}
 
       <style>{`.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}@media(max-width:600px){.form-row{grid-template-columns:1fr;}}`}</style>
-    </form>
-  );
-}
-
-/* ─────────────────────────────────────────────
-   NEWSLETTER FORM
-───────────────────────────────────────────── */
-function NLForm() {
-  const [em, setEm] = useState(""), [done, setDone] = useState(false);
-  if (done) return <div style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "10px 20px", border: "1px solid rgba(255,255,255,0.4)", borderRadius: 999, color: "#ffffff", fontSize: "0.82rem", fontWeight: 600 }}>✓ You&apos;re in — thanks!</div>;
-  return (
-    <form onSubmit={e => { e.preventDefault(); setDone(true); }} style={{ display: "flex", maxWidth: 400 }}>
-      <input type="email" value={em} onChange={e => setEm(e.target.value)} placeholder="your@email.com" required style={{ flex: 1, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRight: "none", outline: "none", padding: "11px 16px", color: "#fff", fontSize: "0.83rem", borderRadius: "999px 0 0 999px", fontFamily: "inherit" }} />
-      <button type="submit" style={{ background: P.navy, color: "#fff", border: "none", padding: "11px 22px", fontWeight: 700, fontSize: "0.76rem", cursor: "pointer", borderRadius: "0 999px 999px 0", whiteSpace: "nowrap", fontFamily: "inherit", transition: "background 0.2s" }} onMouseEnter={e => (e.currentTarget.style.background = P.navy2)} onMouseLeave={e => (e.currentTarget.style.background = P.navy)}>Subscribe</button>
     </form>
   );
 }
@@ -1714,16 +1702,16 @@ function ClientsMarquee() {
 ───────────────────────────────────────────── */
 /* Real creators from our roster — subset shown on homepage, full list at /creators */
 const INFL_PROOF = [
-  { name: "Abhinandan Sarkar", handle: "abhinandan__sarkar", link: "https://www.instagram.com/abhinandan__sarkar", color: "#1e2f6e", img: "/Influencers/1.png", imgType: "avatar" as const },
-  { name: "Abhishek Ghosh", handle: "thefoodgambler", link: "https://www.instagram.com/thefoodgambler", color: "#2d3d8a", img: "/Influencers/2.png", imgType: "avatar" as const },
-  { name: "Adrija Ghoshal", handle: "adrija.gal", link: "https://www.instagram.com/adrija.gal", color: "#3d52a8", img: "/Influencers/4.png", imgType: "avatar" as const },
-  { name: "Ahana Roy", handle: "ahana8243", link: "https://www.instagram.com/ahana8243", color: "#7a1f2b", img: "/Influencers/6.png", imgType: "avatar" as const },
-  { name: "Chef Neha Dipak Shah", handle: "nehadeepakshah", link: "https://www.instagram.com/nehadeepakshah", color: "#9c2c3a", img: "/Influencers/20.png", imgType: "avatar" as const },
-  { name: "Garima Banka", handle: "garima_banka", link: "https://www.instagram.com/garima_banka", color: "#c4622a", img: "/Influencers/29.png", imgType: "photo" as const },
-  { name: "Manpreet Singh", handle: "manpreetverse", link: "https://www.instagram.com/manpreetverse", color: "#d97b3f", img: "/Influencers/36.png", imgType: "photo" as const },
-  { name: "Sandipta Sen", handle: "sandiptasen", link: "https://www.instagram.com/sandiptasen", color: "#1e2f6e", img: "/Influencers/72.jpg", imgType: "photo" as const },
-  { name: "Soham Sinha", handle: "kolkatadelites", link: "https://www.instagram.com/kolkatadelites", color: "#2d3d8a", img: "/Influencers/77.jpg", imgType: "photo" as const },
-  { name: "Trisha Ganguly", handle: "trisha_gunja_ganguly", link: "https://www.instagram.com/trisha_gunja_ganguly", color: "#3d52a8", img: "/Influencers/99.png", imgType: "photo" as const },
+  { name: "Abhinandan Sarkar", handle: "abhinandan__sarkar", link: "https://www.instagram.com/abhinandan__sarkar", color: "#1e2f6e", img: "/Influencers/1.webp", imgType: "avatar" as const },
+  { name: "Abhishek Ghosh", handle: "thefoodgambler", link: "https://www.instagram.com/thefoodgambler", color: "#2d3d8a", img: "/Influencers/2.webp", imgType: "avatar" as const },
+  { name: "Adrija Ghoshal", handle: "adrija.gal", link: "https://www.instagram.com/adrija.gal", color: "#3d52a8", img: "/Influencers/4.webp", imgType: "avatar" as const },
+  { name: "Ahana Roy", handle: "ahana8243", link: "https://www.instagram.com/ahana8243", color: "#7a1f2b", img: "/Influencers/6.webp", imgType: "avatar" as const },
+  { name: "Chef Neha Dipak Shah", handle: "nehadeepakshah", link: "https://www.instagram.com/nehadeepakshah", color: "#9c2c3a", img: "/Influencers/20.webp", imgType: "avatar" as const },
+  { name: "Garima Banka", handle: "garima_banka", link: "https://www.instagram.com/garima_banka", color: "#c4622a", img: "/Influencers/29.webp", imgType: "photo" as const },
+  { name: "Manpreet Singh", handle: "manpreetverse", link: "https://www.instagram.com/manpreetverse", color: "#d97b3f", img: "/Influencers/36.webp", imgType: "photo" as const },
+  { name: "Sandipta Sen", handle: "sandiptasen", link: "https://www.instagram.com/sandiptasen", color: "#1e2f6e", img: "/Influencers/72.webp", imgType: "photo" as const },
+  { name: "Soham Sinha", handle: "kolkatadelites", link: "https://www.instagram.com/kolkatadelites", color: "#2d3d8a", img: "/Influencers/77.webp", imgType: "photo" as const },
+  { name: "Trisha Ganguly", handle: "trisha_gunja_ganguly", link: "https://www.instagram.com/trisha_gunja_ganguly", color: "#3d52a8", img: "/Influencers/99.webp", imgType: "photo" as const },
 ];
 
 function InfluencerSection({ go }: { go: (id: string) => void }) {
@@ -1937,7 +1925,7 @@ function CreatorAvatarCard({ inf, cardW }: { inf: typeof INFL_PROOF[number]; car
         {showImg
           ? (
             <div style={{ width: "100%", height: "100%", borderRadius: "50%", overflow: "hidden", border: "2px solid #fff" }}>
-              <img src={inf.img} alt={inf.name} onError={() => setImgOk(false)} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }} />
+              <img src={inf.img} alt={inf.name} loading="lazy" decoding="async" onError={() => setImgOk(false)} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }} />
             </div>
           )
           : <span style={{ fontFamily: "'Playfair Display',Georgia,serif", fontSize: "1.3rem", color: "#fff" }}>{initials}</span>
@@ -2063,6 +2051,8 @@ function GalleryCard({ item, variant = "normal" }: { item: typeof GALLERY_ITEMS[
       {!imgErr && (
         <img
           src={item.img}
+          loading="lazy"
+          decoding="async"
           alt={item.title}
           onError={() => setImgErr(true)}
           style={{

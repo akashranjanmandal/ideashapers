@@ -1,4 +1,13 @@
+import type { Metadata } from "next";
 import LegalPage from "../legal/LegalPage";
+import { socialMeta } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description: "How IdeaShapers collects, uses and protects your personal information.",
+  alternates: { canonical: "/privacy-policy" },
+  ...socialMeta("Privacy Policy | IdeaShapers", "How IdeaShapers collects, uses and protects your personal information.", "/privacy-policy"),
+};
 
 export default function PrivacyPolicyPage() {
   return (

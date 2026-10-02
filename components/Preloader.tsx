@@ -3,29 +3,37 @@
 import { useEffect, useState } from "react";
 
 interface PreloaderProps {
-  /** Controls visibility. Pass `false` once your page is ready to unmount. */
-  show?: boolean;
-  /** Milliseconds to auto-hide if `show` is never set to false. Default: 2800 */
+  /** Upper bound in ms before hiding, even if the page is still loading. Default: 1800 */
   autoHideMs?: number;
+  /** Minimum ms on screen so the animation doesn't just flash. Default: 400 */
+  minMs?: number;
 }
 
-export default function Preloader({ show, autoHideMs = 2800 }: PreloaderProps) {
+export default function Preloader({ autoHideMs = 1800, minMs = 400 }: PreloaderProps) {
   const [visible, setVisible] = useState(true);
   const [fadeOut, setFadeOut] = useState(false);
-
-  useEffect(() => {
-    if (show === false) {
-      triggerFadeOut();
-      return;
-    }
-    const timer = setTimeout(() => triggerFadeOut(), autoHideMs);
-    return () => clearTimeout(timer);
-  }, [show, autoHideMs]);
 
   function triggerFadeOut() {
     setFadeOut(true);
     setTimeout(() => setVisible(false), 700);
   }
+
+  useEffect(() => {
+    // Hide as soon as the page has loaded (after a short minimum), capped at autoHideMs.
+    const started = performance.now();
+    let minTimer: ReturnType<typeof setTimeout> | undefined;
+    const onLoad = () => {
+      minTimer = setTimeout(triggerFadeOut, Math.max(0, minMs - (performance.now() - started)));
+    };
+    if (document.readyState === "complete") onLoad();
+    else window.addEventListener("load", onLoad, { once: true });
+    const capTimer = setTimeout(triggerFadeOut, autoHideMs);
+    return () => {
+      window.removeEventListener("load", onLoad);
+      clearTimeout(minTimer);
+      clearTimeout(capTimer);
+    };
+  }, [autoHideMs, minMs]);
 
   if (!visible) return null;
 
