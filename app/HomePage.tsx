@@ -142,6 +142,9 @@ const INFL_SERVICES = [
 ];
 
 /* ── event gallery ── */
+/* "Events that leave a mark" section is hidden for now — set to true to show it again. */
+const SHOW_EVENT_GALLERY = false;
+
 const EVENTS_DATA = [
   { title: "Fashion Week", type: "Fashion & Lifestyle", year: "2024", bg: "linear-gradient(145deg,#1a0a18 0%,#2d1040 100%)", accent: "#ffffff" },
   { title: "TEDx Kolkata", type: "Conference & Summit", year: "2024", bg: "linear-gradient(145deg,#060d18 0%,#0d1a30 100%)", accent: "#3d52a8" },
@@ -640,7 +643,7 @@ export default function Home() {
       {/* ═══════════════════════════════════════
           EVENT GALLERY — card game fan
       ═══════════════════════════════════════ */}
-      <EventGallery />
+      {SHOW_EVENT_GALLERY && <EventGallery />}
 
       {/* ═══════════════════════════════════════
           FAQ
