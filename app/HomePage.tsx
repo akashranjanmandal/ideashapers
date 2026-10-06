@@ -144,6 +144,8 @@ const INFL_SERVICES = [
 /* ── event gallery ── */
 /* "Events that leave a mark" section is hidden for now — set to true to show it again. */
 const SHOW_EVENT_GALLERY = false;
+/* "Real results, real people" testimonials are hidden for now — set to true to show them again. */
+const SHOW_TESTIMONIALS = false;
 
 const EVENTS_DATA = [
   { title: "Fashion Week", type: "Fashion & Lifestyle", year: "2024", bg: "linear-gradient(145deg,#1a0a18 0%,#2d1040 100%)", accent: "#ffffff" },
@@ -622,6 +624,7 @@ export default function Home() {
           TESTIMONIALS — minimal person card
           Big name, photo circle, role, short quote
       ═══════════════════════════════════════ */}
+      {SHOW_TESTIMONIALS && (
       <section style={{ background: P.cream3, padding: "clamp(30px,7vw,100px) 0", overflow: "hidden" }}>
         <div style={{ maxWidth: 1440, margin: "0 auto clamp(2.5rem,4vw,4rem)", padding: "0 clamp(1.25rem,5vw,3rem)" }}>
           <p className="gsap-up" style={{ fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: P.muted, marginBottom: "0.75rem" }}>What Clients Say</p>
@@ -639,6 +642,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      )}
 
       {/* ═══════════════════════════════════════
           EVENT GALLERY — card game fan
