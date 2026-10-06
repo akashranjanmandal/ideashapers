@@ -1448,7 +1448,7 @@ function ContactForm() {
 
       {/* Honeypot — hidden from people, bots fill it in */}
       <div aria-hidden="true" style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }}>
-        <label>Website<input type="text" name="website" tabIndex={-1} autoComplete="off" value={form.website} onChange={e => setForm({ ...form, website: e.target.value })} /></label>
+        <label>Leave this field empty<input type="text" name="hp_check_7f3" tabIndex={-1} autoComplete="off" value={form.website} onChange={e => setForm({ ...form, website: e.target.value })} /></label>
       </div>
 
       {/* Two underline fields side by side */}

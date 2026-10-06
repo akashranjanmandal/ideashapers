@@ -3,7 +3,7 @@ import nodemailer from "nodemailer";
 
 /* ── limits ── */
 const MAX = { name: 100, email: 200, service: 100, msg: 5000 };
-const MIN_FILL_MS = 3000; // humans take longer than this to fill the form
+const MIN_FILL_MS = 2000; // humans take longer than this to fill the form
 const RATE_WINDOW_MS = 10 * 60 * 1000;
 const RATE_MAX = 3; // submissions per IP per window
 
@@ -56,9 +56,15 @@ export async function POST(req: NextRequest) {
   const honeypot = str(body.website);
   const startedAt = Number(body.t);
 
-  // Bots: pretend success so they don't retry, but send nothing.
-  if (honeypot || !Number.isFinite(startedAt) || Date.now() - startedAt < MIN_FILL_MS) {
+  // Honeypot filled or no timestamp: bot. Pretend success so it doesn't retry, send nothing.
+  if (honeypot || !Number.isFinite(startedAt)) {
+    console.warn("Contact form: dropped as bot", honeypot ? "(honeypot filled)" : "(no timestamp)");
     return NextResponse.json({ ok: true });
+  }
+  // Too fast to be human (or autofill + instant click): ask the visitor to retry rather than lose the message.
+  if (Date.now() - startedAt < MIN_FILL_MS) {
+    console.warn("Contact form: rejected as too fast");
+    return NextResponse.json({ error: "Please wait a moment and press Send again." }, { status: 400 });
   }
 
   if (!name || !email || !msg) {
